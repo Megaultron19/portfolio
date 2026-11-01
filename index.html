@@ -26,11 +26,17 @@
   nav a { color:var(--muted); text-decoration:none; margin-left:26px; transition:color .4s; }
   nav a:hover { color:var(--fg); }
   nav .home { color:var(--fg); margin:0; letter-spacing:.3em; }
+  .burger { display:none; width:40px; height:40px; border:1px solid var(--line); border-radius:10px; background:rgba(6,4,4,.6); cursor:pointer; position:relative; }
+  .burger i { position:absolute; left:11px; right:11px; height:1px; background:var(--fg); transition:transform .35s, opacity .35s; }
+  .burger i:nth-child(1) { top:14px; } .burger i:nth-child(2) { top:19px; } .burger i:nth-child(3) { top:24px; }
+  nav.open .burger i:nth-child(1) { transform:translateY(5px) rotate(45deg); }
+  nav.open .burger i:nth-child(2) { opacity:0; }
+  nav.open .burger i:nth-child(3) { transform:translateY(-5px) rotate(-45deg); }
   .found { font-family:"JetBrains Mono", monospace; letter-spacing:0; text-transform:none; color:var(--muted); opacity:.55; margin-left:26px; transition:color .6s, opacity .6s; }
   .found.done { color:var(--gold); opacity:1; }
   /* quiet blood moon */
   .hero { height:100vh; min-height:620px; display:grid; place-items:center; text-align:center; position:relative; overflow:hidden; }
-  .moon { position:absolute; width:min(56vmin, 480px); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle at 60% 40%, #120707, #000 70%);
+  .moon { position:absolute; width:min(76vmin, 550px); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle at 60% 40%, #120707, #000 70%);
     box-shadow:0 0 0 1px rgba(255,140,140,.4), 0 0 22px 2px rgba(184,50,60,.35), 0 0 90px 24px rgba(184,50,60,.12); animation:breathe 9s ease-in-out infinite; }
   @keyframes breathe { 50% { box-shadow:0 0 0 1px rgba(255,140,140,.5), 0 0 28px 4px rgba(184,50,60,.42), 0 0 110px 30px rgba(184,50,60,.15); } }
   .hero .txt { position:relative; padding:0 16px; }
@@ -128,7 +134,7 @@
   .stats { display:grid; grid-template-columns:repeat(4, 1fr); gap:14px; padding-bottom:18px; margin-bottom:22px; border-bottom:1px solid var(--line); }
   .stats b { display:block; font-family:"Cormorant Garamond", serif; font-size:2.2rem; font-weight:500; line-height:1; }
   .stats span { color:var(--muted); font-size:12px; }
-  .log { list-style:none; padding:0; display:grid; grid-template-columns:repeat(6, 1fr); gap:12px; position:relative; }
+  .log { list-style:none; padding:0; display:grid; grid-template-columns:repeat(4, 1fr); gap:12px; position:relative; }
   .log::before { content:""; position:absolute; left:0; right:0; top:5px; height:1px; background:linear-gradient(90deg, var(--line), rgba(184,50,60,.5)); }
   .log li { position:relative; padding-top:22px; }
   .log li::before { content:""; position:absolute; top:0; left:0; width:11px; height:11px; border-radius:50%; background:var(--bg); border:1px solid rgba(235,227,222,.5); }
@@ -151,8 +157,28 @@
   .links a:hover, .links button:hover { border-color:rgba(184,50,60,.5); background:rgba(184,50,60,.08); }
   .links span { display:block; color:var(--muted); font-size:11px; letter-spacing:.15em; text-transform:uppercase; margin-bottom:4px; }
   /* resume mode */
+  .live { display:inline-flex; align-items:center; gap:8px; font-size:12.5px; color:var(--muted); border:1px solid var(--line); border-radius:999px; padding:6px 14px; background:rgba(0,0,0,.4); }
+  .live b { color:var(--fg); font-weight:400; }
+  .live i, .ongo i { width:7px; height:7px; border-radius:50%; background:#3fb950; box-shadow:0 0 0 0 rgba(63,185,80,.6); animation:ping 2.4s infinite; display:inline-block; }
+  @keyframes ping { 70% { box-shadow:0 0 0 8px rgba(63,185,80,0); } 100% { box-shadow:0 0 0 0 rgba(63,185,80,0); } }
+  .hstats { display:flex; justify-content:center; gap:28px; margin-top:22px; }
+  .hstats b { display:block; font-family:"Cormorant Garamond", serif; font-size:1.8rem; font-weight:500; line-height:1; }
+  .hstats span { color:var(--muted); font-size:10.5px; letter-spacing:.15em; text-transform:uppercase; }
+  .scroll { display:none; margin-top:20px; font-family:"JetBrains Mono", monospace; font-size:11px; color:var(--muted); text-decoration:none; animation:bob 2.6s ease-in-out infinite; }
+  @keyframes bob { 50% { transform:translateY(5px); } }
+  .now .ongo { padding:10px 12px; margin-bottom:6px; border:1px solid rgba(63,185,80,.25) !important; border-radius:10px; background:rgba(63,185,80,.05); }
+  .ongo b { font-weight:400; display:flex; align-items:center; gap:8px; }
+  .ongo small { color:var(--muted); font-size:12px; }
+  .log li.cur::before { background:#3fb950 !important; border-color:#3fb950 !important; box-shadow:0 0 12px 2px rgba(63,185,80,.5) !important; }
+  .log li.cur time { color:#3fb950; }
+  #cv.dark { background:#060404; color:var(--fg); }
+  #cv.dark .paper { background:#0e0909; box-shadow:0 0 0 1px var(--line); color:#ebe3de; }
+  #cv.dark .paper header p, #cv.dark .paper i, #cv.dark .paper .row span { color:#9a8d88; }
+  #cv.dark .paper h2, #cv.dark .paper .cl a { color:#d65a63; }
+  #cv.dark .paper h2 { border-color:rgba(235,227,222,.1); }
+  #cv.dark .cvbar button { background:#0e0909; color:#ebe3de; border-color:rgba(235,227,222,.15); }
   #cv { background:#f4f1ec; color:#1d1a19; min-height:100vh; padding:24px 16px 60px; }
-  .cvbar { max-width:820px; margin:0 auto 16px; display:flex; justify-content:space-between; gap:10px; }
+  .cvbar { max-width:820px; margin:0 auto 16px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; }
   .cvbar button { font:500 13px Inter, sans-serif; padding:9px 16px; border-radius:999px; border:1px solid #cfc7c0; background:#fff; color:#1d1a19; cursor:pointer; }
   .paper { max-width:820px; margin:auto; background:#fff; padding:48px 56px; box-shadow:0 10px 40px rgba(0,0,0,.08); font:14px/1.55 Inter, system-ui, sans-serif; }
   .paper header { text-align:center; margin-bottom:6px; }
@@ -166,7 +192,7 @@
   .paper ul { margin:4px 0 0 18px; padding:0; }
   .paper li { margin:2px 0; }
   body.cvmode > :not(#cv):not(script) { display:none !important; }
-  @media print { body > :not(#cv) { display:none !important; } #cv { display:block !important; padding:0; background:#fff; } .cvbar { display:none; } .paper { box-shadow:none; padding:0; font-size:12px; } body { background:#fff; } }
+  @media print { body > :not(#cv) { display:none !important; } #cv, #cv.dark { display:block !important; padding:0; background:#fff; color:#1d1a19; } #cv.dark .paper { background:#fff; color:#1d1a19; box-shadow:none; } #cv.dark .paper h2, #cv.dark .paper .cl a { color:#8a1f28; } .cvbar { display:none; } .paper { box-shadow:none; padding:0; font-size:12px; } body { background:#fff; } }
   .tl div { display:flex; justify-content:space-between; gap:10px; padding:12px 0; border-bottom:1px solid var(--line); flex-wrap:wrap; }
   .tl div:last-child { border:0; }
   .tl span { color:var(--muted); font-size:13px; }
@@ -180,15 +206,31 @@
   .toast.on { opacity:1; transform:translate(-50%, 0); }
   .reveal { opacity:0; transform:translateY(18px); transition:1.3s cubic-bezier(.2,.7,.2,1); }
   .reveal.in { opacity:1; transform:none; }
-  @media (max-width:900px) { .log { grid-template-columns:repeat(3, 1fr); row-gap:22px; } .log::before { display:none; } .reach { grid-template-columns:1fr; } .paper { padding:32px 22px; } .paper .row { flex-direction:column; gap:0; } .paper .row span { text-align:left; } .s3, .s4, .s5 { grid-column:span 6; } .s6, .s7, .s8 { grid-column:span 12; } }
+  @media (max-width:900px) { .log { grid-template-columns:repeat(2, 1fr); row-gap:22px; } .log::before { display:none; } .reach { grid-template-columns:1fr; } .paper { padding:32px 22px; } .paper .row { flex-direction:column; gap:0; } .paper .row span { text-align:left; } .s3, .s4, .s5 { grid-column:span 6; } .s6, .s7, .s8 { grid-column:span 12; } }
   @media (max-width:700px) { .pcard { position:static; transform:none; width:100%; text-align:left; margin-top:4px; } .pcard .meta { justify-content:flex-start; } }
-  @media (max-width:600px) { .stats { grid-template-columns:1fr 1fr; } .log { grid-template-columns:1fr 1fr; } .links { grid-template-columns:1fr; } .cvbtn { display:none; } .grid > * { grid-column:span 12 !important; } nav div a { display:none; } .skills div { grid-template-columns:1fr; gap:2px; } }
+  @media (max-width:600px) {
+    .moon { width:94vw; }
+    .hero .txt { padding:0; }
+    .hero small { font-size:9px; letter-spacing:.3em; }
+    h1 { font-size:2.3rem; margin:8px 0; }
+    .hero p { font-size:12.5px; line-height:1.5; max-width:220px; margin-bottom:14px; }
+    .live { font-size:10.5px; padding:4px 10px; }
+    .hstats { gap:16px; margin-top:12px; } .hstats b { font-size:1.35rem; } .hstats span { font-size:8.5px; letter-spacing:.1em; }
+    .scroll { display:none; }
+    .burger { display:block; }
+    nav { padding:16px 20px; }
+    nav .menu { position:absolute; top:100%; left:12px; right:12px; display:none; flex-direction:column; align-items:stretch; padding:8px; background:rgba(10,6,6,.97); border:1px solid var(--line); border-radius:14px; box-shadow:0 20px 40px rgba(0,0,0,.6); }
+    nav.open .menu { display:flex; }
+    nav .menu a { display:block !important; margin:0; padding:14px 12px; border-bottom:1px solid var(--line); font-size:12px; }
+    nav .menu .cvbtn { display:block !important; margin:10px 0 4px; padding:12px; text-align:center; }
+    nav .menu .found { margin:6px 12px; }
+ .live .role { display:none; } .hstats { gap:18px; } .live { font-size:11px; padding:5px 10px; } .stats { grid-template-columns:1fr 1fr; } .log { grid-template-columns:1fr 1fr; } .links { grid-template-columns:1fr; } .grid > * { grid-column:span 12 !important; } .skills div { grid-template-columns:1fr; gap:2px; } }
   @media (prefers-reduced-motion:reduce) { *, .reveal { animation:none !important; transition:none !important; opacity:1; transform:none; } }
 </style>
 </head>
 <body>
 <canvas id="sky" aria-hidden="true"></canvas>
-<nav><a class="home serif" href="#">Harshit Singh</a><div><a href="#about">About</a><a href="#experience">Experience</a><a href="#work">Work</a><a href="#contact">Contact</a><button class="cvbtn" id="cvbtn" aria-pressed="false">Resume mode</button><span class="found" id="found" title="Hidden constellations found">✦ 0/5</span></div></nav>
+<nav id="nav"><a class="home serif" href="#">Harshit Singh</a><button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button><div class="menu" id="menu"><a href="#about">About</a><a href="#experience">Experience</a><a href="#work">Work</a><a href="#contact">Contact</a><button class="cvbtn" id="cvbtn" aria-pressed="false">Resume mode</button><span class="found" id="found" title="Hidden constellations found">✦ 0/5</span></div></nav>
 
 <header class="hero">
   <div class="moon"></div>
@@ -196,6 +238,9 @@
     <small>AI Engineer · Noida, India</small>
     <h1 class="serif">Harshit <i>Singh</i></h1>
     <p>Generative AI engineer building LLM, RAG and vision systems that leave the notebook and ship.</p>
+    <div class="live"><i></i>Currently at <b>Claw LegalTech</b><span class="role"> · Generative AI Engineer Intern</span></div>
+    <div class="hstats"><div><b>2</b><span>AI internships</span></div><div><b>8.23</b><span>CGPA</span></div><div><b>6</b><span>builds</span></div></div>
+    <a class="scroll" href="#about" aria-label="Scroll to about">scroll ↓</a>
   </div>
   <div class="hint">the sky remembers a night in January</div>
 </header>
@@ -204,7 +249,7 @@
   <div class="sh reveal" id="about"><h2 class="serif">First <i>light</i></h2><span class="mono">● open to opportunities</span></div>
   <div class="grid">
     <div class="w s6 about reveal"><h3>About</h3><p class="quote">"Models are easy. Shipping them is the craft."</p>
-      <p class="muted" style="margin-top:12px">I'm a Computer Science graduate from Amity University Noida, now a Generative AI Engineer Intern at Claw LegalTech. I build applied AI end to end: fine-tuning and prompting LLMs, retrieval pipelines, agentic workflows and real-time computer vision, and I care most about getting it into production.</p>
+      <p class="muted" style="margin-top:12px">I'm a Computer Science graduate from Amity University Noida who loves turning AI into things people actually use. I work mostly in Python, across data analysis, machine learning, LLMs and computer vision, and I learn best by building: through internships, academic projects and a steady habit of shipping side projects. I'm looking for a team where I can solve real problems and keep growing as an AI engineer.</p>
       <div class="focus"><span>LLMs & fine-tuning</span><span>RAG pipelines</span><span>Agentic workflows</span><span>Computer vision</span><span>Production ML</span></div></div>
     <div class="s3 stack">
       <div class="w reveal"><h3>Internships</h3><ul class="co">
@@ -213,19 +258,18 @@
       <div class="w kpi reveal"><h3>B.Tech CSE · Amity</h3><b>8.23</b><small>CGPA · 2022 to 2026</small></div>
     </div>
     <div class="w s3 now reveal"><h3>Right now</h3>
+      <div class="ongo"><span>Ongoing internship</span><b><i></i>Claw LegalTech</b><small>Generative AI Engineer Intern · Ahmedabad · since Apr 2026</small></div>
       <div><span>Building</span>GenAI features in production</div>
       <div><span>Exploring</span>Agentic AI · RAG · LoRA</div>
       <div><span>Based in</span>Noida, India</div>
       <div><span>Open to</span>AI / ML engineering roles</div></div>
-    <div class="w s12 reveal"><h3><span>Build log</span><a class="mono" href="https://github.com/Megaultron19" target="_blank" rel="noopener" style="text-decoration:none">github.com/Megaultron19 ↗</a></h3>
+    <div class="w s12 reveal"><h3><span>Journey</span><a class="mono" href="https://github.com/Megaultron19" target="_blank" rel="noopener" style="text-decoration:none">github.com/Megaultron19 ↗</a></h3>
       <div class="stats"><div><b>6</b><span>projects built</span></div><div><b>2</b><span>AI internships</span></div><div><b>4</b><span>public repos</span></div><div><b>1</b><span>research study</span></div></div>
       <ol class="log">
         <li><time>2022</time><b>Started B.Tech CSE</b><span>Amity University, Noida</span></li>
         <li><time>2024</time><b>NPTEL certified</b><span>Python for Data Science</span></li>
         <li><time>May 2025</time><b>Bitsflow Technologies</b><span>AI / ML Intern, LLMs for finance</span></li>
-        <li><time>Nov 2025</time><b>Vision projects shipped</b><span>Traffic AI · Emotion AI</span></li>
-        <li><time>Apr 2026</time><b>Claw LegalTech</b><span>Generative AI Engineer Intern</span></li>
-        <li class="cur"><time>Oct 2026</time><b>AI Receptionist</b><span>Voice + WhatsApp LLM agent</span></li>
+        <li class="cur"><time>Apr 2026 · now</time><b>Claw LegalTech</b><span>Generative AI Engineer Intern, ongoing</span></li>
       </ol></div>
   </div>
 
@@ -283,12 +327,12 @@
 <div class="toast" id="toast" role="status"></div>
 
 <section id="cv" aria-label="Resume" hidden>
-  <div class="cvbar"><button type="button" id="cvback">← Back to site</button><button type="button" onclick="print()">Print / Save as PDF</button></div>
+  <div class="cvbar"><button type="button" id="cvback">← Back to site</button><span><button type="button" id="cvtheme" aria-pressed="false">Dark mode</button> <button type="button" onclick="print()">Print / Save as PDF</button></span></div>
   <article class="paper">
     <header><h1>Harshit Singh</h1><p>Generative AI Engineer · Noida, India</p>
       <p class="cl"><a href="mailto:harshitkatiyar2003@gmail.com">harshitkatiyar2003@gmail.com</a> · <a href="https://www.linkedin.com/in/thesinghharshit/">linkedin.com/in/thesinghharshit</a> · <a href="https://github.com/Megaultron19">github.com/Megaultron19</a></p></header>
     <h2>Summary</h2>
-    <p>Computer Science graduate from Amity University Noida with a strong focus on applied AI. Skilled in Python, data analysis and machine learning, with hands-on experience building LLM, RAG and computer vision systems through internships and projects.</p>
+    <p>I am a motivated and detail-oriented BTech Computer Science graduate from Amity University Noida, with a strong passion for Artificial Intelligence and its real-world applications. Skilled in Python, data analysis, and foundational machine learning algorithms, with hands-on experience through academic projects and online courses. Eager to apply problem-solving abilities and continuously expand AI knowledge through internships and collaborative opportunities.</p>
     <h2>Experience</h2>
     <div class="row"><b>Claw LegalTech, Ahmedabad</b><span>Apr 2026 to Present</span></div><i>Generative AI Engineer Intern</i>
     <ul><li>Built and integrated new GenAI-driven features into existing production systems.</li><li>Worked on prompt engineering, vector databases and retrieval strategies to refine outputs.</li><li>Improved existing AI architecture by optimising pipelines and debugging workflows.</li></ul>
@@ -410,6 +454,16 @@
   const setCV = on => { cv.hidden = !on; document.body.classList.toggle('cvmode', on); cvbtn.setAttribute('aria-pressed', on); scrollTo(0, 0);
     if (on && location.hash !== '#resume') history.replaceState(null, '', '#resume'); if (!on && location.hash === '#resume') history.replaceState(null, '', location.pathname); };
   cvbtn.onclick = () => setCV(true);
+  const nav = document.getElementById('nav'), burger = document.getElementById('burger');
+  const setMenu = on => { nav.classList.toggle('open', on); burger.setAttribute('aria-expanded', on); burger.setAttribute('aria-label', on ? 'Close menu' : 'Open menu'); };
+  burger.onclick = () => setMenu(!nav.classList.contains('open'));
+  document.getElementById('menu').addEventListener('click', e => { if (e.target.closest('a, button')) setMenu(false); });
+  addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+  document.addEventListener('click', e => { if (!nav.contains(e.target)) setMenu(false); });
+  const cvt = document.getElementById('cvtheme');
+  const setDark = on => { cv.classList.toggle('dark', on); cvt.textContent = on ? 'Light mode' : 'Dark mode'; cvt.setAttribute('aria-pressed', on); try { localStorage.cvdark = on ? 1 : ''; } catch (e) {} };
+  cvt.onclick = () => setDark(!cv.classList.contains('dark'));
+  try { if (localStorage.cvdark) setDark(true); } catch (e) {}
   document.querySelector('.cvopen').onclick = () => setCV(true);
   document.getElementById('cvback').onclick = () => setCV(false);
   addEventListener('keydown', e => { if (e.key === 'Escape' && !cv.hidden) setCV(false); });
