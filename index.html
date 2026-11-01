@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harshit Singh — AI Engineer</title>
+<meta name="description" content="Harshit Singh — Generative AI engineer and final-year CSE student at Amity University Noida. LLMs, RAG, agents and computer vision.">
+<meta property="og:title" content="Harshit Singh — AI Engineer">
+<meta property="og:description" content="Generative AI engineer building LLM, RAG and computer-vision systems that ship.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='11' fill='%23060404' stroke='%23d65a63' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Inter:wght@300;400;500&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#060404; --panel:rgba(14,9,9,.86); --fg:#ebe3de; --muted:#857874; --red:#b8323c; --red2:#d65a63; --gold:#d9b98a; --line:rgba(235,227,222,.07); --mx:-999px; --my:-999px; }
+  * { box-sizing:border-box; margin:0; }
+  html { scroll-behavior:smooth; overflow-x:clip; }
+  body { font:15px/1.7 Inter, system-ui, sans-serif; font-weight:300; color:var(--fg); background:var(--bg); }
+  body::after { content:""; position:fixed; inset:0; pointer-events:none; opacity:.04; z-index:50; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  a { color:inherit; }
+  .serif { font-family:"Cormorant Garamond", Georgia, serif; }
+  .mono { font-family:"JetBrains Mono", monospace; }
+  /* hidden sky: only visible inside a soft lantern around the cursor */
+  #sky { position:fixed; inset:0; z-index:-1; -webkit-mask:radial-gradient(200px circle at var(--mx) var(--my), #000, rgba(0,0,0,.45) 50%, transparent 100%); mask:radial-gradient(200px circle at var(--mx) var(--my), #000, rgba(0,0,0,.45) 50%, transparent 100%); }
+  nav { position:fixed; top:0; left:0; right:0; z-index:10; display:flex; justify-content:space-between; align-items:center; padding:22px 5vw; font-size:12px; letter-spacing:.25em; text-transform:uppercase; background:linear-gradient(var(--bg), transparent); }
+  nav a { color:var(--muted); text-decoration:none; margin-left:26px; transition:color .4s; }
+  nav a:hover { color:var(--fg); }
+  nav .home { color:var(--fg); margin:0; letter-spacing:.3em; }
+  .found { font-family:"JetBrains Mono", monospace; letter-spacing:0; text-transform:none; color:var(--muted); opacity:.55; margin-left:26px; transition:color .6s, opacity .6s; }
+  .found.done { color:var(--gold); opacity:1; }
+  /* quiet blood moon */
+  .hero { height:100vh; min-height:620px; display:grid; place-items:center; text-align:center; position:relative; overflow:hidden; }
+  .moon { position:absolute; width:min(56vmin, 480px); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle at 60% 40%, #120707, #000 70%);
+    box-shadow:0 0 0 1px rgba(255,140,140,.4), 0 0 22px 2px rgba(184,50,60,.35), 0 0 90px 24px rgba(184,50,60,.12); animation:breathe 9s ease-in-out infinite; }
+  @keyframes breathe { 50% { box-shadow:0 0 0 1px rgba(255,140,140,.5), 0 0 28px 4px rgba(184,50,60,.42), 0 0 110px 30px rgba(184,50,60,.15); } }
+  .hero .txt { position:relative; padding:0 16px; }
+  .hero small { color:var(--muted); letter-spacing:.4em; font-size:11px; text-transform:uppercase; }
+  h1 { font-size:clamp(2.6rem, 8vmin, 5rem); font-weight:500; line-height:1; margin:12px 0; }
+  h1 i { color:var(--red2); }
+  .hero p { color:var(--muted); max-width:min(330px, 72vw); margin:0 auto 22px; }
+  .btn { display:inline-block; padding:11px 24px; border:1px solid var(--line); color:var(--fg); text-decoration:none; font-size:11px; letter-spacing:.2em; text-transform:uppercase; margin:4px; transition:border-color .4s, background .4s; }
+  .btn:hover { border-color:var(--red); }
+  .btn.f { border-color:rgba(184,50,60,.6); }
+  .btn.f:hover { background:rgba(184,50,60,.18); }
+  .hint { position:absolute; bottom:28px; left:0; right:0; text-align:center; font-family:"JetBrains Mono", monospace; font-size:11px; color:var(--muted); opacity:.45; }
+  main { max-width:1200px; margin:auto; padding:40px 20px 60px; }
+  .sh { display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px; margin:80px 0 22px; }
+  h2 { font-size:clamp(2.2rem, 5vw, 3.4rem); font-weight:500; }
+  h2 i { color:var(--red2); }
+  .sh span { color:var(--muted); font-size:12px; letter-spacing:.2em; text-transform:uppercase; }
+  .grid { display:grid; grid-template-columns:repeat(12, 1fr); gap:14px; }
+  .w { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:20px; transition:border-color .6s; }
+  .w:hover { border-color:rgba(184,50,60,.22); }
+  .w h3 { font-size:11px; font-weight:400; color:var(--muted); letter-spacing:.15em; text-transform:uppercase; margin-bottom:12px; display:flex; justify-content:space-between; gap:10px; }
+  .s3 { grid-column:span 3; } .s4 { grid-column:span 4; } .s5 { grid-column:span 5; } .s6 { grid-column:span 6; } .s7 { grid-column:span 7; } .s8 { grid-column:span 8; } .s12 { grid-column:span 12; }
+  .kpi b { font-family:"Cormorant Garamond", serif; font-size:2.8rem; font-weight:500; line-height:1; display:block; }
+  .kpi small { color:var(--muted); }
+  .quote { font-family:"Cormorant Garamond", serif; font-style:italic; font-size:clamp(1.5rem, 3vw, 2.1rem); line-height:1.25; }
+  .muted { color:var(--muted); }
+  .gh { display:block; width:100%; height:auto; filter:invert(.9) hue-rotate(180deg) saturate(.8); opacity:.9; }
+  /* experience */
+  .job h4 { font-family:"Cormorant Garamond", serif; font-size:1.7rem; font-weight:500; line-height:1.1; }
+  .job .role { color:var(--red2); font-size:13px; margin:2px 0 14px; }
+  .job ul { list-style:none; padding:0; }
+  .job li { padding:8px 0 8px 18px; border-top:1px solid var(--line); position:relative; color:var(--muted); font-size:14px; }
+  .job li::before { content:""; position:absolute; left:2px; top:17px; width:5px; height:5px; border-radius:50%; background:var(--red); }
+  .job li b { color:var(--fg); font-weight:400; }
+  /* projects */
+  .proj { display:flex; flex-direction:column; justify-content:space-between; min-height:250px; color:var(--fg); text-decoration:none; }
+  .proj .n { font-family:"Cormorant Garamond", serif; font-size:3rem; color:rgba(235,227,222,.08); line-height:1; transition:color .6s; }
+  .proj:hover .n { color:rgba(214,90,99,.35); }
+  .proj h4 { font-family:"Cormorant Garamond", serif; font-size:1.8rem; font-weight:500; line-height:1.1; margin-bottom:6px; transition:color .5s; }
+  .proj:hover h4 { color:var(--red2); }
+  .proj p { color:var(--muted); font-size:14px; }
+  .meta { display:flex; flex-wrap:wrap; gap:6px 14px; color:var(--muted); font-size:12px; margin-top:12px; }
+  .meta .go { margin-left:auto; color:var(--red2); }
+  .also div { padding:12px 0; border-bottom:1px solid var(--line); }
+  .also div:last-child { border:0; }
+  .also b { font-weight:400; }
+  .also small { display:block; color:var(--muted); font-size:13px; }
+  .skills div { display:grid; grid-template-columns:110px 1fr; gap:12px; padding:10px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  .skills div:last-child { border:0; }
+  .skills span { color:var(--muted); font-size:12px; letter-spacing:.1em; text-transform:uppercase; padding-top:2px; }
+  .tl div { display:flex; justify-content:space-between; gap:10px; padding:12px 0; border-bottom:1px solid var(--line); flex-wrap:wrap; }
+  .tl div:last-child { border:0; }
+  .tl span { color:var(--muted); font-size:13px; }
+  .tl small { display:block; color:var(--muted); font-size:13px; }
+  .term { background:rgba(0,0,0,.6); border:1px solid var(--line); border-radius:10px; padding:16px; font-size:13px; color:var(--muted); line-height:1.9; overflow-wrap:anywhere; }
+  .term b { color:var(--red2); font-weight:400; }
+  .term a { color:var(--fg); }
+  footer { display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; padding:28px 5vw; border-top:1px solid var(--line); color:var(--muted); font-size:12px; letter-spacing:.1em; }
+  footer a { color:var(--muted); margin-left:16px; }
+  .toast { position:fixed; left:50%; bottom:24px; transform:translate(-50%, 20px); width:max-content; max-width:92vw; padding:10px 18px; border:1px solid rgba(217,185,138,.3); border-radius:999px; background:rgba(6,4,4,.92); color:var(--gold); font-size:13px; text-align:center; opacity:0; transition:1s; pointer-events:none; z-index:60; }
+  .toast.on { opacity:1; transform:translate(-50%, 0); }
+  .reveal { opacity:0; transform:translateY(18px); transition:1.3s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity:1; transform:none; }
+  @media (max-width:900px) { .s3, .s4, .s5 { grid-column:span 6; } .s6, .s7, .s8 { grid-column:span 12; } }
+  @media (max-width:600px) { .grid > * { grid-column:span 12 !important; } nav div a { display:none; } .skills div { grid-template-columns:1fr; gap:2px; } }
+  @media (prefers-reduced-motion:reduce) { *, .reveal { animation:none !important; transition:none !important; opacity:1; transform:none; } }
+</style>
+</head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<nav><a class="home serif" href="#">Harshit Singh</a><div><a href="#about">About</a><a href="#experience">Experience</a><a href="#work">Work</a><a href="#contact">Contact</a><span class="found" id="found" title="Hidden constellations found">✦ 0/5</span></div></nav>
+
+<header class="hero">
+  <div class="moon"></div>
+  <div class="txt">
+    <small>AI Engineer · Noida, India</small>
+    <h1 class="serif">Harshit <i>Singh</i></h1>
+    <p>Generative AI engineer building LLM, RAG and vision systems that leave the notebook and ship.</p>
+    <a class="btn f" href="#work">Enter</a><a class="btn" href="https://github.com/Megaultron19" target="_blank" rel="noopener">GitHub</a>
+  </div>
+  <div class="hint">the sky remembers a night in January</div>
+</header>
+
+<main>
+  <div class="sh reveal" id="about"><h2 class="serif">The <i>overview</i></h2><span class="mono">● open to opportunities</span></div>
+  <div class="grid">
+    <div class="w s6 reveal"><h3>About</h3><p class="quote">"I like AI that does real work — not just demos."</p>
+      <p class="muted" style="margin-top:14px">I'm a final-year Computer Science student at Amity University Noida and a Generative AI Engineer Intern at Claw LegalTech. I work across the stack of applied AI: fine-tuning and prompting LLMs, retrieval pipelines, agentic workflows and real-time computer vision, and I care most about getting them into production.</p></div>
+    <div class="w s3 kpi reveal"><h3>AI internships</h3><b>2</b><small>Claw LegalTech · Bitsflow</small></div>
+    <div class="w s3 kpi reveal"><h3>B.Tech CSE</h3><b>8.23</b><small>CGPA · Amity University</small></div>
+    <div class="w s12 reveal" id="ghbox"><h3><span>GitHub activity</span><a class="mono" href="https://github.com/Megaultron19" target="_blank" rel="noopener" style="text-decoration:none">@Megaultron19 ↗</a></h3>
+      <img class="gh" src="https://ghchart.rshah.org/b8323c/Megaultron19" alt="Harshit's GitHub contribution chart" loading="lazy" onerror="document.getElementById('ghbox').remove()"></div>
+  </div>
+
+  <div class="sh reveal" id="experience"><h2 class="serif">Where I've <i>worked</i></h2><span>2025 — now</span></div>
+  <div class="grid">
+    <div class="w s6 job reveal"><h3><span>Ahmedabad</span><span>Apr 2026 — Present</span></h3><h4>Claw LegalTech</h4><div class="role">Generative AI Engineer Intern</div>
+      <ul><li><b>Feature engineering</b> — built and integrated new GenAI-driven features into existing production systems.</li>
+        <li><b>LLM optimisation</b> — prompt engineering, vector databases and retrieval strategies to sharpen outputs.</li>
+        <li><b>System enhancement</b> — improved existing AI architecture by optimising pipelines and debugging workflows.</li></ul></div>
+    <div class="w s6 job reveal"><h3><span>Noida</span><span>May — Jul 2025</span></h3><h4>Bitsflow Technologies</h4><div class="role">AI / ML Intern</div>
+      <ul><li><b>LLM development</b> — built and fine-tuned LLMs for financial applications with prompt and response optimisation.</li>
+        <li><b>AI chatbots</b> — developed chatbots with Chainlit and LangChain; automated workflows with n8n.</li>
+        <li><b>Full-stack AI</b> — contributed to a full-stack system delivering real-time, data-driven financial insights.</li></ul></div>
+  </div>
+
+  <div class="sh reveal" id="work"><h2 class="serif">Selected <i>work</i></h2><span>on GitHub</span></div>
+  <div class="grid">
+    <a class="w proj s4 reveal" href="https://github.com/Megaultron19/AI-receptionist-for-business" target="_blank" rel="noopener"><span class="n">I</span><div><h4>AI Receptionist for Restaurants</h4><p>Answers phone calls and WhatsApp in English and Hindi, books tables without double bookings, takes food pre-orders, collects Razorpay payments and sends QR confirmations — all run from a staff dashboard.</p><div class="meta"><span>Python · FastAPI</span><span>LLM API</span><span>Next.js</span><span class="go">↗</span></div></div></a>
+    <a class="w proj s4 reveal" href="https://github.com/Megaultron19/Traffic-Management-System" target="_blank" rel="noopener"><span class="n">II</span><div><h4>Smart Traffic Management</h4><p>Real-time vehicle detection with YOLOv8, a custom centroid tracker for persistent IDs, line-crossing counts with no duplicates, and a Streamlit dashboard for analytics.</p><div class="meta"><span>YOLOv8</span><span>OpenCV</span><span>Streamlit</span><span class="go">↗</span></div></div></a>
+    <a class="w proj s4 reveal" href="https://github.com/Megaultron19/AI-Based-Facial-and-Emotion-Detection-System" target="_blank" rel="noopener"><span class="n">III</span><div><h4>Facial Emotion Detection</h4><p>Live webcam system that detects faces with OpenCV and classifies seven emotions in real time with a CNN, tuned for smooth inference.</p><div class="meta"><span>CNN</span><span>Keras · TensorFlow</span><span>OpenCV</span><span class="go">↗</span></div></div></a>
+    <div class="w s5 also reveal"><h3>Also built</h3>
+      <div><b>AI Notes Summarizer</b><small>Summarises long documents and PDFs with RAG — LangChain, Chainlit, Ollama.</small></div>
+      <div><b>Healthcare Management System</b><small>Patient records, appointments and prescriptions over Flask REST APIs and MySQL.</small></div>
+      <div><b>Research — swipe-up culture & remote work</b><small>Mixed-methods study of social media's effect on remote workers' productivity and well-being.</small></div></div>
+    <div class="w s7 skills reveal"><h3>Toolkit</h3>
+      <div><span>Languages</span>Python · C++ · SQL</div>
+      <div><span>AI / ML</span>TensorFlow · Keras · OpenCV · LangChain · Chainlit · Ollama · OpenAI · NLTK</div>
+      <div><span>Concepts</span>LLMs · Agentic AI · RAG · Transformers · LoRA / QLoRA · CNNs · RNNs · Transfer learning</div>
+      <div><span>Build</span>FastAPI · Flask · Pandas · NumPy · MySQL · Docker · n8n</div></div>
+  </div>
+
+  <div class="sh reveal" id="contact"><h2 class="serif">Journey & <i>contact</i></h2></div>
+  <div class="grid">
+    <div class="w s6 reveal"><h3>Education & more</h3><div class="tl">
+      <div><b style="font-weight:400">B.Tech CSE · Amity University, Noida<small>CGPA 8.23</small></b><span>2022 — 2026</span></div>
+      <div><b style="font-weight:400">Escorts World School, Kanpur<small>Class XII 93% · Class X 95%</small></b><span>2019 — 2021</span></div>
+      <div><b style="font-weight:400">NPTEL certifications<small>Python for Data Science · Body Language</small></b><span>2024</span></div>
+      <div><b style="font-weight:400">Cyber-Cup 2024 · Kind Beings NGO<small>Competition · Volunteer</small></b><span>2024</span></div></div></div>
+    <div class="w s6 reveal"><h3>Contact</h3><div class="term mono"><b>$</b> contact --harshit<br>email&nbsp;&nbsp;&nbsp; <a href="mailto:harshitkatiyar2003@gmail.com">harshitkatiyar2003@gmail.com</a><br>github&nbsp;&nbsp; <a href="https://github.com/Megaultron19" target="_blank" rel="noopener">github.com/Megaultron19</a><br>linkedin <a href="https://www.linkedin.com/in/thesinghharshit/" target="_blank" rel="noopener">in/thesinghharshit</a></div>
+      <p class="muted" style="margin-top:14px;font-size:14px">Open to AI / ML engineering roles. I usually reply within a day.</p></div>
+  </div>
+</main>
+<footer><span>© 2026 Harshit Singh</span><span><a href="https://github.com/Megaultron19" target="_blank" rel="noopener">GitHub</a><a href="https://www.linkedin.com/in/thesinghharshit/" target="_blank" rel="noopener">LinkedIn</a><a href="mailto:harshitkatiyar2003@gmail.com">Email</a></span></footer>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+  // the sky of 19 January: Capricornus (the Sun's sign that day) + the winter constellations up that night
+  // stars are [RA hours, Dec degrees, name?]; lines join star indexes; box = [centre x, centre y, size] as viewport fractions
+  const BIRTH = '19 January';  // ponytail: year left out on purpose, add it only if you want it public
+  const C = [
+    {n: 'Capricornus', sign: true, box: [.8, .87, .22], mbox: [.5, .91, .34], s: [[20.30,-12.5,'Algedi'],[20.35,-14.8,'Dabih'],[20.77,-25.3],[20.86,-26.9],[21.12,-25.0],[21.44,-22.4],[21.62,-19.5],[21.78,-16.1,'Deneb Algedi'],[21.67,-16.7],[21.37,-16.8],[21.10,-17.2]], l: [[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,10],[10,1]]},
+    {n: 'Orion', box: [.13, .27, .3], mbox: [.24, .18, .36], s: [[5.92,7.4,'Betelgeuse'],[5.42,6.35],[5.68,-1.94],[5.60,-1.2],[5.53,-.3],[5.80,-9.67],[5.24,-8.2,'Rigel'],[5.59,9.93]], l: [[7,0],[7,1],[0,2],[1,4],[4,3],[3,2],[2,5],[4,6]]},
+    {n: 'Taurus', box: [.84, .22, .24], mbox: [.7, .18, .32], s: [[4.60,16.5,'Aldebaran'],[5.44,28.6],[5.63,21.1],[4.48,15.9],[4.33,15.6],[4.38,17.5],[4.48,19.2],[3.79,24.1,'Pleiades']], l: [[2,0],[0,3],[3,4],[4,5],[5,6],[6,1],[4,7]]},
+    {n: 'Gemini', box: [.88, .6, .22], mbox: [.82, .76, .28], s: [[7.58,31.9,'Castor'],[7.76,28.0,'Pollux'],[6.63,16.4],[6.73,25.1],[6.38,22.5],[7.34,22.0]], l: [[0,3],[3,4],[1,5],[5,2],[0,1]]},
+    {n: 'Canis Major', box: [.12, .7, .24], mbox: [.2, .78, .3], s: [[6.75,-16.7,'Sirius'],[6.38,-17.96],[6.98,-28.97],[7.14,-26.4],[7.40,-29.3]], l: [[1,0],[0,3],[3,2],[3,4]]},
+  ];
+  // project each constellation into its box (east on the left, like looking up)
+  const place = (k, W, H) => { const box = W < 600 ? k.mbox : k.box; const d0 = k.s.reduce((t, v) => t + v[1], 0) / k.s.length * Math.PI / 180;
+    const raw = k.s.map(([ra, dec]) => [-ra * 15 * Math.cos(d0), -dec]);
+    const xs = raw.map(v => v[0]), ys = raw.map(v => v[1]), minX = Math.min(...xs), minY = Math.min(...ys);
+    const span = Math.max(Math.max(...xs) - minX, Math.max(...ys) - minY), sc = box[2] * Math.min(W, H) / span;
+    const w = (Math.max(...xs) - minX) * sc, h = (Math.max(...ys) - minY) * sc;
+    return raw.map(([x0, y0]) => [box[0] * W - w / 2 + (x0 - minX) * sc, box[1] * H - h / 2 + (y0 - minY) * sc]); };
+  const c = document.getElementById('sky'), x = c.getContext('2d'), root = document.documentElement, found = new Set();
+  const dust = Array.from({length: 220}, () => [Math.random(), Math.random(), Math.random()]);
+  const draw = () => { const W = innerWidth, H = innerHeight; c.width = W * devicePixelRatio; c.height = H * devicePixelRatio; x.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    for (const [a, b, s] of dust) { x.fillStyle = `rgba(235,227,222,${.25 + s * .45})`; x.fillRect(a * W, b * H, .8 + s, .8 + s); }
+    for (const k of C) { const pts = k.pts = place(k, W, H), col = k.sign ? '214,90,99' : '217,185,138';
+      x.strokeStyle = `rgba(${col},${k.sign ? .6 : .38})`; x.lineWidth = 1; x.beginPath();
+      for (const [i, j] of k.l) { x.moveTo(...pts[i]); x.lineTo(...pts[j]); } x.stroke();
+      k.s.forEach(([, , nm], i) => { x.fillStyle = 'rgba(255,245,235,.92)'; x.beginPath(); x.arc(...pts[i], nm ? 2.4 : 1.5, 0, 7); x.fill();
+        if (nm) { x.font = '10px "JetBrains Mono", monospace'; x.fillStyle = 'rgba(235,227,222,.45)'; x.fillText(nm, pts[i][0] + 6, pts[i][1] + 12); } });
+      const lx = Math.max(8, Math.min(...pts.map(p => p[0]))), ly = Math.min(...pts.map(p => p[1]));
+      x.font = (k.sign ? 'italic 15px' : '13px') + ' "Cormorant Garamond", serif'; x.fillStyle = `rgba(${col},.9)`;
+      x.fillText(k.sign ? (W < 600 ? `${k.n} · ${BIRTH}` : `${k.n} — born under, ${BIRTH}`) : k.n, lx, ly - 12); } };
+  document.fonts.ready.then(draw); addEventListener('resize', draw);
+  const counter = document.getElementById('found'), toast = document.getElementById('toast');
+  const move = (px, py) => { root.style.setProperty('--mx', px + 'px'); root.style.setProperty('--my', py + 'px');
+    for (const k of C) if (k.pts && !found.has(k.n) && k.pts.some(([a, b]) => Math.hypot(a - px, b - py) < 60)) {
+      found.add(k.n); counter.textContent = `✦ ${found.size}/${C.length}`;
+      if (found.size === C.length) { counter.classList.add('done'); toast.textContent = `✦ the winter sky of ${BIRTH}, born under Capricorn — you have a good eye. Say hi ↓`; toast.classList.add('on'); setTimeout(() => toast.classList.remove('on'), 6000); } } };
+  addEventListener('pointermove', e => move(e.clientX, e.clientY));
+  // touch screens: the lantern drifts slowly on its own (no counting, just ambience)
+  if (!matchMedia('(pointer: fine)').matches) { counter.remove(); document.querySelector('.hint').remove();
+    (function wander(t) { root.style.setProperty('--mx', innerWidth * (.5 + .4 * Math.sin(t / 3500)) + 'px'); root.style.setProperty('--my', innerHeight * (.45 + .35 * Math.sin(t / 2600)) + 'px'); requestAnimationFrame(wander); })(0); }
+
+  const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('in')), {threshold: .1});
+  document.querySelectorAll('.reveal').forEach(n => io.observe(n));
+</script>
+</body>
+</html>

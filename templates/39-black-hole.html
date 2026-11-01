@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Name — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=Inter:wght@400;500&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#020202; --panel:#0b0907; --fg:#f4ece2; --muted:#877c70; --a:#ff9a3c; --b:#ffd9a0; --line:rgba(244,236,226,.08); }
+  * { box-sizing:border-box; margin:0; }
+  html { scroll-behavior:smooth; overflow-x:clip; }
+  body { font:15px/1.65 Inter, system-ui, sans-serif; color:var(--fg); background:var(--bg); }
+  .serif { font-family:Fraunces, Georgia, serif; }
+  .mono { font-family:"JetBrains Mono", monospace; }
+  .stars { position:fixed; inset:0; z-index:-2; background-image:radial-gradient(1px 1px at 15% 25%, #fff7, transparent), radial-gradient(1px 1px at 75% 15%, #fff5, transparent), radial-gradient(1px 1px at 45% 75%, #fff4, transparent), radial-gradient(1px 1px at 85% 60%, #fff6, transparent), radial-gradient(1px 1px at 5% 85%, #fff3, transparent); background-size:360px 360px; }
+  nav { position:fixed; top:0; left:0; right:0; z-index:10; display:flex; justify-content:space-between; padding:22px 5vw; font-size:13px; }
+  nav a { color:var(--muted); text-decoration:none; margin-left:24px; }
+  nav a:hover { color:var(--b); }
+  .hero { height:100vh; min-height:640px; position:relative; display:grid; place-items:center; overflow:hidden; }
+  .bh { position:relative; margin-top:-26vh; width:min(90vw, 820px); aspect-ratio:2.2/1; display:grid; place-items:center; }
+  /* accretion disk (back half, lensed top arc, front half) */
+  .disk { position:absolute; width:100%; height:26%; border-radius:50%; background:radial-gradient(ellipse at center, transparent 30%, rgba(255,217,160,.95) 33%, rgba(255,154,60,.8) 42%, rgba(200,70,20,.35) 58%, transparent 72%); filter:blur(2px); animation:spin 8s linear infinite; }
+  .lens { position:absolute; width:46%; aspect-ratio:1; border-radius:50%; background:radial-gradient(circle, transparent 54%, rgba(255,217,160,.9) 57%, rgba(255,154,60,.55) 63%, rgba(200,70,20,.15) 72%, transparent 76%); filter:blur(1.5px); }
+  .core { position:absolute; width:30%; aspect-ratio:1; border-radius:50%; background:#000; box-shadow:0 0 40px 10px #000, 0 0 0 2px rgba(255,217,160,.25); }
+  .front { position:absolute; width:100%; height:26%; border-radius:50%; background:radial-gradient(ellipse at center, transparent 30%, rgba(255,230,190,1) 33%, rgba(255,154,60,.85) 42%, rgba(200,70,20,.35) 58%, transparent 72%); -webkit-mask:linear-gradient(transparent 46%, #000 60%); mask:linear-gradient(transparent 46%, #000 60%); filter:blur(2px); }
+  @keyframes spin { 50% { filter:blur(2px) brightness(1.25); } }
+  .glow { position:absolute; inset:0; background:radial-gradient(ellipse 50% 30% at 50% 50%, rgba(255,154,60,.18), transparent 70%); }
+  .htxt { position:absolute; bottom:9vh; left:0; right:0; text-align:center; padding:0 20px; }
+  .htxt small { color:var(--b); letter-spacing:.35em; font-size:11px; text-transform:uppercase; }
+  h1 { font-size:clamp(2.6rem, 7vw, 5.4rem); font-weight:400; line-height:1; margin:10px 0; }
+  h1 i { color:var(--a); }
+  .htxt p { color:var(--muted); max-width:460px; margin:0 auto 18px; }
+  .btn { display:inline-block; padding:11px 24px; border-radius:999px; text-decoration:none; color:#1a0b02; background:linear-gradient(135deg, var(--b), var(--a)); margin:4px; font-weight:500; }
+  .btn.o { background:none; color:var(--fg); border:1px solid var(--line); }
+  main { max-width:1180px; margin:auto; padding:30px 20px 60px; }
+  .sh { display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px; margin:80px 0 22px; }
+  h2 { font-size:clamp(2.2rem, 5vw, 3.4rem); font-weight:400; }
+  h2 i { color:var(--a); }
+  .sh span { color:var(--muted); font-size:13px; }
+  .grid { display:grid; grid-template-columns:repeat(12, 1fr); gap:14px; }
+  .w { background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:22px; }
+  .w h3 { font-size:11px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; }
+  .s3 { grid-column:span 3; } .s4 { grid-column:span 4; } .s6 { grid-column:span 6; } .s12 { grid-column:span 12; }
+  .kpi b { font-family:Fraunces, serif; font-size:2.8rem; font-weight:700; line-height:1; display:block; }
+  .kpi small { color:var(--a); }
+  .proj { display:block; color:var(--fg); text-decoration:none; transition:.4s; position:relative; overflow:hidden; min-height:210px; }
+  .proj::after { content:""; position:absolute; width:240px; height:60px; border-radius:50%; right:-60px; top:30px; background:radial-gradient(ellipse, rgba(255,154,60,.35), transparent 70%); transform:rotate(-15deg); transition:.6s; }
+  .proj:hover::after { transform:rotate(-15deg) scale(1.6); }
+  .proj small { color:var(--a); font-family:"JetBrains Mono", monospace; font-size:12px; }
+  .proj h4 { font-family:Fraunces, serif; font-weight:400; font-size:1.8rem; margin:40px 0 4px; }
+  .proj p { color:var(--muted); font-size:14px; }
+  .tl div { display:flex; justify-content:space-between; gap:10px; padding:12px 0; border-bottom:1px solid var(--line); flex-wrap:wrap; }
+  .tl div:last-child { border:0; }
+  .tl span { color:var(--muted); font-size:13px; }
+  .chips span { display:inline-block; padding:5px 12px; margin:0 6px 8px 0; border-radius:999px; border:1px solid var(--line); font-size:13px; }
+  .cta { text-align:center; padding:60px 20px; }
+  .cta a.mail { font-family:Fraunces, serif; font-style:italic; font-size:clamp(2rem, 6vw, 4rem); color:var(--fg); text-decoration:none; }
+  .cta a.mail:hover { color:var(--a); }
+  footer { display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; padding:26px 5vw; border-top:1px solid var(--line); color:var(--muted); font-size:13px; }
+  footer a { color:var(--muted); margin-left:16px; }
+  .reveal { opacity:0; transform:translateY(24px); transition:1s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity:1; transform:none; }
+  @media (max-width:860px) { .s3 { grid-column:span 6; } .s4, .s6 { grid-column:span 12; } nav div a:not(:last-child) { display:none; } .bh { margin-top:-30vh; } }
+  @media (prefers-reduced-motion:reduce) { *, .reveal { animation:none !important; transition:none !important; opacity:1; transform:none; } }
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<nav><span class="serif">Your Name</span><div><a href="#work">Work</a><a href="#stats">Stats</a><a href="#contact">Contact</a></div></nav>
+<header class="hero">
+  <div class="glow"></div>
+  <div class="bh" aria-hidden="true"><div class="disk"></div><div class="lens"></div><div class="core"></div><div class="front"></div></div>
+  <div class="htxt">
+    <small>Developer · City, Country</small>
+    <h1 class="serif">Your Name — <i>event horizon.</i></h1>
+    <p>Ideas fall in. Software comes out. AI tools, APIs and web apps with gravity.</p>
+    <a class="btn" href="#work">Fall in</a><a class="btn o" href="#">Résumé</a>
+  </div>
+</header>
+
+<main>
+  <div class="sh reveal" id="stats"><h2 class="serif">Mass & <i>momentum</i></h2><span class="mono">● open to work</span></div>
+  <div class="grid">
+    <div class="w s3 kpi reveal"><h3>Projects</h3><b>12</b><small>▲ 4 this year</small></div>
+    <div class="w s3 kpi reveal"><h3>Experience</h3><b>2+ yrs</b><small>Role @ Company</small></div>
+    <div class="w s3 kpi reveal"><h3>PRs merged</h3><b>30+</b><small>open source</small></div>
+    <div class="w s3 kpi reveal"><h3>GitHub stars</h3><b>220</b><small>across repos</small></div>
+  </div>
+
+  <div class="sh reveal" id="work"><h2 class="serif">Selected <i>work</i></h2><span>2024 — 2026</span></div>
+  <div class="grid">
+    <a class="w proj s4 reveal" href="#"><small>AI · NEXT.JS</small><h4>Project One</h4><p>What it does and why it matters, in one sentence.</p></a>
+    <a class="w proj s4 reveal" href="#"><small>PYTHON · FASTAPI</small><h4>Project Two</h4><p>What it does and why it matters, in one sentence.</p></a>
+    <a class="w proj s4 reveal" href="#"><small>REACT · SERVERLESS</small><h4>Project Three</h4><p>What it does and why it matters, in one sentence.</p></a>
+    <div class="w s6 reveal"><h3>About & journey</h3><p style="color:var(--muted);margin-bottom:10px">Three or four lines about your story and what pulls you in.</p><div class="tl"><div><b style="font-weight:500">Role · Company</b><span>2025 — Now</span></div><div><b style="font-weight:500">B.Tech CS · University</b><span>2021 — 2025</span></div></div></div>
+    <div class="w s6 reveal"><h3>Stack</h3><div class="chips"><span>Python</span><span>TypeScript</span><span>React</span><span>Next.js</span><span>Node.js</span><span>FastAPI</span><span>PostgreSQL</span><span>Docker</span><span>AWS</span></div></div>
+  </div>
+
+  <div class="w cta reveal" id="contact" style="margin-top:80px"><h3>Contact</h3><a class="mail" href="mailto:you@example.com">you@example.com</a></div>
+</main>
+<footer><span>© 2026 Your Name</span><span><a href="#">GitHub</a><a href="#">LinkedIn</a><a href="#">Résumé</a></span></footer>
+<script>
+  const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('in')), {threshold: .1});
+  document.querySelectorAll('.reveal').forEach(n => io.observe(n));
+</script>
+</body>
+</html>

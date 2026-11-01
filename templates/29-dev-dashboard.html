@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Name — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0d1117; --panel:#161b22; --line:#30363d; --fg:#e6edf3; --muted:#7d8590; --a:#2f81f7; --g:#3fb950; --p:#a371f7; --o:#f0883e; }
+  * { box-sizing:border-box; margin:0; }
+  body { font:14px/1.6 Inter, system-ui, sans-serif; color:var(--fg); background:var(--bg); }
+  .mono { font-family:"JetBrains Mono", monospace; }
+  .app { display:grid; grid-template-columns:64px 1fr; min-height:100vh; }
+  .rail { background:var(--panel); border-right:1px solid var(--line); display:flex; flex-direction:column; align-items:center; gap:8px; padding:16px 0; position:sticky; top:0; height:100vh; }
+  .rail a { width:40px; height:40px; display:grid; place-items:center; border-radius:10px; color:var(--muted); text-decoration:none; font-size:18px; }
+  .rail a:hover, .rail a.on { background:#21262d; color:var(--fg); }
+  .rail .me { background:linear-gradient(135deg, var(--a), var(--p)); color:#fff; font-weight:700; font-size:14px; margin-bottom:12px; }
+  main { padding:24px; max-width:1240px; width:100%; }
+  .top { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:22px; }
+  .top h1 { font-size:1.6rem; }
+  .top h1 span { color:var(--muted); font-weight:400; }
+  .search { display:flex; align-items:center; gap:8px; padding:7px 12px; border:1px solid var(--line); border-radius:8px; color:var(--muted); min-width:240px; background:var(--bg); }
+  .search kbd { margin-left:auto; border:1px solid var(--line); border-radius:4px; padding:0 5px; font-size:11px; }
+  .grid { display:grid; grid-template-columns:repeat(12, 1fr); gap:16px; }
+  .w { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:18px; }
+  .w h2 { font-size:13px; font-weight:500; color:var(--muted); margin-bottom:12px; display:flex; justify-content:space-between; }
+  .s3 { grid-column:span 3; } .s4 { grid-column:span 4; } .s5 { grid-column:span 5; } .s7 { grid-column:span 7; } .s8 { grid-column:span 8; } .s12 { grid-column:span 12; }
+  .profile { display:flex; gap:16px; align-items:center; }
+  .av { width:72px; height:72px; border-radius:50%; background:linear-gradient(135deg, var(--a), var(--p)); display:grid; place-items:center; font-size:2rem; flex:none; }
+  .profile b { font-size:1.2rem; }
+  .profile p { color:var(--muted); }
+  .badge { display:inline-flex; align-items:center; gap:6px; padding:2px 10px; border-radius:999px; font-size:12px; border:1px solid rgba(63,185,80,.4); color:var(--g); margin-top:6px; }
+  .badge::before { content:""; width:7px; height:7px; border-radius:50%; background:var(--g); }
+  .kpi b { font-size:2rem; display:block; line-height:1.1; }
+  .kpi small { color:var(--g); }
+  .spark { display:flex; align-items:flex-end; gap:3px; height:36px; margin-top:8px; }
+  .spark i { flex:1; background:var(--a); border-radius:2px; opacity:.8; }
+  .heat { display:grid; grid-template-rows:repeat(7, 1fr); grid-auto-flow:column; gap:3px; overflow:hidden; }
+  .heat i { aspect-ratio:1; border-radius:2px; background:#161b22; outline:1px solid rgba(255,255,255,.03); }
+  .heat i[data-l="1"] { background:#0e4429; } .heat i[data-l="2"] { background:#006d32; } .heat i[data-l="3"] { background:#26a641; } .heat i[data-l="4"] { background:#39d353; }
+  .repo { display:block; padding:12px 0; border-bottom:1px solid var(--line); color:var(--fg); text-decoration:none; }
+  .repo:last-child { border:0; }
+  .repo b { color:var(--a); }
+  .repo:hover b { text-decoration:underline; }
+  .repo p { color:var(--muted); margin:2px 0 6px; }
+  .meta { display:flex; gap:14px; color:var(--muted); font-size:12px; }
+  .dot { display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:4px; vertical-align:-1px; }
+  .lang { display:flex; height:10px; border-radius:6px; overflow:hidden; margin-bottom:12px; }
+  .legend { display:grid; grid-template-columns:1fr 1fr; gap:6px; font-size:13px; }
+  .feed div { display:flex; gap:10px; padding:8px 0; border-bottom:1px solid var(--line); }
+  .feed div:last-child { border:0; }
+  .feed time { color:var(--muted); margin-left:auto; white-space:nowrap; font-size:12px; }
+  .term { background:#010409; border-radius:8px; padding:14px; font-size:13px; color:#8b949e; }
+  .term b { color:var(--g); font-weight:400; }
+  .term a { color:var(--a); }
+  @media (max-width:1000px) { .s3, .s4, .s5 { grid-column:span 6; } .s7, .s8 { grid-column:span 12; } }
+  @media (max-width:640px) { .app { grid-template-columns:1fr; } .rail { display:none; } main { padding:14px; } .grid > * { grid-column:span 12 !important; } .search { display:none; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <nav class="rail"><a class="me" href="#">YN</a><a class="on" href="#" title="Overview">▦</a><a href="#repos" title="Projects">⌘</a><a href="#stack" title="Stack">◈</a><a href="#contact" title="Contact">✉</a></nav>
+  <main>
+    <div class="top"><h1>Your Name <span>/ overview</span></h1><div class="search">⌕ Search projects… <kbd>/</kbd></div></div>
+    <div class="grid">
+      <div class="w s5"><div class="profile"><div class="av">🧑‍💻</div><div><b>Your Name</b><p>Full-stack developer · City, Country</p><span class="badge">Open to work</span></div></div>
+        <p style="color:var(--muted);margin-top:14px">Two lines about what you build and what you're looking for. AI tools, APIs and fast web apps.</p></div>
+      <div class="w s4 kpi"><h2>Projects shipped <span>all time</span></h2><b>12</b><small>▲ 4 this year</small><div class="spark" id="spark"></div></div>
+      <div class="w s3 kpi"><h2>Experience</h2><b>2+ yrs</b><small>Role @ Company</small><p style="color:var(--muted);margin-top:8px">B.Tech CS · University '25</p></div>
+
+      <div class="w s12"><h2>Contributions <span class="mono" id="cc"></span></h2><div class="heat" id="heat"></div></div>
+
+      <div class="w s7" id="repos"><h2>Pinned projects <span>↗</span></h2>
+        <a class="repo" href="#"><b>project-one</b><p>AI-powered thing that does X for Y.</p><div class="meta"><span><i class="dot" style="background:#3572A5"></i>Python</span><span>★ 128</span><span>Next.js · OpenAI</span></div></a>
+        <a class="repo" href="#"><b>project-two</b><p>Python API framework with retries, auth and pagination.</p><div class="meta"><span><i class="dot" style="background:#3572A5"></i>Python</span><span>★ 64</span><span>FastAPI</span></div></a>
+        <a class="repo" href="#"><b>project-three</b><p>Serverless dashboard that tracks Z in real time.</p><div class="meta"><span><i class="dot" style="background:#3178c6"></i>TypeScript</span><span>★ 31</span><span>React</span></div></a>
+      </div>
+      <div class="w s5" id="stack"><h2>Languages & stack</h2>
+        <div class="lang"><i style="width:40%;background:#3572A5"></i><i style="width:28%;background:#3178c6"></i><i style="width:14%;background:#f1e05a"></i><i style="width:10%;background:#e34c26"></i><i style="width:8%;background:#89e051"></i></div>
+        <div class="legend"><span><i class="dot" style="background:#3572A5"></i>Python 40%</span><span><i class="dot" style="background:#3178c6"></i>TypeScript 28%</span><span><i class="dot" style="background:#f1e05a"></i>JavaScript 14%</span><span><i class="dot" style="background:#e34c26"></i>HTML/CSS 10%</span><span><i class="dot" style="background:#89e051"></i>Shell 8%</span></div>
+        <h2 style="margin-top:18px">Tools</h2><p>React · Next.js · Node.js · FastAPI · PostgreSQL · Docker · AWS · Git</p></div>
+
+      <div class="w s7"><h2>Recent activity</h2><div class="feed">
+        <div><span style="color:var(--g)">●</span>Shipped v2.0 of <b>project-one</b><time>2d ago</time></div>
+        <div><span style="color:var(--p)">●</span>Merged PR into an open-source library<time>1w ago</time></div>
+        <div><span style="color:var(--o)">●</span>Won / spoke at a hackathon or event<time>1mo ago</time></div></div></div>
+      <div class="w s5" id="contact"><h2>Contact</h2><div class="term mono"><b>$</b> contact --me<br>email&nbsp;&nbsp;&nbsp; <a href="mailto:you@example.com">you@example.com</a><br>github&nbsp;&nbsp; <a href="#">github.com/you</a><br>linkedin <a href="#">in/you</a><br>resume&nbsp;&nbsp; <a href="#">resume.pdf</a></div></div>
+    </div>
+  </main>
+</div>
+<script>
+  // ponytail: decorative random heatmap/sparkline — swap for real GitHub data via API later
+  const heat = document.getElementById('heat'); let total = 0;
+  heat.style.gridTemplateColumns = 'repeat(53, 1fr)';
+  heat.innerHTML = Array.from({length: 371}, () => { const l = Math.random() < .35 ? 0 : Math.min(4, Math.random() * 5 | 0); total += l * 2; return `<i data-l="${l}"></i>`; }).join('');
+  document.getElementById('cc').textContent = total + ' in the last year';
+  document.getElementById('spark').innerHTML = [3, 5, 4, 7, 6, 9, 8, 11, 10, 12].map(v => `<i style="height:${v * 8}%"></i>`).join('');
+</script>
+</body>
+</html>

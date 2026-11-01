@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Name — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root { --desk:#3b2f7a; --win:#f4f1ea; --ink:#1b1630; --title:#6d4aff; --title2:#ff6ec7; --shadow:#1b1630; }
+  * { box-sizing:border-box; margin:0; }
+  body { font:15px/1.55 Inter, system-ui, sans-serif; color:var(--ink); height:100vh; overflow:hidden; user-select:none;
+    background:radial-gradient(circle at 70% 20%, #ff6ec7 0, transparent 35%), radial-gradient(circle at 20% 80%, #22d3ee 0, transparent 35%), var(--desk); }
+  body::before { content:""; position:fixed; inset:0; background-image:radial-gradient(rgba(255,255,255,.15) 1px, transparent 1px); background-size:18px 18px; }
+  .px { font-family:VT323, monospace; }
+  .icons { position:absolute; top:20px; left:20px; display:grid; gap:18px; z-index:1; }
+  .icon { width:84px; text-align:center; color:#fff; cursor:pointer; background:none; border:0; font:inherit; }
+  .icon div { font-size:2.4rem; filter:drop-shadow(2px 2px 0 var(--shadow)); }
+  .icon span { display:inline-block; font-family:VT323, monospace; font-size:18px; padding:0 4px; }
+  .icon:hover span, .icon:focus span { background:var(--title); }
+  .win { position:absolute; width:min(460px, calc(100vw - 24px)); background:var(--win); border:3px solid var(--ink); box-shadow:6px 6px 0 var(--shadow); display:none; }
+  .win.open { display:block; animation:pop .18s ease-out; }
+  @keyframes pop { from { transform:scale(.9); opacity:0; } }
+  .tb { display:flex; justify-content:space-between; align-items:center; padding:4px 8px; background:linear-gradient(90deg, var(--title), var(--title2)); color:#fff; border-bottom:3px solid var(--ink); cursor:move; font-family:VT323, monospace; font-size:20px; touch-action:none; }
+  .tb button { width:22px; height:22px; border:2px solid var(--ink); background:var(--win); font:700 14px/1 Inter; cursor:pointer; }
+  .body { padding:18px 20px; max-height:60vh; overflow:auto; user-select:text; }
+  .body h1 { font-family:VT323, monospace; font-size:3rem; line-height:1; }
+  .body h3 { margin-top:12px; }
+  .body p, .body li { color:#4a4560; }
+  .body ul { padding-left:18px; }
+  .body a { color:var(--title); font-weight:600; }
+  .proj { border:2px solid var(--ink); padding:12px; margin-bottom:12px; background:#fff; box-shadow:3px 3px 0 var(--ink); }
+  .proj b { display:block; }
+  .tags span { display:inline-block; font-size:12px; border:1.5px solid var(--ink); padding:0 6px; margin:6px 4px 0 0; background:#ffe66d; }
+  .bar { position:fixed; left:0; right:0; bottom:0; height:44px; background:var(--win); border-top:3px solid var(--ink); display:flex; align-items:center; gap:6px; padding:0 8px; z-index:999; }
+  .start { font-family:VT323, monospace; font-size:22px; padding:2px 12px; border:2px solid var(--ink); background:#ffe66d; box-shadow:2px 2px 0 var(--ink); }
+  .tasks { display:flex; gap:6px; overflow:hidden; flex:1; }
+  .tasks button { font-family:VT323, monospace; font-size:18px; border:2px solid var(--ink); background:#fff; padding:0 10px; cursor:pointer; white-space:nowrap; }
+  .clock { font-family:VT323, monospace; font-size:20px; padding:0 10px; border:2px inset #ccc; }
+  @media (max-width:600px) { .icons { grid-template-columns:repeat(3, 1fr); } .win { left:12px !important; top:auto !important; bottom:56px; } .tasks { display:none; } }
+  @media (prefers-reduced-motion:reduce) { .win.open { animation:none; } }
+</style>
+</head>
+<body>
+<div class="icons">
+  <button class="icon" data-w="about"><div>🧑‍💻</div><span>about.txt</span></button>
+  <button class="icon" data-w="projects"><div>📁</div><span>projects</span></button>
+  <button class="icon" data-w="skills"><div>🧰</div><span>skills.exe</span></button>
+  <button class="icon" data-w="contact"><div>✉️</div><span>contact</span></button>
+  <a class="icon" href="#" style="text-decoration:none"><div>📄</div><span>resume.pdf</span></a>
+</div>
+
+<div class="win open" id="about" style="left:22%;top:10%"><div class="tb">about.txt<button aria-label="Close">×</button></div><div class="body">
+  <h1>Hi, I'm Your Name!</h1>
+  <p>Developer from City, Country. I build AI tools, APIs and web apps. Two lines about what you love and what you're looking for.</p>
+  <p style="margin-top:10px">🟢 Open to opportunities</p>
+  <p style="margin-top:10px">Double-click... er, click the icons to explore →</p>
+</div></div>
+
+<div class="win" id="projects" style="left:40%;top:16%"><div class="tb">C:\projects<button aria-label="Close">×</button></div><div class="body">
+  <div class="proj"><b>Project One</b>What it does in one sentence.<div class="tags"><span>AI</span><span>Next.js</span></div><a href="#">Open ↗</a></div>
+  <div class="proj"><b>Project Two</b>What it does in one sentence.<div class="tags"><span>Python</span><span>FastAPI</span></div><a href="#">Open ↗</a></div>
+  <div class="proj"><b>Project Three</b>What it does in one sentence.<div class="tags"><span>React</span></div><a href="#">Open ↗</a></div>
+</div></div>
+
+<div class="win" id="skills" style="left:30%;top:28%"><div class="tb">skills.exe<button aria-label="Close">×</button></div><div class="body">
+  <h3>Languages</h3><p>Python · JavaScript · TypeScript · SQL</p>
+  <h3>Frameworks</h3><p>React · Next.js · Node.js · FastAPI</p>
+  <h3>Tools</h3><p>Git · Docker · AWS · Linux · Figma</p>
+  <h3>Experience</h3><ul><li><b>Role @ Company</b> — 2025–now</li><li><b>B.Tech CS @ University</b> — 2021–2025</li></ul>
+</div></div>
+
+<div class="win" id="contact" style="left:50%;top:34%"><div class="tb">contact<button aria-label="Close">×</button></div><div class="body">
+  <p>📧 <a href="mailto:you@example.com">you@example.com</a></p>
+  <p>🐙 <a href="#">github.com/you</a></p>
+  <p>💼 <a href="#">linkedin.com/in/you</a></p>
+</div></div>
+
+<div class="bar"><span class="start">✦ YourOS</span><div class="tasks"></div><span class="clock" id="clock"></span></div>
+
+<script>
+  let z = 10;
+  const tasks = document.querySelector('.tasks');
+  const sync = () => tasks.innerHTML = [...document.querySelectorAll('.win.open')].map(w => `<button data-w="${w.id}">${w.querySelector('.tb').firstChild.textContent}</button>`).join('');
+  const open = id => { const w = document.getElementById(id); w.classList.add('open'); w.style.zIndex = ++z; sync(); };
+  document.addEventListener('click', e => {
+    const t = e.target.closest('[data-w]'); if (t) return open(t.dataset.w);
+    if (e.target.matches('.tb button')) { e.target.closest('.win').classList.remove('open'); sync(); }
+  });
+  // drag windows by their title bar
+  document.querySelectorAll('.win').forEach(w => {
+    w.addEventListener('pointerdown', () => w.style.zIndex = ++z);
+    const tb = w.querySelector('.tb');
+    tb.addEventListener('pointerdown', e => {
+      if (e.target.tagName === 'BUTTON') return;
+      const dx = e.clientX - w.offsetLeft, dy = e.clientY - w.offsetTop; tb.setPointerCapture(e.pointerId);
+      tb.onpointermove = m => { w.style.left = Math.max(0, Math.min(innerWidth - 80, m.clientX - dx)) + 'px'; w.style.top = Math.max(0, Math.min(innerHeight - 90, m.clientY - dy)) + 'px'; };
+      tb.onpointerup = () => tb.onpointermove = null;
+    });
+  });
+  const ck = () => document.getElementById('clock').textContent = new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+  ck(); setInterval(ck, 10000); sync();
+</script>
+</body>
+</html>

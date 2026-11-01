@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Name — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#000306; --panel:#060c12; --fg:#e6f4ff; --muted:#6f8597; --c:#5cd6ff; --w:#ffffff; --line:rgba(92,214,255,.12); }
+  * { box-sizing:border-box; margin:0; }
+  html { scroll-behavior:smooth; overflow-x:clip; }
+  body { font:15px/1.65 "Space Grotesk", system-ui, sans-serif; color:var(--fg); background:var(--bg); }
+  .mono { font-family:"JetBrains Mono", monospace; }
+  nav { position:fixed; top:0; left:0; right:0; z-index:10; display:flex; justify-content:space-between; padding:20px 5vw; font-family:"JetBrains Mono", monospace; font-size:13px; }
+  nav a { color:var(--muted); text-decoration:none; margin-left:22px; }
+  nav a:hover { color:var(--c); }
+  .hero { height:100vh; min-height:620px; position:relative; overflow:hidden; display:grid; place-items:center; text-align:center; }
+  .rings { position:absolute; left:50%; top:50%; width:0; height:0; }
+  .rings i { position:absolute; left:50%; top:50%; width:20px; height:20px; border-radius:50%; border:1.5px solid var(--c); transform:translate(-50%, -50%); animation:pulse 4s cubic-bezier(.2,.6,.3,1) infinite; opacity:0; }
+  .rings i:nth-child(2) { animation-delay:1s; } .rings i:nth-child(3) { animation-delay:2s; } .rings i:nth-child(4) { animation-delay:3s; }
+  @keyframes pulse { 0% { width:20px; height:20px; opacity:.9; } 100% { width:150vmax; height:150vmax; opacity:0; border-width:.5px; } }
+  .star { position:absolute; left:50%; top:50%; width:10px; height:10px; transform:translate(-50%, -50%); border-radius:50%; background:#fff; box-shadow:0 0 20px 6px #fff, 0 0 70px 24px var(--c); }
+  .beam { position:absolute; left:50%; top:50%; width:2px; height:130vmax; transform:translate(-50%, -50%) rotate(25deg); background:linear-gradient(transparent, rgba(92,214,255,.4) 45%, #fff 50%, rgba(92,214,255,.4) 55%, transparent); animation:sweep 6s linear infinite; filter:blur(1px); }
+  @keyframes sweep { to { transform:translate(-50%, -50%) rotate(385deg); } }
+  .htxt { position:relative; padding:0 20px; background:radial-gradient(ellipse at center, rgba(0,3,6,.85) 30%, transparent 70%); }
+  .htxt small { font-family:"JetBrains Mono", monospace; color:var(--c); font-size:12px; letter-spacing:.2em; }
+  h1 { font-size:clamp(3rem, 10vw, 7.5rem); font-weight:700; line-height:.95; letter-spacing:-.04em; margin:12px 0; }
+  h1 span { font-weight:300; color:var(--c); }
+  .htxt p { color:var(--muted); max-width:440px; margin:0 auto; }
+  .btn { display:inline-block; margin:24px 6px 0; padding:11px 22px; border-radius:6px; text-decoration:none; font-weight:500; color:var(--bg); background:var(--c); }
+  .btn.o { background:none; color:var(--fg); border:1px solid var(--line); }
+  main { max-width:1180px; margin:auto; padding:30px 20px 60px; }
+  .sh { display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px; margin:80px 0 22px; }
+  h2 { font-size:clamp(2rem, 5vw, 3.2rem); font-weight:700; letter-spacing:-.03em; }
+  h2 span { font-weight:300; color:var(--c); }
+  .sh small { color:var(--muted); font-family:"JetBrains Mono", monospace; }
+  .grid { display:grid; grid-template-columns:repeat(12, 1fr); gap:14px; }
+  .w { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:22px; }
+  .w h3 { font-family:"JetBrains Mono", monospace; font-size:11px; font-weight:400; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; display:flex; justify-content:space-between; }
+  .s3 { grid-column:span 3; } .s4 { grid-column:span 4; } .s6 { grid-column:span 6; } .s8 { grid-column:span 8; } .s12 { grid-column:span 12; }
+  .kpi b { font-size:2.6rem; font-weight:700; letter-spacing:-.04em; line-height:1; display:block; }
+  .kpi small { color:var(--c); font-family:"JetBrains Mono", monospace; font-size:12px; }
+  .scope { height:130px; width:100%; display:block; }
+  .scope path { fill:none; stroke:var(--c); stroke-width:1.5; filter:drop-shadow(0 0 6px var(--c)); }
+  .scope line { stroke:var(--line); }
+  .proj { display:block; color:var(--fg); text-decoration:none; transition:.3s; position:relative; overflow:hidden; }
+  .proj::after { content:""; position:absolute; right:20px; top:20px; width:10px; height:10px; border-radius:50%; background:var(--c); box-shadow:0 0 0 0 rgba(92,214,255,.6); animation:ping 2.4s infinite; }
+  @keyframes ping { to { box-shadow:0 0 0 18px rgba(92,214,255,0); } }
+  .proj:hover { border-color:rgba(92,214,255,.4); }
+  .proj small { color:var(--c); font-family:"JetBrains Mono", monospace; font-size:12px; }
+  .proj h4 { font-size:1.4rem; font-weight:500; margin:34px 0 4px; }
+  .proj p { color:var(--muted); font-size:14px; }
+  .tl div { display:flex; justify-content:space-between; gap:10px; padding:12px 0; border-bottom:1px solid var(--line); flex-wrap:wrap; }
+  .tl div:last-child { border:0; }
+  .tl span { color:var(--muted); font-size:13px; font-family:"JetBrains Mono", monospace; }
+  .chips span { display:inline-block; padding:5px 12px; margin:0 6px 8px 0; border-radius:6px; border:1px solid var(--line); font-size:13px; font-family:"JetBrains Mono", monospace; }
+  .chips span:hover { border-color:var(--c); color:var(--c); }
+  .cta { text-align:center; padding:60px 20px; }
+  footer { display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; padding:26px 5vw; border-top:1px solid var(--line); color:var(--muted); font-size:13px; font-family:"JetBrains Mono", monospace; }
+  footer a { color:var(--muted); margin-left:16px; }
+  .reveal { opacity:0; transform:translateY(24px); transition:.9s; }
+  .reveal.in { opacity:1; transform:none; }
+  @media (max-width:860px) { .s3 { grid-column:span 6; } .s4, .s6, .s8 { grid-column:span 12; } nav div a:not(:last-child) { display:none; } }
+  @media (prefers-reduced-motion:reduce) { *, .reveal { animation:none !important; transition:none !important; opacity:1; transform:none; } }
+</style>
+</head>
+<body>
+<nav><span style="color:var(--c)">PSR-YN</span><div><a href="#work">work</a><a href="#signal">signal</a><a href="#contact">contact</a></div></nav>
+<header class="hero">
+  <div class="beam" aria-hidden="true"></div>
+  <div class="rings" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="star" aria-hidden="true"></div>
+  <div class="htxt">
+    <small>// signal detected · City, Country</small>
+    <h1>Your Name<br><span>steady signal.</span></h1>
+    <p>Developer shipping AI tools, APIs and web apps — consistent, precise, on a regular beat.</p>
+    <a class="btn" href="#work">Tune in</a><a class="btn o" href="#">Résumé</a>
+  </div>
+</header>
+
+<main>
+  <div class="sh reveal" id="signal"><h2>Signal <span>strength</span></h2><small>● open to work</small></div>
+  <div class="grid">
+    <div class="w s3 kpi reveal"><h3>Projects</h3><b>12</b><small>▲ 4 this year</small></div>
+    <div class="w s3 kpi reveal"><h3>Experience</h3><b>2+ yrs</b><small>Role @ Company</small></div>
+    <div class="w s3 kpi reveal"><h3>PRs merged</h3><b>30+</b><small>open source</small></div>
+    <div class="w s3 kpi reveal"><h3>Period</h3><b>1.0 s</b><small>ship · learn · repeat</small></div>
+    <div class="w s12 reveal"><h3>Activity waveform <span>last 12 months</span></h3><svg class="scope" viewBox="0 0 1000 130" preserveAspectRatio="none" aria-hidden="true"><line x1="0" y1="65" x2="1000" y2="65"/><path id="wave"/></svg></div>
+  </div>
+
+  <div class="sh reveal" id="work"><h2>Selected <span>work</span></h2><small>2024 — 2026</small></div>
+  <div class="grid">
+    <a class="w proj s4 reveal" href="#"><small>AI · NEXT.JS</small><h4>Project One</h4><p>What it does and why it matters, in one sentence.</p></a>
+    <a class="w proj s4 reveal" href="#"><small>PYTHON · FASTAPI</small><h4>Project Two</h4><p>What it does and why it matters, in one sentence.</p></a>
+    <a class="w proj s4 reveal" href="#"><small>REACT · SERVERLESS</small><h4>Project Three</h4><p>What it does and why it matters, in one sentence.</p></a>
+    <div class="w s6 reveal"><h3>About & journey</h3><p style="color:var(--muted);margin-bottom:10px">Three or four lines about your story and what keeps the signal going.</p><div class="tl"><div><b style="font-weight:500">Role · Company</b><span>2025 — now</span></div><div><b style="font-weight:500">B.Tech CS · University</b><span>2021 — 2025</span></div></div></div>
+    <div class="w s6 reveal"><h3>Stack</h3><div class="chips"><span>python</span><span>typescript</span><span>react</span><span>next.js</span><span>node.js</span><span>fastapi</span><span>postgres</span><span>docker</span><span>aws</span></div></div>
+  </div>
+
+  <div class="w cta reveal" id="contact" style="margin-top:80px"><h2>Send a <span>ping.</span></h2><a class="btn" href="mailto:you@example.com">you@example.com</a><a class="btn o" href="#">GitHub</a><a class="btn o" href="#">LinkedIn</a></div>
+</main>
+<footer><span>© 2026 Your Name</span><span><a href="#">github</a><a href="#">linkedin</a><a href="#">résumé</a></span></footer>
+<script>
+  // pulsar-style waveform: regular spikes over noise (placeholder data)
+  const pts = []; for (let i = 0; i <= 200; i++) { const x = i * 5, spike = i % 17 === 8 ? -50 + Math.random() * 10 : 0; pts.push(`${x},${65 + spike + (Math.random() - .5) * 10}`); }
+  document.getElementById('wave').setAttribute('d', 'M' + pts.join(' L'));
+  const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('in')), {threshold: .1});
+  document.querySelectorAll('.reveal').forEach(n => io.observe(n));
+</script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Name — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;600;800&family=Cormorant+Garamond:ital,wght@1,500&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#000; --fg:#ededed; --muted:#888; --red:#e5303f; --gold:#e8b65a; --line:rgba(255,255,255,.09); --mx:50%; --my:40%; }
+  * { box-sizing:border-box; margin:0; }
+  html { scroll-behavior:smooth; overflow-x:clip; }
+  body { font:16px/1.6 Geist, Inter, system-ui, sans-serif; color:var(--fg); background:var(--bg); }
+  .it { font-family:"Cormorant Garamond", Georgia, serif; font-style:italic; font-weight:500; }
+  .mono { font-family:"JetBrains Mono", monospace; }
+  .bg { position:fixed; inset:0; z-index:-1; background-image:linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size:48px 48px;
+    -webkit-mask:radial-gradient(380px circle at var(--mx) var(--my), #000, transparent 70%); mask:radial-gradient(380px circle at var(--mx) var(--my), #000, transparent 70%); }
+  .wrap { max-width:1080px; margin:auto; padding:0 20px; }
+  nav { display:flex; justify-content:space-between; align-items:center; height:64px; border-bottom:1px solid var(--line); position:sticky; top:0; background:rgba(0,0,0,.7); backdrop-filter:blur(12px); z-index:10; }
+  nav a { color:var(--muted); text-decoration:none; font-size:14px; margin-left:24px; }
+  nav a:hover { color:#fff; }
+  .logo { color:#fff !important; margin:0 !important; font-weight:600; display:flex; align-items:center; gap:10px; }
+  .logo i { width:16px; height:16px; border-radius:50%; background:#000; box-shadow:0 0 0 1px #ffd6a0, 0 0 8px 2px var(--red); }
+  .hero { position:relative; padding:120px 0 100px; text-align:center; }
+  .ecl { position:absolute; left:50%; top:52%; transform:translate(-50%, -50%); width:min(70vw, 560px); aspect-ratio:1; border-radius:50%; z-index:-1; background:#000;
+    box-shadow:0 0 0 1px rgba(255,214,160,.5), 0 0 40px 6px rgba(229,48,63,.45), 0 0 140px 50px rgba(229,48,63,.18), 0 0 260px 110px rgba(232,182,90,.07); }
+  .pill { display:inline-flex; gap:8px; align-items:center; padding:5px 14px; border:1px solid var(--line); border-radius:999px; font-size:13px; color:var(--muted); background:rgba(0,0,0,.6); }
+  .pill i { width:6px; height:6px; border-radius:50%; background:#22c55e; box-shadow:0 0 8px #22c55e; }
+  h1 { font-size:clamp(2.6rem, 8vw, 5.6rem); font-weight:800; letter-spacing:-.05em; line-height:1; margin:24px 0; }
+  h1 .it { color:var(--red); letter-spacing:0; font-size:1.1em; }
+  .hero p { color:var(--muted); font-size:1.1rem; max-width:520px; margin:auto; }
+  .btns { display:flex; gap:12px; justify-content:center; margin-top:34px; flex-wrap:wrap; }
+  .btn { padding:11px 22px; border-radius:8px; font-size:14px; font-weight:600; text-decoration:none; color:#fff; border:1px solid var(--line); background:#000; }
+  .btn.p { background:#fff; color:#000; }
+  section { padding:80px 0; }
+  .h { display:flex; justify-content:space-between; align-items:end; border-bottom:1px solid var(--line); padding-bottom:14px; margin-bottom:26px; }
+  h2 { font-size:clamp(1.6rem, 4vw, 2.4rem); font-weight:600; letter-spacing:-.03em; }
+  h2 .it { color:var(--red); font-weight:500; }
+  .h span { color:var(--muted); font-size:13px; }
+  .stats { display:grid; grid-template-columns:repeat(4, 1fr); border:1px solid var(--line); border-radius:14px; overflow:hidden; }
+  .stats div { padding:22px; border-right:1px solid var(--line); background:#050505; }
+  .stats div:last-child { border:0; }
+  .stats b { display:block; font-size:2.2rem; font-weight:800; letter-spacing:-.04em; }
+  .stats small { color:var(--muted); }
+  .heatbox { margin-top:14px; border:1px solid var(--line); border-radius:14px; padding:18px; background:#050505; }
+  .heatbox h3 { font-size:13px; color:var(--muted); font-weight:400; margin-bottom:12px; display:flex; justify-content:space-between; }
+  .heat { display:grid; grid-template-rows:repeat(7, 1fr); grid-auto-flow:column; grid-template-columns:repeat(53, 1fr); gap:3px; }
+  .heat i { aspect-ratio:1; border-radius:2px; background:#141414; }
+  .heat i[data-l="1"] { background:#3a0d12; } .heat i[data-l="2"] { background:#6e1520; } .heat i[data-l="3"] { background:#ab1f2d; } .heat i[data-l="4"] { background:#e5303f; }
+  .grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:14px; overflow:hidden; }
+  .card { --x:50%; --y:50%; position:relative; background:#050505; padding:26px; color:var(--fg); text-decoration:none; min-height:220px; display:flex; flex-direction:column; justify-content:space-between; }
+  .card::before { content:""; position:absolute; inset:0; opacity:0; transition:.3s; background:radial-gradient(300px circle at var(--x) var(--y), rgba(229,48,63,.14), transparent 60%); }
+  .card:hover::before { opacity:1; }
+  .card.wide { grid-column:span 2; }
+  .card h3 { font-size:1.2rem; font-weight:600; }
+  .card p { color:var(--muted); font-size:14px; margin-top:6px; }
+  .card small { color:var(--muted); font-size:12px; font-family:"JetBrains Mono", monospace; }
+  .card .go { position:absolute; top:22px; right:22px; color:var(--muted); transition:.2s; }
+  .card:hover .go { color:var(--red); transform:translate(3px,-3px); }
+  .two { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .panel { border:1px solid var(--line); border-radius:14px; padding:22px; background:#050505; }
+  .rows div { display:flex; justify-content:space-between; gap:10px; padding:12px 0; border-bottom:1px solid var(--line); flex-wrap:wrap; }
+  .rows div:last-child { border:0; }
+  .rows span { color:var(--muted); font-size:14px; }
+  .stack { display:flex; flex-wrap:wrap; gap:8px; }
+  .stack span { padding:6px 12px; border:1px solid var(--line); border-radius:6px; font-size:14px; color:var(--muted); }
+  .stack span:hover { color:#fff; border-color:var(--red); }
+  .cta { text-align:center; border:1px solid var(--line); border-radius:14px; padding:70px 20px; position:relative; overflow:hidden; background:#030303; }
+  .cta::before { content:""; position:absolute; left:50%; bottom:-260px; width:420px; aspect-ratio:1; transform:translateX(-50%); border-radius:50%; background:#000; box-shadow:0 0 0 1px rgba(255,214,160,.4), 0 0 50px 10px rgba(229,48,63,.35); }
+  .cta > * { position:relative; }
+  footer { display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; border-top:1px solid var(--line); padding:26px 0; color:var(--muted); font-size:14px; }
+  footer a { color:var(--muted); margin-left:18px; }
+  .reveal { opacity:0; filter:blur(8px); transform:translateY(20px); transition:.9s; }
+  .reveal.in { opacity:1; filter:none; transform:none; }
+  @media (max-width:760px) { .grid, .two { grid-template-columns:1fr; } .card.wide { grid-column:auto; } .stats { grid-template-columns:1fr 1fr; } .stats div:nth-child(2) { border-right:0; } .stats div:nth-child(-n+2) { border-bottom:1px solid var(--line); } nav div a:not(:last-child) { display:none; } .heat { grid-template-columns:repeat(26, 1fr); } .heat i:nth-child(n+183) { display:none; } }
+  @media (prefers-reduced-motion:reduce) { .reveal { transition:none; opacity:1; filter:none; transform:none; } }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<nav class="wrap"><a class="logo" href="#"><i></i>yourname</a><div><a href="#work">Work</a><a href="#stats">Stats</a><a href="#contact">Contact</a></div></nav>
+<main class="wrap">
+  <header class="hero">
+    <div class="ecl"></div>
+    <span class="pill reveal"><i></i>Available for new projects</span>
+    <h1 class="reveal">Your Name builds<br>software that <span class="it">ships.</span></h1>
+    <p class="reveal">Developer focused on AI, APIs and fast web apps. Based in City, Country.</p>
+    <div class="btns reveal"><a class="btn p" href="#work">See projects</a><a class="btn" href="#">Résumé ↗</a></div>
+  </header>
+
+  <section id="stats">
+    <div class="h reveal"><h2>By the <span class="it">numbers</span></h2><span class="mono">live-ish</span></div>
+    <div class="stats reveal"><div><b>12</b><small>projects shipped</small></div><div><b>2+</b><small>years building</small></div><div><b>30+</b><small>PRs merged</small></div><div><b>128★</b><small>on GitHub</small></div></div>
+    <div class="heatbox reveal"><h3><span>Contributions</span><span class="mono" id="cc"></span></h3><div class="heat" id="heat"></div></div>
+  </section>
+
+  <section id="work">
+    <div class="h reveal"><h2>Selected <span class="it">work</span></h2><span>2024–2026</span></div>
+    <div class="grid reveal">
+      <a class="card wide" href="#"><span class="go">↗</span><small>AI · NEXT.JS · PYTHON</small><div><h3>Project One</h3><p>Your flagship. What it does, who uses it, and the result in numbers.</p></div></a>
+      <a class="card" href="#"><span class="go">↗</span><small>FASTAPI</small><div><h3>Project Two</h3><p>One sentence on what it does.</p></div></a>
+      <a class="card" href="#"><span class="go">↗</span><small>REACT</small><div><h3>Project Three</h3><p>One sentence on what it does.</p></div></a>
+      <a class="card" href="#"><span class="go">↗</span><small>NODE</small><div><h3>Project Four</h3><p>One sentence on what it does.</p></div></a>
+      <a class="card" href="#"><span class="go">↗</span><small>CLI</small><div><h3>Project Five</h3><p>One sentence on what it does.</p></div></a>
+    </div>
+  </section>
+
+  <section class="two">
+    <div class="panel reveal"><h2 style="font-size:1.3rem;margin-bottom:10px">Experience</h2><div class="rows"><div><b style="font-weight:600">Role · Company</b><span>2025 — Now</span></div><div><b style="font-weight:600">B.Tech CS · University</b><span>2021 — 2025</span></div></div></div>
+    <div class="panel reveal"><h2 style="font-size:1.3rem;margin-bottom:14px">Stack</h2><div class="stack"><span>Python</span><span>TypeScript</span><span>React</span><span>Next.js</span><span>Node.js</span><span>FastAPI</span><span>PostgreSQL</span><span>Docker</span><span>AWS</span></div></div>
+  </section>
+
+  <section id="contact">
+    <div class="cta reveal"><h2>Let's work <span class="it">together.</span></h2><p style="color:var(--muted);margin-top:8px">Reply within 24 hours.</p><div class="btns"><a class="btn p" href="mailto:you@example.com">you@example.com</a></div></div>
+  </section>
+  <footer><span>© 2026 Your Name</span><span><a href="#">GitHub</a><a href="#">LinkedIn</a><a href="#">X</a></span></footer>
+</main>
+<script>
+  const root = document.documentElement;
+  addEventListener('pointermove', e => { root.style.setProperty('--mx', e.clientX + 'px'); root.style.setProperty('--my', e.clientY + 'px'); });
+  document.querySelectorAll('.card').forEach(c => c.addEventListener('pointermove', e => { const r = c.getBoundingClientRect(); c.style.setProperty('--x', e.clientX - r.left + 'px'); c.style.setProperty('--y', e.clientY - r.top + 'px'); }));
+  // ponytail: random heatmap placeholder, wire to GitHub later
+  const heat = document.getElementById('heat'); let t = 0;
+  heat.innerHTML = Array.from({length: 371}, () => { const l = Math.random() < .35 ? 0 : Math.random() * 5 | 0; t += l * 2; return `<i data-l="${l}"></i>`; }).join('');
+  document.getElementById('cc').textContent = t + ' this year';
+  const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('in')), {threshold: .1});
+  document.querySelectorAll('.reveal').forEach(n => io.observe(n));
+</script>
+</body>
+</html>

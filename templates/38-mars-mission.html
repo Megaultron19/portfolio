@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Name — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#080403; --panel:#120a07; --fg:#f4e9e2; --muted:#93776a; --rust:#d9532b; --sand:#f0a36b; --line:rgba(240,163,107,.14); }
+  * { box-sizing:border-box; margin:0; }
+  html { scroll-behavior:smooth; overflow-x:clip; }
+  body { font:15px/1.65 Inter, system-ui, sans-serif; color:var(--fg); background:var(--bg); }
+  .cp { font-family:"Chakra Petch", sans-serif; text-transform:uppercase; letter-spacing:.06em; }
+  body::before { content:""; position:fixed; inset:0; z-index:-1; background-image:radial-gradient(1px 1px at 10% 20%, #fff6, transparent), radial-gradient(1px 1px at 80% 30%, #fff5, transparent), radial-gradient(1px 1px at 30% 70%, #fff4, transparent), radial-gradient(1px 1px at 60% 85%, #fff5, transparent); background-size:300px 300px; }
+  nav { display:flex; justify-content:space-between; align-items:center; padding:20px 5vw; border-bottom:1px solid var(--line); font-size:13px; }
+  nav a { color:var(--muted); text-decoration:none; margin-left:22px; }
+  nav a:hover { color:var(--sand); }
+  .hero { max-width:1200px; margin:auto; padding:60px 20px 80px; display:grid; grid-template-columns:1.1fr 1fr; gap:40px; align-items:center; }
+  .planet { width:min(42vw, 470px); aspect-ratio:1; border-radius:50%; justify-self:center; position:relative; animation:float 8s ease-in-out infinite;
+    background:radial-gradient(circle at 30% 30%, #f4a26f, #d9532b 38%, #8a2a12 66%, #2a0c05 90%);
+    box-shadow:0 0 70px rgba(217,83,43,.45), inset -50px -40px 90px rgba(0,0,0,.7), inset 10px 10px 40px rgba(255,200,150,.25); overflow:hidden; }
+  .planet::before { content:""; position:absolute; inset:0; background:repeating-linear-gradient(-12deg, transparent 0 22px, rgba(90,25,8,.25) 22px 30px, transparent 30px 50px), radial-gradient(circle at 60% 55%, rgba(60,15,5,.5) 0 9%, transparent 10%), radial-gradient(circle at 35% 70%, rgba(60,15,5,.4) 0 6%, transparent 7%); animation:turn 40s linear infinite; background-size:200% 100%, auto, auto; }
+  @keyframes turn { to { background-position:-200% 0, 0 0, 0 0; } }
+  @keyframes float { 50% { transform:translateY(-12px); } }
+  .orbit { position:absolute; inset:-14%; border:1px dashed var(--line); border-radius:50%; }
+  .hero small { color:var(--sand); font-family:"Chakra Petch", sans-serif; letter-spacing:.25em; }
+  h1 { font-size:clamp(3rem, 8vw, 6.2rem); line-height:.95; margin:14px 0; font-weight:700; }
+  h1 span { color:var(--rust); }
+  .hero p { color:var(--muted); max-width:460px; }
+  .btn { display:inline-block; margin:26px 10px 0 0; padding:12px 24px; font-family:"Chakra Petch", sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:.1em; text-decoration:none; color:#1a0702; background:var(--sand); clip-path:polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%); transition:.2s; }
+  .btn:hover { background:var(--rust); color:#fff; }
+  .btn.o { background:var(--line); color:var(--fg); }
+  .telemetry { display:flex; gap:22px; flex-wrap:wrap; margin-top:30px; font-family:"Chakra Petch", sans-serif; font-size:13px; color:var(--muted); }
+  .telemetry b { display:block; color:var(--fg); font-size:1.2rem; }
+  main { max-width:1200px; margin:auto; padding:0 20px 60px; }
+  .sh { display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap; border-bottom:1px solid var(--line); padding-bottom:12px; margin:70px 0 24px; }
+  h2 { font-size:clamp(1.8rem, 4vw, 2.8rem); }
+  h2 span { color:var(--rust); }
+  .sh small { color:var(--muted); font-family:"Chakra Petch", sans-serif; letter-spacing:.15em; }
+  .grid { display:grid; grid-template-columns:repeat(12, 1fr); gap:14px; }
+  .w { background:var(--panel); border:1px solid var(--line); padding:22px; position:relative; }
+  .w::before, .w::after { content:""; position:absolute; width:12px; height:12px; border:2px solid var(--sand); }
+  .w::before { top:-1px; left:-1px; border-right:0; border-bottom:0; }
+  .w::after { bottom:-1px; right:-1px; border-left:0; border-top:0; }
+  .w h3 { font-family:"Chakra Petch", sans-serif; font-size:12px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; display:flex; justify-content:space-between; }
+  .s3 { grid-column:span 3; } .s4 { grid-column:span 4; } .s6 { grid-column:span 6; } .s8 { grid-column:span 8; } .s12 { grid-column:span 12; }
+  .kpi b { font-family:"Chakra Petch", sans-serif; font-size:2.6rem; line-height:1; display:block; }
+  .kpi small { color:var(--sand); }
+  .gauge { height:8px; background:#2a140c; margin-top:12px; }
+  .gauge i { display:block; height:100%; background:repeating-linear-gradient(90deg, var(--rust) 0 8px, transparent 8px 10px); }
+  .mission { display:block; color:var(--fg); text-decoration:none; transition:.25s; }
+  .mission:hover { border-color:rgba(240,163,107,.5); background:#1a0e09; }
+  .mission .id { font-family:"Chakra Petch", sans-serif; color:var(--rust); font-size:13px; }
+  .mission h4 { font-family:"Chakra Petch", sans-serif; font-size:1.5rem; text-transform:uppercase; margin:4px 0; }
+  .mission p { color:var(--muted); font-size:14px; }
+  .mission .st { margin-top:12px; font-family:"Chakra Petch", sans-serif; font-size:12px; color:#7bd88f; }
+  .log div { display:grid; grid-template-columns:100px 1fr; gap:12px; padding:10px 0; border-bottom:1px dashed var(--line); font-size:14px; }
+  .log div:last-child { border:0; }
+  .log span { color:var(--sand); font-family:"Chakra Petch", sans-serif; }
+  .chips span { display:inline-block; padding:5px 12px; margin:0 6px 8px 0; border:1px solid var(--line); font-family:"Chakra Petch", sans-serif; font-size:13px; text-transform:uppercase; }
+  .chips span:hover { background:var(--rust); border-color:var(--rust); }
+  .cta { text-align:center; padding:60px 20px; }
+  footer { display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; padding:24px 5vw; border-top:1px solid var(--line); color:var(--muted); font-size:13px; font-family:"Chakra Petch", sans-serif; }
+  footer a { color:var(--muted); margin-left:16px; }
+  .reveal { opacity:0; transform:translateY(24px); transition:.9s; }
+  .reveal.in { opacity:1; transform:none; }
+  @media (max-width:860px) { .hero { grid-template-columns:1fr; } .planet { width:min(70vw, 320px); order:-1; } .s3, .s4 { grid-column:span 6; } .s6, .s8 { grid-column:span 12; } nav div a:not(:last-child) { display:none; } }
+  @media (max-width:520px) { .grid > * { grid-column:span 12 !important; } }
+  @media (prefers-reduced-motion:reduce) { *, .reveal { animation:none !important; transition:none !important; opacity:1; transform:none; } }
+</style>
+</head>
+<body>
+<nav><span class="cp" style="color:var(--sand);font-weight:700">YN // Mission Control</span><div><a href="#missions">Missions</a><a href="#crew">Crew</a><a href="#contact">Comms</a></div></nav>
+
+<header class="hero">
+  <div>
+    <small>SOL 2026 · CITY, COUNTRY</small>
+    <h1 class="cp">Your Name<br><span>on mission.</span></h1>
+    <p>Developer exploring new worlds of AI, APIs and the web. Landing reliable software where no one has shipped before.</p>
+    <a class="btn" href="#missions">Launch</a><a class="btn o" href="#">Résumé</a>
+    <div class="telemetry"><span>Status<b style="color:#7bd88f">Open to work</b></span><span>Local time<b id="clock"></b></span><span>Missions<b>12</b></span></div>
+  </div>
+  <div class="planet" aria-hidden="true"><div class="orbit"></div></div>
+</header>
+
+<main>
+  <div class="sh reveal"><h2 class="cp">Mission <span>stats</span></h2><small>TELEMETRY</small></div>
+  <div class="grid">
+    <div class="w s3 kpi reveal"><h3>Projects</h3><b>12</b><small>▲ 4 this year</small><div class="gauge"><i style="width:80%"></i></div></div>
+    <div class="w s3 kpi reveal"><h3>Experience</h3><b>2+ YRS</b><small>in production</small><div class="gauge"><i style="width:55%"></i></div></div>
+    <div class="w s3 kpi reveal"><h3>PRs merged</h3><b>30+</b><small>open source</small><div class="gauge"><i style="width:65%"></i></div></div>
+    <div class="w s3 kpi reveal"><h3>Uptime</h3><b>99.9%</b><small>coffee-powered</small><div class="gauge"><i style="width:99%"></i></div></div>
+  </div>
+
+  <div class="sh reveal" id="missions"><h2 class="cp">Completed <span>missions</span></h2><small>2024 — 2026</small></div>
+  <div class="grid">
+    <a class="w mission s4 reveal" href="#"><div class="id">MSN-001</div><h4>Project One</h4><p>What it does and why it matters, in one sentence.</p><div class="st">● LANDED · AI / NEXT.JS</div></a>
+    <a class="w mission s4 reveal" href="#"><div class="id">MSN-002</div><h4>Project Two</h4><p>What it does and why it matters, in one sentence.</p><div class="st">● LANDED · PYTHON / FASTAPI</div></a>
+    <a class="w mission s4 reveal" href="#"><div class="id">MSN-003</div><h4>Project Three</h4><p>What it does and why it matters, in one sentence.</p><div class="st">● LANDED · REACT / SERVERLESS</div></a>
+  </div>
+
+  <div class="sh reveal" id="crew"><h2 class="cp">Crew <span>file</span></h2><small>ABOUT</small></div>
+  <div class="grid">
+    <div class="w s6 reveal"><h3>Briefing</h3><p style="color:var(--muted);margin-bottom:12px">Three or four lines about your story: what got you into tech and what you want to build next.</p>
+      <div class="log"><div><span>2025–NOW</span>Role @ Company — what you did and the impact</div><div><span>2021–2025</span>B.Tech CS @ University</div></div></div>
+    <div class="w s6 reveal"><h3>Equipment</h3><div class="chips"><span>Python</span><span>TypeScript</span><span>React</span><span>Next.js</span><span>Node.js</span><span>FastAPI</span><span>PostgreSQL</span><span>Docker</span><span>AWS</span></div></div>
+  </div>
+
+  <div class="w cta reveal" id="contact" style="margin-top:70px"><h2 class="cp">Open <span>comms</span></h2><p style="color:var(--muted);margin-top:8px">Signal delay: under 24 hours.</p><a class="btn" href="mailto:you@example.com">you@example.com</a><a class="btn o" href="#">GitHub</a><a class="btn o" href="#">LinkedIn</a></div>
+</main>
+<footer><span>© 2026 YOUR NAME · MISSION CONTROL</span><span><a href="#">GitHub</a><a href="#">LinkedIn</a></span></footer>
+<script>
+  const ck = () => document.getElementById('clock').textContent = new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+  ck(); setInterval(ck, 10000);
+  const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('in')), {threshold: .1});
+  document.querySelectorAll('.reveal').forEach(n => io.observe(n));
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Name — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#000; --g:#00ff66; --gd:#00b347; --fg:#d6ffe4; --muted:#4f7d5f; --panel:rgba(0,12,4,.82); --line:rgba(0,255,102,.2); }
+  * { box-sizing:border-box; margin:0; }
+  html { scroll-behavior:smooth; }
+  body { font:15px/1.7 "Space Mono", ui-monospace, monospace; color:var(--fg); background:var(--bg); overflow-x:hidden; }
+  #rain { position:fixed; inset:0; z-index:-1; opacity:.55; }
+  .wrap { max-width:1000px; margin:auto; padding:0 20px; }
+  nav { display:flex; justify-content:space-between; align-items:center; padding:22px 0; }
+  nav a { color:var(--muted); text-decoration:none; margin-left:22px; }
+  nav a:hover { color:var(--g); text-shadow:0 0 8px var(--g); }
+  .hero { min-height:88vh; display:flex; align-items:center; }
+  .box { background:var(--panel); border:1px solid var(--line); padding:36px; backdrop-filter:blur(2px); box-shadow:0 0 40px rgba(0,255,102,.08); }
+  .hero .box { max-width:720px; }
+  .prompt { color:var(--g); }
+  h1 { font-size:clamp(2.4rem, 8vw, 5rem); line-height:1.05; color:var(--g); text-shadow:0 0 18px rgba(0,255,102,.6); margin:14px 0; }
+  .scramble { min-height:1.6em; color:var(--fg); font-size:1.15rem; }
+  .hero p { color:var(--muted); margin:16px 0 26px; }
+  .btn { display:inline-block; padding:11px 22px; border:1px solid var(--g); color:var(--g); text-decoration:none; margin:0 10px 10px 0; transition:.2s; }
+  .btn:hover, .btn.f { background:var(--g); color:#000; box-shadow:0 0 20px var(--g); }
+  section { padding:70px 0; }
+  h2 { color:var(--g); font-size:1.5rem; margin-bottom:24px; }
+  h2::before { content:"> "; color:var(--muted); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:16px; }
+  .card { background:var(--panel); border:1px solid var(--line); padding:22px; color:var(--fg); text-decoration:none; transition:.25s; display:block; }
+  .card:hover { border-color:var(--g); box-shadow:0 0 24px rgba(0,255,102,.2); }
+  .card .h { color:var(--muted); font-size:12px; }
+  .card h3 { color:var(--g); margin:4px 0 8px; }
+  .card p { color:#9fc9ad; font-size:14px; }
+  .card .t { margin-top:12px; color:var(--muted); font-size:12px; }
+  .two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .k { display:grid; grid-template-columns:120px 1fr; gap:6px 14px; font-size:14px; }
+  .k span:nth-child(odd) { color:var(--muted); }
+  .bar { font-size:14px; white-space:pre; color:var(--g); }
+  .bar span { color:var(--muted); }
+  footer { text-align:center; padding:30px 0; color:var(--muted); font-size:13px; }
+  .reveal { opacity:0; transition:.6s; }
+  .reveal.in { opacity:1; }
+  @media (max-width:760px) { .two { grid-template-columns:1fr; } .box { padding:22px; } nav div a:not(:last-child) { display:none; } .bar { font-size:12px; } }
+  @media (prefers-reduced-motion:reduce) { .reveal { opacity:1; transition:none; } }
+</style>
+</head>
+<body>
+<canvas id="rain"></canvas>
+<div class="wrap">
+  <nav><b style="color:var(--g)">~/yourname</b><div><a href="#work">./work</a><a href="#about">./about</a><a href="#contact">./contact</a></div></nav>
+  <header class="hero">
+    <div class="box">
+      <div class="prompt">root@yourname:~$ whoami</div>
+      <h1>Your Name</h1>
+      <div class="scramble" id="sc"></div>
+      <p>Developer building AI tools, APIs and web apps. Follow the white rabbit. City, Country · open to work.</p>
+      <a class="btn f" href="#work">./enter_the_matrix</a><a class="btn" href="#">resume.pdf</a>
+    </div>
+  </header>
+
+  <section id="work">
+    <h2>ls ./projects</h2>
+    <div class="grid">
+      <a class="card reveal" href="#"><div class="h">0x01 · 2026</div><h3>Project One</h3><p>What it does and why it matters, in one sentence.</p><div class="t">[ai] [next.js] [python]</div></a>
+      <a class="card reveal" href="#"><div class="h">0x02 · 2025</div><h3>Project Two</h3><p>What it does and why it matters, in one sentence.</p><div class="t">[fastapi] [postgres]</div></a>
+      <a class="card reveal" href="#"><div class="h">0x03 · 2025</div><h3>Project Three</h3><p>What it does and why it matters, in one sentence.</p><div class="t">[react] [serverless]</div></a>
+    </div>
+  </section>
+
+  <section id="about" class="two">
+    <div class="box reveal"><h2>cat about.txt</h2><p style="color:#9fc9ad">Three or four lines about your story: what got you into tech, what you love building, and what you want to work on next.</p>
+      <div class="k" style="margin-top:18px"><span>2025–now</span><span>Role @ Company</span><span>2021–2025</span><span>B.Tech CS @ University</span></div></div>
+    <div class="box reveal"><h2>skills --level</h2>
+<div class="bar">python     <span>[</span>█████████░<span>]</span> 90
+javascript <span>[</span>████████▌░<span>]</span> 85
+react      <span>[</span>████████░░<span>]</span> 80
+node.js    <span>[</span>███████▌░░<span>]</span> 75
+sql        <span>[</span>███████░░░<span>]</span> 70
+docker     <span>[</span>██████░░░░<span>]</span> 60</div></div>
+  </section>
+
+  <section id="contact">
+    <div class="box reveal" style="text-align:center"><h2 style="display:inline-block">ping yourname</h2><p style="color:var(--muted);margin-bottom:20px">64 bytes from you: reply in &lt;24h</p>
+      <a class="btn f" href="mailto:you@example.com">you@example.com</a><a class="btn" href="#">github</a><a class="btn" href="#">linkedin</a></div>
+  </section>
+</div>
+<footer>© 2026 Your Name · there is no spoon</footer>
+<script>
+  // digital rain
+  const c = document.getElementById('rain'), x = c.getContext('2d'), chars = 'アイウエオカキクケコサシスセソ01<>{}=+*ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘ'; let cols = [], fs = 16;
+  const size = () => { c.width = innerWidth; c.height = innerHeight; cols = Array(Math.ceil(c.width / fs)).fill(0).map(() => Math.random() * -50); };
+  size(); addEventListener('resize', size);
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  setInterval(() => { if (still) return; x.fillStyle = 'rgba(0,0,0,.08)'; x.fillRect(0, 0, c.width, c.height); x.font = fs + 'px monospace';
+    cols.forEach((y, i) => { x.fillStyle = Math.random() > .97 ? '#d6ffe4' : '#00ff66'; x.fillText(chars[Math.random() * chars.length | 0], i * fs, y * fs);
+      cols[i] = y * fs > c.height && Math.random() > .975 ? 0 : y + 1; }); }, 50);
+  // scramble-decode tagline
+  const lines = ['Full-stack developer.', 'AI tinkerer.', 'Bug hunter.'], el = document.getElementById('sc'), G = '!<>-_\\/[]{}=+*^?#';
+  let li = 0;
+  function decode(txt) { let f = 0; const iv = setInterval(() => { el.textContent = txt.split('').map((ch, i) => i < f / 2 ? ch : G[Math.random() * G.length | 0]).join(''); if (++f > txt.length * 2) { clearInterval(iv); setTimeout(() => decode(lines[li = (li + 1) % lines.length]), 2000); } }, 35); }
+  still ? el.textContent = lines[0] : decode(lines[0]);
+  const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('in')), {threshold: .1});
+  document.querySelectorAll('.reveal').forEach(n => io.observe(n));
+</script>
+</body>
+</html>

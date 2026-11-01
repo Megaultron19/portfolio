@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Name — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#010b14; --fg:#d9f3ff; --muted:#6b8fa3; --a:#2ee6d6; --b:#1e90ff; --card:rgba(6,30,48,.55); --line:rgba(46,230,214,.15); }
+  * { box-sizing:border-box; margin:0; }
+  html { scroll-behavior:smooth; overflow-x:clip; }
+  body { font:16px/1.7 Lexend, system-ui, sans-serif; font-weight:300; color:var(--fg); background:linear-gradient(#03213a 0, #021526 40vh, var(--bg) 120vh) fixed; overflow-x:hidden; }
+  #plankton { position:fixed; inset:0; z-index:-1; }
+  .rays { position:fixed; inset:0; z-index:-1; background:repeating-conic-gradient(from 200deg at 50% -20%, rgba(46,230,214,.05) 0 4deg, transparent 4deg 12deg); mask:linear-gradient(#000, transparent 70%); -webkit-mask:linear-gradient(#000, transparent 70%); animation:sway 12s ease-in-out infinite alternate; }
+  @keyframes sway { to { transform:rotate(3deg) scale(1.05); } }
+  .wrap { max-width:1060px; margin:auto; padding:0 20px; }
+  nav { display:flex; justify-content:space-between; align-items:center; padding:26px 0; }
+  nav a { color:var(--muted); text-decoration:none; margin-left:24px; font-size:14px; }
+  nav a:hover { color:var(--a); }
+  .hero { min-height:88vh; display:flex; flex-direction:column; justify-content:center; position:relative; }
+  .depth { color:var(--a); font-size:13px; letter-spacing:.25em; }
+  h1 { font-size:clamp(2.8rem, 9vw, 6.5rem); font-weight:700; line-height:1; margin:14px 0 20px; }
+  h1 span { color:transparent; -webkit-text-stroke:1.5px var(--a); text-shadow:0 0 40px rgba(46,230,214,.4); }
+  .hero p { max-width:520px; color:var(--muted); font-size:1.1rem; }
+  .btn { display:inline-block; margin:30px 12px 0 0; padding:13px 26px; border-radius:999px; text-decoration:none; color:var(--bg); background:var(--a); font-weight:500; box-shadow:0 0 30px rgba(46,230,214,.35); transition:.3s; }
+  .btn:hover { box-shadow:0 0 50px rgba(46,230,214,.6); }
+  .btn.o { background:none; color:var(--fg); border:1px solid var(--line); box-shadow:none; }
+  .waves { position:absolute; left:-20px; right:-20px; bottom:0; height:120px; }
+  .waves svg { position:absolute; bottom:0; width:200%; height:100%; animation:wave 14s linear infinite; }
+  .waves svg:nth-child(2) { animation-duration:9s; opacity:.5; }
+  @keyframes wave { to { transform:translateX(-50%); } }
+  section { padding:90px 0; }
+  .label { color:var(--a); font-size:13px; letter-spacing:.25em; }
+  h2 { font-size:clamp(2rem, 5vw, 3.2rem); font-weight:500; margin:8px 0 36px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:20px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:20px; padding:24px; backdrop-filter:blur(10px); color:var(--fg); text-decoration:none; transition:.4s; position:relative; overflow:hidden; display:block; }
+  .card::before { content:""; position:absolute; width:200px; height:200px; border-radius:50%; background:radial-gradient(rgba(46,230,214,.25), transparent 70%); top:-80px; right:-80px; transition:.6s; }
+  .card:hover { border-color:rgba(46,230,214,.5); transform:translateY(-6px); }
+  .card:hover::before { transform:scale(1.8); }
+  .card .ico { font-size:2rem; margin-bottom:14px; }
+  .card h3 { font-weight:500; font-size:1.25rem; }
+  .card p { color:var(--muted); font-size:15px; margin:6px 0 14px; }
+  .card small { color:var(--a); }
+  .about { display:grid; grid-template-columns:1.2fr 1fr; gap:30px; }
+  .panel { background:var(--card); border:1px solid var(--line); border-radius:20px; padding:28px; }
+  .tl div { position:relative; padding:0 0 22px 24px; border-left:1px solid var(--line); }
+  .tl div::before { content:""; position:absolute; left:-5px; top:6px; width:9px; height:9px; border-radius:50%; background:var(--a); box-shadow:0 0 12px var(--a); }
+  .tl small { color:var(--muted); }
+  .bubbles { display:flex; flex-wrap:wrap; gap:10px; }
+  .bubbles span { padding:8px 16px; border-radius:999px; border:1px solid var(--line); background:rgba(46,230,214,.06); font-size:14px; transition:.3s; }
+  .bubbles span:hover { background:rgba(46,230,214,.18); transform:translateY(-3px); }
+  .contact { text-align:center; padding:120px 0; }
+  .contact h2 { font-size:clamp(2.4rem, 7vw, 5rem); }
+  footer { text-align:center; padding:30px 0; color:var(--muted); font-size:13px; }
+  .reveal { opacity:0; transform:translateY(30px); transition:1s; }
+  .reveal.in { opacity:1; transform:none; }
+  @media (max-width:800px) { .about { grid-template-columns:1fr; } nav div a:not(:last-child) { display:none; } }
+  @media (prefers-reduced-motion:reduce) { *, .reveal { animation:none !important; transition:none !important; opacity:1; transform:none; } }
+</style>
+</head>
+<body>
+<canvas id="plankton"></canvas><div class="rays"></div>
+<div class="wrap">
+  <nav><b style="font-weight:700">yourname<span style="color:var(--a)">.</span></b><div><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></div></nav>
+  <header class="hero">
+    <div class="depth reveal">DEPTH 0000M — SURFACE</div>
+    <h1 class="reveal">Your Name<br><span>dives deep.</span></h1>
+    <p class="reveal">Developer exploring the depths of AI, APIs and the web. Calm on the surface, relentless underneath. City, Country.</p>
+    <div class="reveal"><a class="btn" href="#work">Dive in ↓</a><a class="btn o" href="#">Resume</a></div>
+    <div class="waves" aria-hidden="true">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path fill="rgba(46,230,214,.08)" d="M0 60 Q180 20 360 60 T720 60 T1080 60 T1440 60 V120 H0Z"/></svg>
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path fill="rgba(30,144,255,.1)" d="M0 80 Q180 40 360 80 T720 80 T1080 80 T1440 80 V120 H0Z"/></svg>
+    </div>
+  </header>
+
+  <section id="work">
+    <div class="label reveal">DEPTH 0200M — DISCOVERIES</div>
+    <h2 class="reveal">Projects</h2>
+    <div class="grid">
+      <a class="card reveal" href="#"><div class="ico">🐙</div><h3>Project One</h3><p>What it does and why it matters, in one sentence.</p><small>AI · Next.js →</small></a>
+      <a class="card reveal" href="#"><div class="ico">🐋</div><h3>Project Two</h3><p>What it does and why it matters, in one sentence.</p><small>Python · FastAPI →</small></a>
+      <a class="card reveal" href="#"><div class="ico">🪼</div><h3>Project Three</h3><p>What it does and why it matters, in one sentence.</p><small>React · Serverless →</small></a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="label reveal">DEPTH 1000M — THE DIVER</div>
+    <h2 class="reveal">About me</h2>
+    <div class="about">
+      <div class="panel reveal"><p style="color:var(--muted);margin-bottom:24px">Three or four lines about your story: what got you into tech, what you love building, and what you want to work on next.</p>
+        <div class="tl"><div><b>Role · Company</b><br><small>2025 — Now</small></div><div><b>B.Tech CS · University</b><br><small>2021 — 2025</small></div></div></div>
+      <div class="panel reveal"><h3 style="font-weight:500;margin-bottom:16px">Equipment</h3><div class="bubbles"><span>Python</span><span>TypeScript</span><span>React</span><span>Next.js</span><span>Node.js</span><span>FastAPI</span><span>PostgreSQL</span><span>Docker</span><span>AWS</span></div></div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact reveal">
+    <div class="label">DEPTH 4000M — THE ABYSS</div>
+    <h2>Send a signal.</h2>
+    <a class="btn" href="mailto:you@example.com">you@example.com</a><a class="btn o" href="#">GitHub</a><a class="btn o" href="#">LinkedIn</a>
+  </section>
+</div>
+<footer>© 2026 Your Name</footer>
+<script>
+  // bioluminescent plankton drifting upward
+  const c = document.getElementById('plankton'), x = c.getContext('2d'); let P = [];
+  const size = () => { c.width = innerWidth; c.height = innerHeight; P = Array.from({length: 70}, () => ({x: Math.random()*c.width, y: Math.random()*c.height, r: Math.random()*2 + .5, s: Math.random()*.3 + .1, t: Math.random()*6})); };
+  size(); addEventListener('resize', size);
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  (function draw() { x.clearRect(0, 0, c.width, c.height);
+    for (const p of P) { p.t += .03; p.y -= p.s; p.x += Math.sin(p.t) * .3; if (p.y < -5) p.y = c.height + 5;
+      x.beginPath(); x.arc(p.x, p.y, p.r, 0, 7); x.fillStyle = `rgba(46,230,214,${.3 + Math.sin(p.t)*.3})`; x.shadowBlur = 12; x.shadowColor = '#2ee6d6'; x.fill(); }
+    if (!still) requestAnimationFrame(draw); })();
+  const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('in')), {threshold: .1});
+  document.querySelectorAll('.reveal').forEach(n => io.observe(n));
+</script>
+</body>
+</html>
