@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Name — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+  @property --ang { syntax:"<angle>"; initial-value:0deg; inherits:false; }
+  :root { --bg:#040405; --glass:rgba(18,16,20,.72); --fg:#f0edf2; --muted:#8a8590; --red:#ff2e4d; --vio:#8a3cff; --line:rgba(255,255,255,.07); }
+  * { box-sizing:border-box; margin:0; }
+  html { scroll-behavior:smooth; overflow-x:clip; }
+  body { font:15px/1.65 Sora, system-ui, sans-serif; font-weight:300; color:var(--fg); background:var(--bg); }
+  .mono { font-family:"JetBrains Mono", monospace; }
+  .orbs { position:fixed; inset:0; z-index:-1; overflow:hidden; }
+  .orbs i { position:absolute; width:46vmax; height:46vmax; border-radius:50%; filter:blur(110px); opacity:.28; animation:drift 20s ease-in-out infinite alternate; }
+  .orbs i:nth-child(1) { background:var(--red); top:-18vmax; right:-12vmax; }
+  .orbs i:nth-child(2) { background:var(--vio); bottom:-22vmax; left:-14vmax; animation-delay:-10s; }
+  @keyframes drift { to { transform:translate(-8vw, 10vh); } }
+  .wrap { max-width:1140px; margin:auto; padding:0 18px; }
+  nav { display:flex; justify-content:space-between; align-items:center; padding:22px 0; }
+  nav b { font-weight:800; letter-spacing:-.02em; }
+  nav a { color:var(--muted); text-decoration:none; margin-left:22px; font-size:14px; }
+  nav a:hover { color:var(--fg); }
+  /* animated gradient border */
+  .g { position:relative; border-radius:22px; background:var(--glass); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); padding:24px; border:1px solid var(--line); }
+  .g.live::before { content:""; position:absolute; inset:-1px; border-radius:inherit; padding:1px; background:conic-gradient(from var(--ang), transparent 0 60%, var(--red), var(--vio), transparent 95%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude; animation:spin 6s linear infinite; pointer-events:none; }
+  @keyframes spin { to { --ang:360deg; } }
+  .g h3 { font-size:11px; font-weight:400; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; display:flex; justify-content:space-between; }
+  .bento { display:grid; grid-template-columns:repeat(4, 1fr); gap:14px; margin:16px 0 70px; }
+  .hero { grid-column:span 3; grid-row:span 2; display:flex; flex-direction:column; justify-content:flex-end; min-height:400px; }
+  h1 { font-size:clamp(2.6rem, 6.5vw, 5.4rem); font-weight:800; line-height:1; letter-spacing:-.04em; }
+  h1 span { background:linear-gradient(90deg, var(--red), var(--vio)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .hero p { color:var(--muted); max-width:500px; margin:16px 0 22px; }
+  .btn { display:inline-block; padding:12px 22px; border-radius:12px; color:#fff; text-decoration:none; font-weight:400; background:linear-gradient(135deg, var(--red), var(--vio)); margin-right:8px; transition:.25s; }
+  .btn:hover { box-shadow:0 10px 30px rgba(255,46,77,.35); }
+  .btn.o { background:rgba(255,255,255,.04); border:1px solid var(--line); }
+  .av { display:grid; place-items:center; font-size:4rem; background:radial-gradient(circle at 50% 120%, rgba(255,46,77,.35), transparent 60%), var(--glass); }
+  .kpi b { font-size:2.4rem; font-weight:800; letter-spacing:-.04em; display:block; line-height:1.1; }
+  .kpi small { color:var(--red); }
+  .ok { display:inline-flex; align-items:center; gap:8px; }
+  .ok::before { content:""; width:8px; height:8px; border-radius:50%; background:#22c55e; box-shadow:0 0 10px #22c55e; }
+  .sh { display:flex; justify-content:space-between; align-items:baseline; margin:0 0 20px; flex-wrap:wrap; gap:8px; }
+  h2 { font-size:clamp(1.8rem, 4vw, 2.8rem); font-weight:800; letter-spacing:-.03em; }
+  .sh span { color:var(--muted); font-size:13px; }
+  .grid { display:grid; grid-template-columns:repeat(12, 1fr); gap:14px; margin-bottom:70px; }
+  .s4 { grid-column:span 4; } .s5 { grid-column:span 5; } .s7 { grid-column:span 7; } .s8 { grid-column:span 8; } .s12 { grid-column:span 12; }
+  .proj { color:var(--fg); text-decoration:none; display:flex; flex-direction:column; justify-content:space-between; min-height:230px; transition:.3s; }
+  .proj:hover { transform:translateY(-4px); }
+  .proj .top { display:flex; justify-content:space-between; color:var(--muted); font-size:12px; }
+  .proj h4 { font-size:1.4rem; font-weight:600; letter-spacing:-.02em; }
+  .proj p { color:var(--muted); font-size:14px; }
+  .heat { display:grid; grid-template-rows:repeat(7, 1fr); grid-auto-flow:column; grid-template-columns:repeat(53, 1fr); gap:3px; }
+  .heat i { aspect-ratio:1; border-radius:3px; background:rgba(255,255,255,.04); }
+  .heat i[data-l="1"] { background:#3b1030; } .heat i[data-l="2"] { background:#6a1640; } .heat i[data-l="3"] { background:#b21f4a; } .heat i[data-l="4"] { background:#ff2e4d; }
+  .tl div { display:flex; justify-content:space-between; gap:10px; padding:12px 0; border-bottom:1px solid var(--line); flex-wrap:wrap; }
+  .tl div:last-child { border:0; }
+  .tl span { color:var(--muted); font-size:13px; }
+  .chips span { display:inline-block; padding:5px 12px; margin:0 6px 8px 0; border-radius:999px; border:1px solid var(--line); font-size:13px; background:rgba(255,255,255,.02); }
+  .cta { text-align:center; padding:60px 24px; }
+  footer { display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; padding:24px 0 40px; color:var(--muted); font-size:13px; }
+  footer a { color:var(--muted); margin-left:16px; }
+  .reveal { opacity:0; transform:translateY(20px) scale(.98); transition:.8s; }
+  .reveal.in { opacity:1; transform:none; }
+  @media (max-width:900px) { .bento { grid-template-columns:1fr 1fr; } .hero { grid-column:span 2; } .s4, .s5 { grid-column:span 6; } .s7, .s8 { grid-column:span 12; } }
+  @media (max-width:600px) { .grid > * { grid-column:span 12 !important; } nav div a:not(:last-child) { display:none; } .heat { grid-template-columns:repeat(26, 1fr); } .heat i:nth-child(n+183) { display:none; } }
+  @media (prefers-reduced-motion:reduce) { *, .reveal { animation:none !important; transition:none !important; opacity:1; transform:none; } }
+</style>
+</head>
+<body>
+<div class="orbs"><i></i><i></i></div>
+<div class="wrap">
+  <nav><b>yourname<span style="color:var(--red)">.</span></b><div><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></div></nav>
+
+  <div class="bento">
+    <section class="g live hero reveal">
+      <h3>Developer · City, Country</h3>
+      <h1>Your Name.<br><span>Obsidian-grade code.</span></h1>
+      <p>I build sharp, polished software — AI tools, APIs and fast web apps.</p>
+      <div><a class="btn" href="#work">View work</a><a class="btn o" href="#">Résumé</a></div>
+    </section>
+    <div class="g av reveal">🧑‍💻</div>
+    <div class="g kpi reveal"><h3>Status</h3><b class="ok" style="font-size:1.1rem;font-weight:600">Open to work</b><p style="color:var(--muted);margin-top:8px;font-size:13px">Full-time · Remote / City</p></div>
+  </div>
+
+  <div class="grid">
+    <div class="g kpi s4 reveal"><h3>Projects</h3><b>12</b><small>▲ 4 this year</small></div>
+    <div class="g kpi s4 reveal"><h3>Experience</h3><b>2+ yrs</b><small>Role @ Company</small></div>
+    <div class="g kpi s4 reveal"><h3>Open source</h3><b>30+</b><small>PRs merged</small></div>
+    <div class="g s12 reveal"><h3>Contributions <span class="mono" id="cc"></span></h3><div class="heat" id="heat"></div></div>
+  </div>
+
+  <div class="sh reveal" id="work"><h2>Selected work</h2><span>2024 — 2026</span></div>
+  <div class="grid">
+    <a class="g live proj s8 reveal" href="#"><div class="top"><span>01 · Flagship</span><span>↗</span></div><div><h4>Project One</h4><p>Your best project. What it does, who uses it, and the result in numbers.</p><p class="mono" style="font-size:12px;margin-top:8px;color:var(--red)">AI · NEXT.JS · PYTHON</p></div></a>
+    <a class="g proj s4 reveal" href="#"><div class="top"><span>02</span><span>↗</span></div><div><h4>Project Two</h4><p>What it does in one sentence.</p><p class="mono" style="font-size:12px;margin-top:8px;color:var(--red)">FASTAPI</p></div></a>
+    <a class="g proj s4 reveal" href="#"><div class="top"><span>03</span><span>↗</span></div><div><h4>Project Three</h4><p>What it does in one sentence.</p><p class="mono" style="font-size:12px;margin-top:8px;color:var(--red)">REACT</p></div></a>
+    <a class="g proj s8 reveal" href="#"><div class="top"><span>04</span><span>↗</span></div><div><h4>Project Four</h4><p>What it does and why it matters, in one or two sentences.</p><p class="mono" style="font-size:12px;margin-top:8px;color:var(--red)">NODE · POSTGRES</p></div></a>
+  </div>
+
+  <div class="grid" id="about">
+    <div class="g s7 reveal"><h3>About & journey</h3><p style="color:var(--muted);margin-bottom:12px">Three or four lines about your story: what got you into tech and what you want to build next.</p><div class="tl"><div><b style="font-weight:600">Role · Company</b><span>2025 — Now</span></div><div><b style="font-weight:600">B.Tech CS · University</b><span>2021 — 2025</span></div></div></div>
+    <div class="g s5 reveal"><h3>Stack</h3><div class="chips"><span>Python</span><span>TypeScript</span><span>React</span><span>Next.js</span><span>Node.js</span><span>FastAPI</span><span>PostgreSQL</span><span>Docker</span><span>AWS</span><span>Git</span></div></div>
+  </div>
+
+  <div class="g live cta reveal" id="contact"><h2>Let's build something sharp.</h2><p style="color:var(--muted);margin:10px 0 22px">Reply within 24 hours.</p><a class="btn" href="mailto:you@example.com">you@example.com</a><a class="btn o" href="#">GitHub</a><a class="btn o" href="#">LinkedIn</a></div>
+  <footer><span>© 2026 Your Name</span><span><a href="#">GitHub</a><a href="#">LinkedIn</a><a href="#">X</a></span></footer>
+</div>
+<script>
+  // ponytail: random heatmap placeholder, wire to GitHub later
+  const heat = document.getElementById('heat'); let t = 0;
+  heat.innerHTML = Array.from({length: 371}, () => { const l = Math.random() < .35 ? 0 : Math.random() * 5 | 0; t += l * 2; return `<i data-l="${l}"></i>`; }).join('');
+  document.getElementById('cc').textContent = t + ' this year';
+  const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('in')), {threshold: .1});
+  document.querySelectorAll('.reveal').forEach(n => io.observe(n));
+</script>
+</body>
+</html>

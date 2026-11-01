@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Name — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#e8ff47; --ink:#0d0d0d; }
+  * { box-sizing:border-box; margin:0; }
+  html { scroll-behavior:smooth; overflow-x:clip; }
+  body { font:17px/1.55 "DM Sans", system-ui, sans-serif; color:var(--ink); background:var(--bg); overflow-x:clip; }
+  @media (pointer:fine) { body, a { cursor:none; } }
+  .cur { position:fixed; left:0; top:0; width:18px; height:18px; border-radius:50%; background:var(--ink); pointer-events:none; z-index:100; transform:translate(-50%,-50%); transition:width .25s, height .25s; mix-blend-mode:difference; background:#fff; }
+  .cur.big { width:90px; height:90px; }
+  @media (pointer:coarse) { .cur { display:none; } }
+  .anton { font-family:Anton, Impact, sans-serif; text-transform:uppercase; line-height:.85; }
+  nav { position:fixed; top:0; left:0; right:0; display:flex; justify-content:space-between; padding:20px 4vw; z-index:20; font-weight:500; background:var(--bg); border-bottom:2px solid var(--ink); }
+  nav a { color:var(--ink); text-decoration:none; margin-left:24px; }
+  .hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:100px 0 40px; overflow:hidden; }
+  .line { white-space:nowrap; font-size:clamp(4rem, 17vw, 16rem); will-change:transform; }
+  .line.o { -webkit-text-stroke:2px var(--ink); color:transparent; }
+  .sub { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; padding:30px 4vw 0; font-size:1.1rem; }
+  .sub p { max-width:420px; }
+  .tape { background:var(--ink); color:var(--bg); padding:18px 0; overflow:hidden; white-space:nowrap; transform:rotate(-2deg); margin:40px -10px; }
+  .tape div { display:inline-block; font-size:2.2rem; animation:m 18s linear infinite; }
+  @keyframes m { to { transform:translateX(-50%); } }
+  .work { padding:80px 4vw; }
+  .work h2 { font-size:clamp(3rem, 10vw, 9rem); margin-bottom:30px; }
+  .row { display:grid; grid-template-columns:60px 1fr auto; gap:20px; align-items:center; padding:22px 0; border-top:2px solid var(--ink); color:var(--ink); text-decoration:none; position:relative; }
+  .row:last-child { border-bottom:2px solid var(--ink); }
+  .row h3 { font-size:clamp(2.2rem, 7vw, 5.5rem); transition:transform .4s; }
+  .row:hover h3 { transform:translateX(24px); }
+  .row::before { content:""; position:absolute; inset:0; background:var(--ink); transform:scaleY(0); transform-origin:bottom; transition:transform .4s cubic-bezier(.7,0,.2,1); z-index:-1; }
+  .row:hover { color:var(--bg); }
+  .row:hover::before { transform:scaleY(1); }
+  .row span { font-weight:500; }
+  .peek { position:fixed; left:0; top:0; width:280px; aspect-ratio:4/3; pointer-events:none; z-index:50; opacity:0; transform:translate(-50%,-50%) scale(.6) rotate(-6deg); transition:opacity .3s, transform .3s; border:3px solid var(--ink); }
+  .peek.on { opacity:1; transform:translate(-50%,-50%) scale(1) rotate(-6deg); }
+  .about { display:grid; grid-template-columns:1fr 1fr; gap:6vw; padding:80px 4vw; background:var(--ink); color:var(--bg); }
+  .about h2 { font-size:clamp(3rem, 9vw, 8rem); }
+  .about p { font-size:1.3rem; margin-bottom:20px; }
+  .tags span { display:inline-block; border:2px solid var(--bg); border-radius:999px; padding:6px 16px; margin:0 8px 8px 0; transition:.2s; }
+  .tags span:hover { background:var(--bg); color:var(--ink); }
+  .contact { padding:120px 4vw; text-align:center; }
+  .contact a.big { font-size:clamp(3rem, 13vw, 12rem); color:var(--ink); text-decoration:none; display:inline-block; transition:transform .3s; }
+  .contact a.big:hover { transform:skewX(-8deg); }
+  footer { display:flex; justify-content:space-between; flex-wrap:wrap; padding:24px 4vw; border-top:2px solid var(--ink); }
+  footer a { color:var(--ink); margin-left:18px; }
+  @media (max-width:760px) { .about { grid-template-columns:1fr; } .row { grid-template-columns:30px 1fr; } .row span:last-child { display:none; } nav div a:not(:last-child) { display:none; } }
+  @media (prefers-reduced-motion:reduce) { .tape div { animation:none; } }
+</style>
+</head>
+<body>
+<div class="cur" id="cur"></div>
+<div class="peek" id="peek" aria-hidden="true"></div>
+<nav><a href="#" style="margin:0">Your Name</a><div><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></div></nav>
+
+<header class="hero">
+  <div class="line anton" data-speed="-0.6">Your Name — Your Name —</div>
+  <div class="line anton o" data-speed="0.6">&nbsp;&nbsp;Developer · Builder · Developer ·</div>
+  <div class="line anton" data-speed="-0.4">Ships fast — Ships fast —</div>
+  <div class="sub"><p>Independent developer building AI products, APIs and loud web experiences. City, Country.</p><p>Open to work ●<br><a href="#" style="color:var(--ink)">Resume ↗</a></p></div>
+</header>
+
+<div class="tape anton"><div>✺ Python ✺ React ✺ TypeScript ✺ Node ✺ FastAPI ✺ AI ✺ Python ✺ React ✺ TypeScript ✺ Node ✺ FastAPI ✺ AI ✺&nbsp;</div></div>
+
+<section class="work" id="work">
+  <h2 class="anton">Work</h2>
+  <a class="row" href="#" data-c="#ff5a1f"><span>01</span><h3 class="anton">Project One</h3><span>AI · Next.js</span></a>
+  <a class="row" href="#" data-c="#3d5afe"><span>02</span><h3 class="anton">Project Two</h3><span>Python · API</span></a>
+  <a class="row" href="#" data-c="#00c2a8"><span>03</span><h3 class="anton">Project Three</h3><span>React · Serverless</span></a>
+</section>
+
+<section class="about" id="about">
+  <h2 class="anton">About<br>me</h2>
+  <div>
+    <p>Three or four lines about your story: what got you into tech, what you love building, and what you want to work on next.</p>
+    <p style="font-size:1rem;opacity:.8">Role @ Company, 2025 — now · B.Tech CS @ University, 2021 — 2025</p>
+    <div class="tags"><span>Python</span><span>TypeScript</span><span>React</span><span>Node.js</span><span>FastAPI</span><span>SQL</span><span>Docker</span><span>AWS</span></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <p style="font-weight:500">Got an idea?</p>
+  <a class="big anton" href="mailto:you@example.com">Let's talk ↗</a>
+</section>
+<footer><span>© 2026 Your Name</span><span><a href="#">GitHub</a><a href="#">LinkedIn</a><a href="#">X</a></span></footer>
+
+<script>
+  const cur = document.getElementById('cur'), peek = document.getElementById('peek');
+  addEventListener('pointermove', e => { cur.style.left = peek.style.left = e.clientX + 'px'; cur.style.top = peek.style.top = e.clientY + 'px'; });
+  document.querySelectorAll('a').forEach(a => { a.onpointerenter = () => cur.classList.add('big'); a.onpointerleave = () => cur.classList.remove('big'); });
+  // ponytail: project preview is a colour swatch; swap for real screenshots via data-img later
+  document.querySelectorAll('.row').forEach(r => { r.addEventListener('pointerenter', () => { peek.style.background = r.dataset.c; peek.classList.add('on'); }); r.addEventListener('pointerleave', () => peek.classList.remove('on')); });
+  // lines slide sideways with scroll
+  const lines = document.querySelectorAll('.line');
+  const move = () => lines.forEach(l => l.style.transform = `translateX(${scrollY * l.dataset.speed - (l.dataset.speed > 0 ? 300 : 0)}px)`);
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) { addEventListener('scroll', move, {passive: true}); move(); }
+</script>
+</body>
+</html>

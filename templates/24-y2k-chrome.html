@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Name — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root { --bg1:#d6e4ff; --bg2:#ffd6f5; --ink:#2a2140; --pink:#ff4fd8; --blue:#3d7bff; --lime:#b6ff3b; }
+  * { box-sizing:border-box; margin:0; }
+  html { scroll-behavior:smooth; }
+  body { font:17px/1.6 Nunito, system-ui, sans-serif; color:var(--ink); background:linear-gradient(160deg, var(--bg1), var(--bg2) 50%, #d6fff4); background-attachment:fixed; overflow-x:hidden; }
+  .chrome { font-family:"Rubik Mono One", sans-serif; text-transform:uppercase;
+    background:linear-gradient(180deg, #ffffff 0%, #d4def0 30%, #6a7ba0 47%, #1f1a33 50%, #9fb2d6 54%, #f2f6ff 78%, #b9c7e3 100%); background-size:100% 1lh; background-repeat:repeat-y; -webkit-background-clip:text; background-clip:text; color:transparent;
+    -webkit-text-stroke:1.5px rgba(42,33,64,.55); filter:drop-shadow(0 4px 0 rgba(42,33,64,.25)); }
+  .sparkle { position:fixed; font-size:22px; color:#fff; text-shadow:0 0 8px var(--pink); animation:tw 2.4s ease-in-out infinite; pointer-events:none; z-index:-1; }
+  @keyframes tw { 50% { transform:scale(.4) rotate(45deg); opacity:.3; } }
+  .wrap { max-width:1060px; margin:auto; padding:0 18px; }
+  nav { display:flex; justify-content:space-between; align-items:center; margin:18px 0; padding:8px 10px 8px 20px; border-radius:999px; background:linear-gradient(#ffffffcc, #e8edf7cc); border:2px solid #fff; box-shadow:0 6px 20px rgba(61,123,255,.2), inset 0 -3px 0 rgba(0,0,0,.06); }
+  nav b { font-family:"Rubik Mono One", sans-serif; font-size:14px; }
+  nav a { color:var(--ink); text-decoration:none; font-weight:700; padding:6px 14px; border-radius:999px; }
+  nav a:hover { background:var(--lime); }
+  .hero { text-align:center; padding:60px 0 50px; }
+  .hero h1 { font-size:clamp(2.6rem, 11vw, 7.5rem); line-height:.95; }
+  .hero .star { display:inline-block; animation:spin 6s linear infinite; color:var(--pink); -webkit-text-stroke:0; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .hero p { max-width:520px; margin:22px auto 30px; font-size:1.15rem; font-weight:700; }
+  .pill { display:inline-block; padding:14px 30px; margin:6px; border-radius:999px; font-weight:900; text-decoration:none; color:#fff; border:2px solid #fff;
+    background:linear-gradient(180deg, #8fb3ff, var(--blue) 50%, #2a5ee0 51%, #6d9bff); box-shadow:0 8px 20px rgba(61,123,255,.35), inset 0 2px 0 rgba(255,255,255,.6); transition:.15s; }
+  .pill:hover { transform:translateY(-2px) scale(1.03); }
+  .pill.pk { background:linear-gradient(180deg, #ffa3ec, var(--pink) 50%, #e02dbb 51%, #ff8ae6); box-shadow:0 8px 20px rgba(255,79,216,.35), inset 0 2px 0 rgba(255,255,255,.6); }
+  .bubble { border-radius:28px; padding:26px; background:linear-gradient(160deg, rgba(255,255,255,.85), rgba(255,255,255,.45)); border:2px solid #fff; box-shadow:0 12px 40px rgba(42,33,64,.12), inset 0 2px 0 #fff; backdrop-filter:blur(10px); }
+  h2 { font-size:clamp(1.8rem, 5vw, 3rem); margin-bottom:24px; text-align:center; }
+  section { padding:50px 0; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(290px, 1fr)); gap:22px; }
+  .card { color:var(--ink); text-decoration:none; transition:.25s; display:block; }
+  .card:hover { transform:translateY(-6px) rotate(-1deg); }
+  .card .art { height:150px; border-radius:20px; margin-bottom:14px; border:2px solid #fff; display:grid; place-items:center; font-size:3.6rem; box-shadow:inset 0 -20px 40px rgba(255,255,255,.4); }
+  .card h3 { font-weight:900; font-size:1.3rem; }
+  .card small { font-weight:700; color:var(--blue); }
+  .row { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  .stickers { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
+  .stickers span { padding:8px 16px; border-radius:999px; font-weight:900; background:#fff; border:2px solid var(--ink); box-shadow:3px 3px 0 var(--ink); transform:rotate(var(--r, 0deg)); }
+  .stickers span:nth-child(3n) { background:var(--lime); --r:-3deg; } .stickers span:nth-child(3n+1) { background:#ffe1fa; --r:2deg; } .stickers span:nth-child(3n+2) { background:#dfe9ff; --r:-1deg; }
+  .marq { overflow:hidden; white-space:nowrap; padding:12px 0; background:var(--ink); color:var(--lime); font-weight:900; margin:40px 0; }
+  .marq div { display:inline-block; animation:mq 20s linear infinite; }
+  @keyframes mq { to { transform:translateX(-50%); } }
+  .contact { text-align:center; }
+  .counter { display:inline-flex; gap:2px; margin-top:20px; font-family:monospace; font-size:14px; }
+  .counter span { background:#000; color:var(--lime); padding:2px 6px; }
+  footer { text-align:center; padding:30px 0 50px; font-weight:700; font-size:14px; }
+  @media (max-width:760px) { .row { grid-template-columns:1fr; } nav a:not(:last-child) { display:none; } }
+  @media (prefers-reduced-motion:reduce) { * { animation:none !important; } }
+</style>
+</head>
+<body>
+<span class="sparkle" style="top:12%;left:8%">✦</span><span class="sparkle" style="top:30%;right:10%;animation-delay:-.8s">✧</span><span class="sparkle" style="top:70%;left:14%;animation-delay:-1.6s">✦</span><span class="sparkle" style="top:84%;right:18%;animation-delay:-.4s">✧</span>
+
+<div class="wrap">
+  <nav><b>YN★2K</b><div><a href="#work">work</a><a href="#about">about</a><a href="#contact">contact</a></div></nav>
+
+  <header class="hero">
+    <h1 class="chrome">Your<br>Name <span class="star">✦</span></h1>
+    <p>✿ developer • builder • internet enthusiast ✿<br>making shiny things on the web from City, Country</p>
+    <a class="pill" href="#work">view my stuff</a><a class="pill pk" href="#">resume.exe</a>
+  </header>
+</div>
+
+<div class="marq"><div>★ OPEN TO WORK ★ PYTHON ★ REACT ★ AI ★ BEST VIEWED IN ANY BROWSER ★ OPEN TO WORK ★ PYTHON ★ REACT ★ AI ★ BEST VIEWED IN ANY BROWSER&nbsp;</div></div>
+
+<div class="wrap">
+  <section id="work">
+    <h2 class="chrome">My Stuff</h2>
+    <div class="grid">
+      <a class="card bubble" href="#"><div class="art" style="background:linear-gradient(135deg,#ffb3ef,#b3c9ff)">🤖</div><h3>Project One</h3><p>What it does in one sweet sentence.</p><small>AI · Next.js</small></a>
+      <a class="card bubble" href="#"><div class="art" style="background:linear-gradient(135deg,#b3fff0,#d6ffb3)">⚡</div><h3>Project Two</h3><p>What it does in one sweet sentence.</p><small>Python · FastAPI</small></a>
+      <a class="card bubble" href="#"><div class="art" style="background:linear-gradient(135deg,#fff3b3,#ffb3c7)">🌈</div><h3>Project Three</h3><p>What it does in one sweet sentence.</p><small>React · Serverless</small></a>
+    </div>
+  </section>
+
+  <section id="about" class="row">
+    <div class="bubble"><h3 style="font-weight:900;font-size:1.4rem">about me ♡</h3><p>Three or four lines about your story: what got you into tech, what you love building, and what you want to work on next.</p>
+      <p style="margin-top:12px"><b>Role @ Company</b> · 2025–now<br><b>B.Tech CS @ University</b> · 2021–2025</p></div>
+    <div class="bubble"><h3 style="font-weight:900;font-size:1.4rem;margin-bottom:14px">my toolkit ✧</h3><div class="stickers"><span>Python</span><span>JavaScript</span><span>TypeScript</span><span>React</span><span>Node.js</span><span>FastAPI</span><span>SQL</span><span>Docker</span><span>AWS</span></div></div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="bubble">
+      <h2 class="chrome">Sign my guestbook</h2>
+      <p style="font-weight:700">(jk — just email me 💌)</p>
+      <a class="pill pk" href="mailto:you@example.com">you@example.com</a><a class="pill" href="#">GitHub</a><a class="pill" href="#">LinkedIn</a>
+      <div><div class="counter" aria-label="visitor counter"><span>0</span><span>0</span><span>1</span><span>3</span><span>3</span><span>7</span></div></div>
+    </div>
+  </section>
+</div>
+<footer>© 2026 Your Name ✦ made with ♡ and way too much chrome</footer>
+</body>
+</html>

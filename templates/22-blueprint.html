@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Name — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Architects+Daughter&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0b3d91; --ln:rgba(255,255,255,.85); --dim:rgba(255,255,255,.55); --grid:rgba(255,255,255,.08); --note:#ffd166; }
+  * { box-sizing:border-box; margin:0; }
+  html { scroll-behavior:smooth; }
+  body { font:15px/1.6 "IBM Plex Mono", monospace; color:var(--ln); background:var(--bg);
+    background-image:linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size:100px 100px, 100px 100px, 20px 20px, 20px 20px; }
+  .hand { font-family:"Architects Daughter", cursive; color:var(--note); }
+  .wrap { max-width:1100px; margin:auto; padding:30px 20px 60px; }
+  .sheet { border:2px solid var(--ln); padding:30px; position:relative; }
+  .sheet::before { content:""; position:absolute; inset:6px; border:1px solid var(--dim); pointer-events:none; }
+  nav { display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; border-bottom:1px solid var(--dim); padding-bottom:14px; margin-bottom:40px; text-transform:uppercase; letter-spacing:.12em; font-size:13px; }
+  nav a { color:var(--ln); text-decoration:none; margin-left:18px; }
+  nav a:hover { color:var(--note); }
+  .hero { display:grid; grid-template-columns:1.2fr 1fr; gap:40px; align-items:center; margin-bottom:60px; }
+  .label { font-size:12px; letter-spacing:.2em; color:var(--dim); text-transform:uppercase; }
+  h1 { font-size:clamp(2.4rem, 7vw, 5rem); font-weight:600; line-height:1; margin:10px 0; letter-spacing:-.02em; }
+  .dim-line { display:flex; align-items:center; gap:8px; color:var(--dim); font-size:12px; margin:6px 0 20px; }
+  .dim-line::before, .dim-line::after { content:""; flex:1; height:1px; background:var(--dim); }
+  .dim-line span { padding:0 4px; }
+  .hero p { color:var(--dim); max-width:460px; }
+  .btn { display:inline-block; margin:22px 10px 0 0; padding:10px 20px; border:2px solid var(--ln); color:var(--ln); text-decoration:none; text-transform:uppercase; letter-spacing:.1em; font-size:13px; transition:.2s; }
+  .btn:hover { background:var(--ln); color:var(--bg); }
+  svg.draw { width:100%; height:auto; }
+  svg.draw * { fill:none; stroke:var(--ln); stroke-width:1.5; vector-effect:non-scaling-stroke; }
+  svg.draw .d { stroke:var(--dim); stroke-dasharray:4 4; }
+  svg.draw text { fill:var(--note); stroke:none; font-family:"Architects Daughter", cursive; font-size:15px; }
+  svg.draw .anim { stroke-dasharray:1000; stroke-dashoffset:1000; animation:draw 3s ease forwards; }
+  @keyframes draw { to { stroke-dashoffset:0; } }
+  h2 { font-size:1.6rem; font-weight:600; display:flex; gap:14px; align-items:baseline; margin-bottom:20px; }
+  h2 small { font-size:12px; color:var(--dim); letter-spacing:.2em; }
+  section { margin-bottom:60px; }
+  .parts { display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:20px; }
+  .part { border:1px solid var(--ln); padding:20px; position:relative; color:var(--ln); text-decoration:none; transition:.2s; }
+  .part:hover { background:rgba(255,255,255,.06); }
+  .part .no { position:absolute; top:-12px; right:16px; background:var(--bg); padding:0 8px; font-size:12px; color:var(--note); }
+  .part h3 { font-size:1.15rem; margin-bottom:6px; }
+  .part p { color:var(--dim); font-size:14px; }
+  .part .spec { margin-top:12px; border-top:1px dashed var(--dim); padding-top:8px; font-size:12px; }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  td, th { border:1px solid var(--dim); padding:8px 12px; text-align:left; }
+  th { color:var(--dim); font-weight:400; text-transform:uppercase; font-size:12px; letter-spacing:.1em; }
+  .bom { display:grid; grid-template-columns:1fr 1fr; gap:30px; }
+  .title-block { display:grid; grid-template-columns:2fr 1fr 1fr; border:2px solid var(--ln); font-size:12px; }
+  .title-block div { padding:10px 14px; border-right:1px solid var(--dim); }
+  .title-block div:last-child { border-right:0; }
+  .title-block b { display:block; font-size:15px; }
+  .title-block a { color:var(--note); }
+  @media (max-width:760px) { .hero, .bom { grid-template-columns:1fr; } .title-block { grid-template-columns:1fr; } .title-block div { border-right:0; border-bottom:1px solid var(--dim); } .sheet { padding:18px; } }
+  @media (prefers-reduced-motion:reduce) { svg.draw .anim { animation:none; stroke-dashoffset:0; } }
+</style>
+</head>
+<body>
+<div class="wrap"><div class="sheet">
+  <nav><span>DWG NO. YN-2026 · REV A</span><span><a href="#parts">Projects</a><a href="#spec">Specs</a><a href="#contact">Contact</a></span></nav>
+
+  <header class="hero">
+    <div>
+      <div class="label">Fig. 1 — The developer</div>
+      <h1>Your Name</h1>
+      <div class="dim-line"><span>Software engineer · City, Country</span></div>
+      <p>Designs and builds reliable software: AI tools, APIs and web apps. Engineered for clarity, tested for the real world. Currently accepting new projects.</p>
+      <a class="btn" href="#parts">View assembly</a><a class="btn" href="#">Resume.pdf</a>
+    </div>
+    <svg class="draw" viewBox="0 0 400 320" aria-hidden="true">
+      <rect class="anim" x="60" y="40" width="240" height="160" rx="6"/>
+      <rect class="anim" x="75" y="55" width="210" height="130"/>
+      <path class="anim" d="M30 220 H330 L350 250 H10 Z"/>
+      <path class="anim" d="M95 80 h60 M95 100 h110 M95 120 h80 M95 140 h130 M95 160 h50"/>
+      <circle class="anim" cx="340" cy="90" r="26"/><path class="anim" d="M340 116 v30 M326 146 h28"/>
+      <path class="d" d="M60 30 V12 M300 30 V12 M60 20 H300"/><text x="150" y="14">14" display</text>
+      <path class="d" d="M310 200 L360 280"/><text x="270" y="300">coffee (req'd)</text>
+      <path class="d" d="M70 230 L30 290"/><text x="10" y="306">keyboard, mechanical</text>
+    </svg>
+  </header>
+
+  <section id="parts">
+    <h2>Components <small>// PROJECTS</small></h2>
+    <div class="parts">
+      <a class="part" href="#"><span class="no">PART 01</span><h3>Project One</h3><p>What it does and why it matters, in one sentence.</p><div class="spec">SPEC: AI · Next.js · Python</div></a>
+      <a class="part" href="#"><span class="no">PART 02</span><h3>Project Two</h3><p>What it does and why it matters, in one sentence.</p><div class="spec">SPEC: FastAPI · Postgres</div></a>
+      <a class="part" href="#"><span class="no">PART 03</span><h3>Project Three</h3><p>What it does and why it matters, in one sentence.</p><div class="spec">SPEC: React · Serverless</div></a>
+    </div>
+  </section>
+
+  <section id="spec" class="bom">
+    <div>
+      <h2>Bill of materials <small>// SKILLS</small></h2>
+      <table><tr><th>Item</th><th>Material</th><th>Qty</th></tr>
+        <tr><td>Languages</td><td>Python, TypeScript, SQL</td><td>3</td></tr>
+        <tr><td>Frontend</td><td>React, Next.js</td><td>2</td></tr>
+        <tr><td>Backend</td><td>Node.js, FastAPI</td><td>2</td></tr>
+        <tr><td>Ops</td><td>Docker, AWS, Git</td><td>3</td></tr></table>
+    </div>
+    <div>
+      <h2>Revision history <small>// EXPERIENCE</small></h2>
+      <table><tr><th>Rev</th><th>Description</th><th>Date</th></tr>
+        <tr><td>B</td><td>Role @ Company — what you did and the impact</td><td>2025–</td></tr>
+        <tr><td>A</td><td>B.Tech Computer Science @ University</td><td>2021–25</td></tr></table>
+      <p class="hand" style="margin-top:14px;font-size:1.1rem">↳ note: always learning, always shipping</p>
+    </div>
+  </section>
+
+  <div class="title-block" id="contact">
+    <div>DRAWN BY<b>Your Name</b>Software Engineer · City, Country</div>
+    <div>CONTACT<b><a href="mailto:you@example.com">Email</a></b><a href="#">GitHub</a> · <a href="#">LinkedIn</a></div>
+    <div>SCALE<b>1 : 1</b>SHEET 1 OF 1 · 2026</div>
+  </div>
+</div></div>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Name — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0d0221; --fg:#f5e9ff; --muted:#b39ddb; --pink:#ff2a6d; --cyan:#05d9e8; --yellow:#ffc857; --line:rgba(5,217,232,.25); }
+  * { box-sizing:border-box; margin:0; }
+  html { scroll-behavior:smooth; }
+  body { font:16px/1.7 Inter, system-ui, sans-serif; color:var(--fg); background:var(--bg); overflow-x:hidden; }
+  .disp { font-family:Orbitron, sans-serif; text-transform:uppercase; letter-spacing:.06em; }
+  .wrap { max-width:1100px; margin:auto; padding:0 20px; }
+  nav { position:fixed; top:0; left:0; right:0; z-index:10; background:linear-gradient(var(--bg), transparent); }
+  nav .wrap { display:flex; justify-content:space-between; align-items:center; height:70px; }
+  nav a { color:var(--fg); text-decoration:none; margin-left:24px; font-size:14px; }
+  nav a:hover { color:var(--cyan); text-shadow:0 0 10px var(--cyan); }
+  .logo { color:var(--pink) !important; margin:0 !important; text-shadow:0 0 12px var(--pink); }
+  /* hero scene */
+  .hero { position:relative; height:100vh; min-height:620px; overflow:hidden; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:0 20px; }
+  .sky { position:absolute; inset:0; background:linear-gradient(#0d0221 0%, #261447 45%, #ff2a6d 62%, #0d0221 62.2%); z-index:-2; }
+  .sun { position:absolute; left:50%; bottom:38%; width:min(46vw, 380px); aspect-ratio:1; transform:translateX(-50%); border-radius:50%; z-index:-1;
+    background:repeating-linear-gradient(transparent 0 14px, #261447 14px 20px) bottom / 100% 45% no-repeat, linear-gradient(var(--yellow), var(--pink) 70%);
+    box-shadow:0 0 120px rgba(255,42,109,.6); }
+  .floor { position:absolute; left:-50%; right:-50%; bottom:0; height:38%; z-index:-1; transform:perspective(300px) rotateX(60deg); transform-origin:top;
+    background-image:linear-gradient(var(--cyan) 2px, transparent 2px), linear-gradient(90deg, var(--cyan) 2px, transparent 2px);
+    background-size:60px 60px; animation:grid 1.2s linear infinite; opacity:.7; }
+  @keyframes grid { to { background-position:0 60px; } }
+  .hero small { color:#fff; letter-spacing:.3em; text-shadow:0 0 10px var(--cyan); }
+  h1 { font-size:clamp(2.6rem, 9vw, 6.5rem); line-height:1.05; color:#fff; text-shadow:0 0 20px var(--pink), 0 0 60px var(--pink); margin:10px 0; }
+  .hero p { max-width:560px; color:var(--fg); text-shadow:0 2px 8px #000; }
+  .btns { display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:28px; }
+  .btn { padding:12px 26px; border:2px solid var(--cyan); color:var(--cyan); text-decoration:none; font-size:13px; background:rgba(13,2,33,.6); box-shadow:0 0 14px var(--line), inset 0 0 14px var(--line); transition:.2s; }
+  .btn:hover { background:var(--cyan); color:var(--bg); }
+  .btn.p { border-color:var(--pink); color:#fff; background:var(--pink); box-shadow:0 0 24px var(--pink); }
+  section { padding:100px 0; }
+  h2 { font-size:clamp(1.6rem, 4vw, 2.6rem); margin-bottom:40px; color:var(--cyan); text-shadow:0 0 14px var(--cyan); }
+  h2 span { color:var(--pink); text-shadow:0 0 14px var(--pink); }
+  .about { display:grid; grid-template-columns:1fr 1.4fr; gap:40px; align-items:center; }
+  .avatar { aspect-ratio:1; max-width:320px; border:2px solid var(--pink); box-shadow:0 0 30px var(--pink), 12px 12px 0 var(--cyan); background:linear-gradient(135deg, #261447, #ff2a6d55); display:grid; place-items:center; font-size:5rem; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:24px; }
+  .card { position:relative; padding:24px; border:1px solid var(--line); background:rgba(38,20,71,.5); color:var(--fg); text-decoration:none; transition:.25s; clip-path:polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 22px 100%, 0 calc(100% - 22px)); }
+  .card:hover { background:rgba(255,42,109,.12); border-color:var(--pink); transform:translateY(-4px); }
+  .card .n { color:var(--pink); font-size:13px; }
+  .card h3 { margin:6px 0; font-size:1.2rem; color:#fff; }
+  .card p { color:var(--muted); font-size:15px; }
+  .card .t { margin-top:14px; font-size:12px; color:var(--cyan); }
+  .skills { display:flex; flex-wrap:wrap; gap:12px; }
+  .skills span { padding:8px 18px; border:1px solid var(--cyan); color:var(--cyan); font-size:14px; transition:.2s; }
+  .skills span:nth-child(odd) { border-color:var(--pink); color:var(--pink); }
+  .skills span:hover { box-shadow:0 0 16px currentColor; }
+  .contact { text-align:center; border:2px solid var(--pink); padding:60px 24px; box-shadow:0 0 40px rgba(255,42,109,.3), inset 0 0 40px rgba(255,42,109,.15); }
+  footer { text-align:center; color:var(--muted); padding:40px 0; font-size:13px; }
+  .reveal { opacity:0; transform:translateY(30px); transition:.9s; }
+  .reveal.in { opacity:1; transform:none; }
+  @media (max-width:760px) { .about { grid-template-columns:1fr; } .avatar { max-width:220px; margin:auto; } nav .links a:not(:last-child) { display:none; } }
+  @media (prefers-reduced-motion:reduce) { *, .reveal { animation:none !important; transition:none !important; opacity:1; transform:none; } }
+</style>
+</head>
+<body>
+<nav><div class="wrap"><a class="logo disp" href="#">YN//</a><div class="links"><a href="#about">About</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a></div></div></nav>
+
+<header class="hero">
+  <div class="sky"></div><div class="sun"></div><div class="floor"></div>
+  <small class="disp">Player one ready</small>
+  <h1 class="disp">Your Name</h1>
+  <p>Developer · Builder · Problem solver. One line about what you create and why.</p>
+  <div class="btns"><a class="btn p disp" href="#projects">Press start</a><a class="btn disp" href="#">Resume</a></div>
+</header>
+
+<main class="wrap">
+  <section id="about" class="reveal about">
+    <div class="avatar">👾</div>
+    <div>
+      <h2 class="disp">About <span>me</span></h2>
+      <p>Three or four lines about your story: what got you into tech, what you love building, and what you want to work on next.</p>
+      <p style="margin-top:14px;color:var(--muted)">📍 City, Country · <span style="color:#22c55e">● Open to opportunities</span></p>
+    </div>
+  </section>
+
+  <section id="projects" class="reveal">
+    <h2 class="disp">Selected <span>work</span></h2>
+    <div class="grid">
+      <a class="card" href="#"><div class="n disp">01</div><h3>Project One</h3><p>What it does and why it matters, in one sentence.</p><div class="t">REACT / NODE / AI</div></a>
+      <a class="card" href="#"><div class="n disp">02</div><h3>Project Two</h3><p>What it does and why it matters, in one sentence.</p><div class="t">PYTHON / FASTAPI</div></a>
+      <a class="card" href="#"><div class="n disp">03</div><h3>Project Three</h3><p>What it does and why it matters, in one sentence.</p><div class="t">NEXT.JS / POSTGRES</div></a>
+    </div>
+  </section>
+
+  <section id="skills" class="reveal">
+    <h2 class="disp">Power-<span>ups</span></h2>
+    <div class="skills"><span>Python</span><span>JavaScript</span><span>TypeScript</span><span>React</span><span>Node.js</span><span>SQL</span><span>Docker</span><span>Git</span><span>AWS</span><span>Figma</span></div>
+  </section>
+
+  <section id="contact" class="reveal">
+    <div class="contact">
+      <h2 class="disp">Insert <span>coin</span></h2>
+      <p>Want to team up? My inbox is always open.</p>
+      <div class="btns"><a class="btn p disp" href="mailto:you@example.com">Email me</a><a class="btn disp" href="#">GitHub</a><a class="btn disp" href="#">LinkedIn</a></div>
+    </div>
+  </section>
+</main>
+<footer>© 2026 Your Name · High score: ∞</footer>
+
+<script>
+  const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('in')), {threshold: .15});
+  document.querySelectorAll('.reveal').forEach(n => io.observe(n));
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Name — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#070606; --panel:#0d0b0b; --fg:#ede6e1; --muted:#7c736f; --red:#e04450; --line:rgba(237,230,225,.08); }
+  * { box-sizing:border-box; margin:0; }
+  html { scroll-behavior:smooth; overflow-x:clip; }
+  body { font:15px/1.7 Inter, system-ui, sans-serif; font-weight:300; color:var(--fg); background:var(--bg); }
+  .serif { font-family:"Instrument Serif", Georgia, serif; font-weight:400; }
+  .mono { font-family:"JetBrains Mono", monospace; }
+  #field { position:fixed; inset:0; z-index:-1; }
+  .wrap { max-width:1100px; margin:auto; padding:0 22px; }
+  nav { display:flex; justify-content:space-between; padding:26px 0; font-size:13px; }
+  nav a { color:var(--muted); text-decoration:none; margin-left:24px; }
+  nav a:hover { color:var(--fg); }
+  .hero { min-height:86vh; display:flex; flex-direction:column; justify-content:center; }
+  .hero small { font-family:"JetBrains Mono", monospace; color:var(--muted); font-size:12px; }
+  h1 { font-size:clamp(3.4rem, 10vw, 8rem); line-height:.95; margin:16px 0 22px; }
+  h1 i { color:var(--red); }
+  .hero p { max-width:460px; color:var(--muted); background:rgba(7,6,6,.6); }
+  .btn { display:inline-block; margin:30px 10px 0 0; padding:12px 24px; border:1px solid var(--line); color:var(--fg); text-decoration:none; font-size:14px; background:rgba(7,6,6,.7); transition:.3s; }
+  .btn:hover { border-color:var(--red); }
+  .btn.f { background:var(--fg); color:var(--bg); }
+  section { padding:100px 0; }
+  .lbl { font-family:"JetBrains Mono", monospace; color:var(--muted); font-size:12px; margin-bottom:22px; }
+  .lbl::before { content:"→ "; color:var(--red); }
+  .grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; }
+  .card { background:rgba(13,11,11,.85); border:1px solid var(--line); padding:26px; color:var(--fg); text-decoration:none; transition:border-color .4s, transform .5s cubic-bezier(.2,.8,.2,1); backdrop-filter:blur(4px); transform-style:preserve-3d; }
+  .card:hover { border-color:rgba(224,68,80,.4); }
+  .card small { font-family:"JetBrains Mono", monospace; color:var(--red); font-size:11px; }
+  .card h3 { font-family:"Instrument Serif", serif; font-weight:400; font-size:1.9rem; margin:40px 0 6px; }
+  .card p { color:var(--muted); font-size:14px; }
+  .two { display:grid; grid-template-columns:1.2fr 1fr; gap:14px; }
+  .panel { background:rgba(13,11,11,.85); border:1px solid var(--line); padding:28px; backdrop-filter:blur(4px); }
+  h2 { font-size:clamp(2rem, 4.5vw, 3.2rem); margin-bottom:16px; }
+  h2 i { color:var(--red); }
+  .tl div { display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid var(--line); gap:10px; flex-wrap:wrap; }
+  .tl div:last-child { border:0; }
+  .tl span { color:var(--muted); font-size:13px; font-family:"JetBrains Mono", monospace; }
+  .chips span { display:inline-block; padding:4px 10px; margin:0 6px 8px 0; border:1px solid var(--line); font-size:13px; }
+  .contact { text-align:center; }
+  .contact a.big { font-family:"Instrument Serif", serif; font-style:italic; font-size:clamp(2.4rem, 8vw, 5.6rem); color:var(--fg); text-decoration:none; background:rgba(7,6,6,.7); padding:0 10px; }
+  .contact a.big:hover { color:var(--red); }
+  footer { display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; padding:26px 0; border-top:1px solid var(--line); color:var(--muted); font-size:13px; }
+  footer a { color:var(--muted); margin-left:16px; }
+  @media (max-width:800px) { .grid, .two { grid-template-columns:1fr; } nav div a:not(:last-child) { display:none; } }
+</style>
+</head>
+<body>
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="wrap">
+  <nav><span class="serif" style="font-size:1.25rem">Your Name</span><div><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></div></nav>
+  <header class="hero">
+    <small>// developer · city, country</small>
+    <h1 class="serif">Everything points<br>to <i>good work.</i></h1>
+    <p>I'm Your Name — I build AI tools, APIs and web apps with intention. Every line has a direction.</p>
+    <div><a class="btn f" href="#work">See the work</a><a class="btn" href="#">Résumé</a></div>
+  </header>
+
+  <section id="work">
+    <div class="lbl">selected work</div>
+    <div class="grid">
+      <a class="card" href="#"><small>01 · AI · NEXT.JS</small><h3>Project One</h3><p>What it does and why it matters, in one sentence.</p></a>
+      <a class="card" href="#"><small>02 · PYTHON · FASTAPI</small><h3>Project Two</h3><p>What it does and why it matters, in one sentence.</p></a>
+      <a class="card" href="#"><small>03 · REACT · SERVERLESS</small><h3>Project Three</h3><p>What it does and why it matters, in one sentence.</p></a>
+    </div>
+  </section>
+
+  <section id="about" class="two">
+    <div class="panel"><div class="lbl">about</div><h2 class="serif">Direction, <i>not noise.</i></h2><p style="color:var(--muted)">Three or four lines about your story: what got you into tech, what you love building, and what you want to work on next.</p></div>
+    <div class="panel"><div class="tl"><div><b style="font-weight:400">Role · Company</b><span>2025—now</span></div><div><b style="font-weight:400">B.Tech CS · University</b><span>2021—25</span></div><div><b style="font-weight:400">Status</b><span style="color:var(--red)">open to work</span></div></div>
+      <div class="chips" style="margin-top:18px"><span>Python</span><span>TypeScript</span><span>React</span><span>Next.js</span><span>Node.js</span><span>FastAPI</span><span>Postgres</span><span>Docker</span><span>AWS</span></div></div>
+  </section>
+
+  <section id="contact" class="contact"><div class="lbl" style="display:inline-block">contact</div><br><a class="big" href="mailto:you@example.com">you@example.com</a></section>
+  <footer><span>© 2026 Your Name</span><span><a href="#">GitHub</a><a href="#">LinkedIn</a><a href="#">Résumé</a></span></footer>
+</div>
+<script>
+  // a quiet grid of short lines that turn to face the cursor; near ones blush red
+  const c = document.getElementById('field'), x = c.getContext('2d'), G = 34; let W, H, cols, rows, A = [];
+  const size = () => { W = innerWidth; H = innerHeight; c.width = W * devicePixelRatio; c.height = H * devicePixelRatio; x.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0); cols = Math.ceil(W / G) + 1; rows = Math.ceil(H / G) + 1; A = new Array(cols * rows).fill(0); };
+  size(); addEventListener('resize', size);
+  const m = {x: innerWidth * .7, y: innerHeight * .4, active: false};
+  addEventListener('pointermove', e => { m.x = e.clientX; m.y = e.clientY; m.active = true; });
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  (function draw(t) { x.clearRect(0, 0, W, H);
+    // idle: target wanders slowly (also covers touch screens)
+    const tx = m.active ? m.x : W * (.5 + .3 * Math.sin(t / 4000)), ty = m.active ? m.y : H * (.5 + .25 * Math.cos(t / 5200));
+    for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) {
+      const px = i * G, py = j * G, dx = tx - px, dy = ty - py, d = Math.hypot(dx, dy), k = j * cols + i;
+      const target = Math.atan2(dy, dx); let a = A[k]; a += Math.atan2(Math.sin(target - a), Math.cos(target - a)) * .08; A[k] = a;
+      const near = Math.max(0, 1 - d / 320), len = 6 + near * 8;
+      x.strokeStyle = near > .05 ? `rgba(224,68,80,${.12 + near * .6})` : 'rgba(237,230,225,.09)'; x.lineWidth = 1;
+      x.beginPath(); x.moveTo(px - Math.cos(a) * len / 2, py - Math.sin(a) * len / 2); x.lineTo(px + Math.cos(a) * len / 2, py + Math.sin(a) * len / 2); x.stroke(); }
+    if (!still) requestAnimationFrame(draw); })(0);
+  // cards tilt a hair toward the cursor
+  if (!still) document.querySelectorAll('.card').forEach(cd => {
+    cd.addEventListener('pointermove', e => { const r = cd.getBoundingClientRect(); cd.style.transform = `perspective(800px) rotateX(${(.5 - (e.clientY - r.top) / r.height) * 5}deg) rotateY(${((e.clientX - r.left) / r.width - .5) * 5}deg)`; });
+    cd.addEventListener('pointerleave', () => cd.style.transform = '');
+  });
+</script>
+</body>
+</html>

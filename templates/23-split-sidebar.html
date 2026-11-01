@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Name — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#faf8f5; --fg:#1c1917; --muted:#78716c; --a:#c2410c; --line:#e7e5e4; --hover:#fff; }
+  * { box-sizing:border-box; margin:0; }
+  html { scroll-behavior:smooth; }
+  body { font:16px/1.7 Inter, system-ui, sans-serif; color:var(--fg); background:var(--bg); }
+  body::before { content:""; position:fixed; inset:0; pointer-events:none; z-index:-1; background:radial-gradient(500px circle at var(--x, 50%) var(--y, 50%), rgba(194,65,12,.07), transparent 70%); }
+  .layout { max-width:1180px; margin:auto; padding:0 24px; display:grid; grid-template-columns:1fr 1.25fr; gap:60px; }
+  aside { position:sticky; top:0; height:100vh; padding:90px 0 60px; display:flex; flex-direction:column; justify-content:space-between; }
+  h1 { font-size:clamp(2.4rem, 5vw, 3.2rem); font-weight:700; letter-spacing:-.03em; line-height:1.1; }
+  aside h2 { font-size:1.2rem; font-weight:500; margin:10px 0 14px; }
+  aside p { color:var(--muted); max-width:340px; }
+  .toc { list-style:none; padding:0; margin-top:50px; }
+  .toc a { display:flex; align-items:center; gap:14px; padding:8px 0; color:var(--muted); text-decoration:none; font-size:12px; font-weight:700; letter-spacing:.15em; text-transform:uppercase; }
+  .toc a::before { content:""; width:30px; height:1px; background:var(--muted); transition:.25s; }
+  .toc a:hover, .toc a.on { color:var(--fg); }
+  .toc a:hover::before, .toc a.on::before { width:64px; background:var(--fg); }
+  .social { display:flex; gap:18px; }
+  .social a { color:var(--muted); text-decoration:none; font-size:14px; font-weight:500; }
+  .social a:hover { color:var(--a); }
+  .status { display:inline-flex; align-items:center; gap:8px; font-size:13px; color:var(--muted); margin-top:16px; }
+  .status i { width:8px; height:8px; border-radius:50%; background:#16a34a; }
+  main { padding:90px 0 80px; }
+  section { margin-bottom:90px; scroll-margin-top:60px; }
+  .sh { display:none; font-size:12px; font-weight:700; letter-spacing:.15em; text-transform:uppercase; margin-bottom:20px; }
+  main p { color:var(--muted); margin-bottom:14px; }
+  main p b { color:var(--fg); font-weight:500; }
+  .list { display:flex; flex-direction:column; gap:6px; }
+  .list:hover .item { opacity:.5; }
+  .list .item:hover { opacity:1; }
+  .item { display:grid; grid-template-columns:120px 1fr; gap:20px; padding:18px; margin:0 -18px; border-radius:10px; color:var(--fg); text-decoration:none; transition:.25s; border:1px solid transparent; }
+  .item:hover { background:var(--hover); border-color:var(--line); box-shadow:0 6px 20px rgba(0,0,0,.04); }
+  .item .when { font-size:12px; color:var(--muted); text-transform:uppercase; font-weight:500; letter-spacing:.05em; padding-top:4px; }
+  .item .thumb { aspect-ratio:16/10; border-radius:6px; border:1px solid var(--line); }
+  .item h3 { font-size:1rem; font-weight:500; }
+  .item:hover h3 { color:var(--a); }
+  .item h3 span { display:inline-block; transition:.2s; }
+  .item:hover h3 span { transform:translate(3px,-3px); }
+  .item p { font-size:14px; margin:6px 0 10px; }
+  .chips { display:flex; flex-wrap:wrap; gap:6px; }
+  .chips span { font-size:12px; font-weight:500; color:var(--a); background:rgba(194,65,12,.08); padding:3px 10px; border-radius:999px; }
+  .more { display:inline-block; margin-top:20px; color:var(--fg); font-weight:500; text-decoration:none; border-bottom:1px solid var(--a); }
+  footer { color:var(--muted); font-size:13px; max-width:420px; }
+  @media (max-width:900px) { .layout { grid-template-columns:1fr; gap:0; } aside { position:static; height:auto; padding:60px 0 20px; } .toc { display:none; } main { padding-top:30px; } .sh { display:block; position:sticky; top:0; background:var(--bg); padding:12px 0; margin:0 0 16px; z-index:2; } .item { grid-template-columns:1fr; gap:6px; } }
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside>
+    <div>
+      <h1>Your Name</h1>
+      <h2>Software Engineer</h2>
+      <p>I build accessible, well-crafted products for the web — with a soft spot for AI and developer tools.</p>
+      <div class="status"><i></i>Open to opportunities · City, Country</div>
+      <ul class="toc"><li><a href="#about">About</a></li><li><a href="#experience">Experience</a></li><li><a href="#projects">Projects</a></li></ul>
+    </div>
+    <div class="social"><a href="#">GitHub</a><a href="#">LinkedIn</a><a href="#">X</a><a href="mailto:you@example.com">Email</a></div>
+  </aside>
+
+  <main>
+    <section id="about">
+      <h3 class="sh">About</h3>
+      <p>Back in 20XX, I got hooked on programming when <b>a short origin story goes here</b>. Since then I've built things across the stack.</p>
+      <p>Today I focus on <b>AI-powered tools</b>, <b>clean APIs</b> and <b>fast web apps</b>. My main stack is Python, TypeScript, React and PostgreSQL.</p>
+      <p>When I'm not coding, I'm probably reading, gaming or hunting for the best chai in town.</p>
+    </section>
+
+    <section id="experience">
+      <h3 class="sh">Experience</h3>
+      <div class="list">
+        <a class="item" href="#"><span class="when">2025 — Present</span><div><h3>Role · Company <span>↗</span></h3><p>What you did and the impact. Shipped X, improved Y by Z%.</p><div class="chips"><span>Python</span><span>React</span><span>AWS</span></div></div></a>
+        <a class="item" href="#"><span class="when">2021 — 2025</span><div><h3>B.Tech CS · University <span>↗</span></h3><p>Focus areas, achievements, clubs, hackathons.</p><div class="chips"><span>DSA</span><span>ML</span></div></div></a>
+      </div>
+      <a class="more" href="#">View full résumé ↗</a>
+    </section>
+
+    <section id="projects">
+      <h3 class="sh">Projects</h3>
+      <div class="list">
+        <a class="item" href="#"><div class="thumb" style="background:linear-gradient(135deg,#fed7aa,#fdba74)"></div><div><h3>Project One <span>↗</span></h3><p>What it does, who it's for, and the result.</p><div class="chips"><span>AI</span><span>Next.js</span></div></div></a>
+        <a class="item" href="#"><div class="thumb" style="background:linear-gradient(135deg,#e7e5e4,#d6d3d1)"></div><div><h3>Project Two <span>↗</span></h3><p>What it does, who it's for, and the result.</p><div class="chips"><span>FastAPI</span><span>Postgres</span></div></div></a>
+        <a class="item" href="#"><div class="thumb" style="background:linear-gradient(135deg,#fecaca,#fde68a)"></div><div><h3>Project Three <span>↗</span></h3><p>What it does, who it's for, and the result.</p><div class="chips"><span>React</span><span>Serverless</span></div></div></a>
+      </div>
+    </section>
+
+    <footer>Designed & built by Your Name. Set in Inter. No frameworks were harmed.</footer>
+  </main>
+</div>
+
+<script>
+  addEventListener('pointermove', e => { document.body.style.setProperty('--x', e.clientX + 'px'); document.body.style.setProperty('--y', e.clientY + 'px'); });
+  const links = document.querySelectorAll('.toc a');
+  const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && links.forEach(a => a.classList.toggle('on', a.hash === '#' + e.target.id))), {rootMargin: '-40% 0px -55% 0px'});
+  document.querySelectorAll('main section').forEach(s => io.observe(s));
+</script>
+</body>
+</html>

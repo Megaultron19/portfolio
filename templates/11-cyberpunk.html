@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Name — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0a0a0f; --fg:#e6f1ff; --y:#fcee0a; --r:#ff003c; --c:#00f0ff; --muted:#7c8aa0; --line:rgba(252,238,10,.25); }
+  * { box-sizing:border-box; margin:0; }
+  html { scroll-behavior:smooth; }
+  body { font:17px/1.6 Rajdhani, system-ui, sans-serif; color:var(--fg); background:var(--bg); overflow-x:hidden; }
+  body::before { content:""; position:fixed; inset:0; z-index:-1; background:linear-gradient(90deg, rgba(252,238,10,.04) 1px, transparent 1px) 0 0/80px 80px, linear-gradient(rgba(252,238,10,.04) 1px, transparent 1px) 0 0/80px 80px; }
+  .mono { font-family:"Share Tech Mono", monospace; }
+  .wrap { max-width:1100px; margin:auto; padding:0 20px; }
+  nav { display:flex; justify-content:space-between; align-items:center; padding:20px 0; font-family:"Share Tech Mono", monospace; font-size:14px; }
+  nav a { color:var(--muted); text-decoration:none; margin-left:24px; }
+  nav a:hover { color:var(--y); }
+  nav a::before { content:"["; } nav a::after { content:"]"; }
+  .logo { color:var(--y) !important; margin:0 !important; font-size:18px; }
+  .logo::before, .logo::after { content:"" !important; }
+  .hero { min-height:88vh; display:grid; grid-template-columns:1.3fr 1fr; gap:40px; align-items:center; }
+  .sys { color:var(--c); font-size:14px; }
+  h1 { font-size:clamp(3rem, 10vw, 7rem); font-weight:700; line-height:.95; text-transform:uppercase; color:var(--y); position:relative; margin:12px 0; }
+  .glitch::before, .glitch::after { content:attr(data-t); position:absolute; inset:0; }
+  .glitch::before { color:var(--c); animation:g1 3s infinite steps(1); }
+  .glitch::after { color:var(--r); animation:g2 3s infinite steps(1); }
+  @keyframes g1 { 0%,92%,100% { clip-path:inset(100% 0 0); } 93% { clip-path:inset(20% 0 60%); transform:translate(-4px); } 96% { clip-path:inset(60% 0 10%); transform:translate(4px); } }
+  @keyframes g2 { 0%,90%,100% { clip-path:inset(100% 0 0); } 91% { clip-path:inset(40% 0 40%); transform:translate(5px); } 95% { clip-path:inset(10% 0 80%); transform:translate(-5px); } }
+  .hero p { font-size:1.2rem; color:var(--muted); max-width:500px; }
+  .btn { display:inline-block; margin:28px 12px 0 0; padding:14px 30px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; text-decoration:none; color:var(--bg); background:var(--y); clip-path:polygon(0 0, 100% 0, 100% 65%, 88% 100%, 0 100%); transition:.15s; }
+  .btn:hover { background:var(--c); }
+  .btn.o { background:none; color:var(--y); border:2px solid var(--y); clip-path:none; }
+  /* HUD panel */
+  .hud { position:relative; border:1px solid var(--line); padding:26px; background:rgba(252,238,10,.03); font-family:"Share Tech Mono", monospace; font-size:14px; }
+  .hud::before, .hud::after { content:""; position:absolute; width:22px; height:22px; border:3px solid var(--y); }
+  .hud::before { top:-3px; left:-3px; border-right:0; border-bottom:0; }
+  .hud::after { bottom:-3px; right:-3px; border-left:0; border-top:0; }
+  .hud .row { display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px dashed var(--line); }
+  .hud .row span:first-child { color:var(--muted); }
+  .ok { color:#39ff14; } .warn { color:var(--r); }
+  .meter { height:8px; background:#1a1a22; margin-top:4px; }
+  .meter i { display:block; height:100%; background:repeating-linear-gradient(90deg, var(--y) 0 6px, transparent 6px 8px); }
+  section { padding:90px 0; }
+  h2 { font-size:clamp(2rem, 5vw, 3.2rem); text-transform:uppercase; margin-bottom:36px; display:flex; align-items:center; gap:16px; }
+  h2::after { content:""; flex:1; height:2px; background:linear-gradient(90deg, var(--y), transparent); }
+  h2 small { color:var(--r); font-family:"Share Tech Mono", monospace; font-size:14px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:22px; }
+  .card { position:relative; display:block; padding:24px; background:#111119; border-left:4px solid var(--y); color:var(--fg); text-decoration:none; clip-path:polygon(0 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%); transition:.2s; }
+  .card:hover { background:#17171f; border-color:var(--c); transform:translateX(4px); }
+  .card .id { color:var(--r); font-size:13px; }
+  .card h3 { font-size:1.6rem; text-transform:uppercase; }
+  .card p { color:var(--muted); }
+  .card .t { margin-top:14px; color:var(--c); font-size:13px; }
+  .skills { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:16px 30px; }
+  .skills b { display:flex; justify-content:space-between; font-weight:500; }
+  .skills b span { color:var(--y); font-family:"Share Tech Mono", monospace; }
+  .contact { text-align:center; }
+  .contact h2 { justify-content:center; } .contact h2::after { display:none; }
+  footer { border-top:1px solid var(--line); padding:24px 0; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; color:var(--muted); font-size:13px; }
+  .reveal { opacity:0; transform:translateX(-30px); transition:.6s; }
+  .reveal.in { opacity:1; transform:none; }
+  @media (max-width:800px) { .hero { grid-template-columns:1fr; padding:40px 0; } nav div a:not(:last-child) { display:none; } }
+  @media (prefers-reduced-motion:reduce) { *, .reveal { animation:none !important; transition:none !important; opacity:1; transform:none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav><a class="logo" href="#">YN.EXE</a><div><a href="#projects">projects</a><a href="#skills">skills</a><a href="#contact">contact</a></div></nav>
+
+  <header class="hero">
+    <div>
+      <div class="sys mono">&gt; SYS.BOOT // NETRUNNER PROFILE LOADED</div>
+      <h1 class="glitch" data-t="Your Name">Your Name</h1>
+      <p>Developer. Hacker of ideas. I build AI tools, APIs and web apps that survive the real world.</p>
+      <a class="btn" href="#projects">Jack in</a><a class="btn o" href="#">Download CV</a>
+    </div>
+    <div class="hud reveal">
+      <div class="row"><span>ID</span><span>YOUR_NAME</span></div>
+      <div class="row"><span>CLASS</span><span>FULL-STACK DEV</span></div>
+      <div class="row"><span>LOCATION</span><span>CITY, COUNTRY</span></div>
+      <div class="row"><span>STATUS</span><span class="ok">● OPEN TO WORK</span></div>
+      <div class="row"><span>LOCAL TIME</span><span id="clock"></span></div>
+      <div class="row" style="border:0"><span>XP</span><span>LVL 22</span></div>
+      <div class="meter"><i style="width:72%"></i></div>
+    </div>
+  </header>
+
+  <section id="projects">
+    <h2 class="reveal">Missions <small>// 03 completed</small></h2>
+    <div class="grid">
+      <a class="card reveal" href="#"><div class="id mono">#M-001</div><h3>Project One</h3><p>What it does and why it matters, in one sentence.</p><div class="t mono">AI / NEXT.JS / PYTHON</div></a>
+      <a class="card reveal" href="#"><div class="id mono">#M-002</div><h3>Project Two</h3><p>What it does and why it matters, in one sentence.</p><div class="t mono">FASTAPI / POSTGRES</div></a>
+      <a class="card reveal" href="#"><div class="id mono">#M-003</div><h3>Project Three</h3><p>What it does and why it matters, in one sentence.</p><div class="t mono">REACT / SERVERLESS</div></a>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2 class="reveal">Cyberware <small>// installed</small></h2>
+    <div class="skills reveal">
+      <div><b>Python<span>90</span></b><div class="meter"><i style="width:90%"></i></div></div>
+      <div><b>JavaScript<span>85</span></b><div class="meter"><i style="width:85%"></i></div></div>
+      <div><b>React<span>80</span></b><div class="meter"><i style="width:80%"></i></div></div>
+      <div><b>Node.js<span>75</span></b><div class="meter"><i style="width:75%"></i></div></div>
+      <div><b>SQL<span>70</span></b><div class="meter"><i style="width:70%"></i></div></div>
+      <div><b>Docker<span>60</span></b><div class="meter"><i style="width:60%"></i></div></div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact reveal">
+    <h2>Open a channel</h2>
+    <p class="mono" style="color:var(--muted)">&gt; transmission encrypted. response time &lt; 24h.</p>
+    <a class="btn" href="mailto:you@example.com">Send message</a><a class="btn o" href="#">GitHub</a><a class="btn o" href="#">LinkedIn</a>
+  </section>
+
+  <footer class="mono"><span>© 2026 YOUR_NAME</span><span>BUILD v1.0 // ALL SYSTEMS NOMINAL</span></footer>
+</div>
+
+<script>
+  const ck = () => document.getElementById('clock').textContent = new Date().toLocaleTimeString([], {hour12: false});
+  ck(); setInterval(ck, 1000);
+  const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('in')), {threshold: .1});
+  document.querySelectorAll('.reveal').forEach(n => io.observe(n));
+</script>
+</body>
+</html>

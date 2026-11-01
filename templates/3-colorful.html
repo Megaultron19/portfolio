@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Name — Portfolio</title>
+<style>
+  :root { --bg:#fffaf3; --fg:#1d1b26; --muted:#5f5b6e; --pink:#ff5d8f; --yellow:#ffd23f; --blue:#3ec7f5; --green:#7be495; }
+  * { box-sizing:border-box; margin:0; }
+  body { font:17px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; color:var(--fg); background:var(--bg); }
+  .wrap { max-width:1000px; margin:auto; padding:0 20px; }
+  nav { display:flex; justify-content:space-between; align-items:center; padding:24px 0; }
+  nav b { font-size:1.3rem; }
+  nav a { color:var(--fg); text-decoration:none; font-weight:600; margin-left:18px; }
+  .hero { display:grid; grid-template-columns:1.4fr 1fr; gap:40px; align-items:center; padding:48px 0 80px; }
+  .hero h1 { font-size:clamp(2.4rem, 7vw, 4.5rem); line-height:1.05; }
+  .hero h1 span { background:var(--yellow); padding:0 8px; border-radius:8px; }
+  .hero p { color:var(--muted); margin:20px 0 28px; font-size:1.15rem; }
+  .avatar { aspect-ratio:1; border-radius:40% 60% 55% 45%; background:linear-gradient(135deg, var(--pink), var(--blue)); border:4px solid var(--fg); box-shadow:10px 10px 0 var(--fg); display:grid; place-items:center; font-size:4rem; }
+  .btn { display:inline-block; padding:12px 22px; border:3px solid var(--fg); border-radius:12px; background:var(--pink); color:#fff; font-weight:700; text-decoration:none; box-shadow:4px 4px 0 var(--fg); transition:.15s; }
+  .btn:hover { transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--fg); }
+  .btn.alt { background:#fff; color:var(--fg); margin-left:10px; }
+  section { padding:56px 0; }
+  h2 { font-size:2rem; margin-bottom:28px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:24px; }
+  .card { border:3px solid var(--fg); border-radius:18px; padding:24px; box-shadow:6px 6px 0 var(--fg); color:var(--fg); text-decoration:none; transition:.15s; }
+  .card:hover { transform:rotate(-1deg) translateY(-4px); }
+  .card:nth-child(3n+1) { background:var(--yellow); }
+  .card:nth-child(3n+2) { background:var(--blue); }
+  .card:nth-child(3n+3) { background:var(--green); }
+  .card h3 { font-size:1.3rem; margin-bottom:6px; }
+  .pills { display:flex; flex-wrap:wrap; gap:10px; }
+  .pills span { border:2px solid var(--fg); border-radius:999px; padding:6px 14px; background:#fff; font-weight:600; }
+  .exp div { border:3px solid var(--fg); border-radius:14px; padding:18px 22px; margin-bottom:14px; background:#fff; }
+  .exp small { color:var(--muted); }
+  .contact { background:var(--fg); color:var(--bg); border-radius:24px; padding:48px 32px; text-align:center; margin-bottom:56px; }
+  .contact a { color:var(--yellow); }
+  @media (max-width:720px) { .hero { grid-template-columns:1fr; } .avatar { max-width:240px; } }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <nav><b>✦ yourname</b><div><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></div></nav>
+
+    <div class="hero">
+      <div>
+        <h1>Hey! I'm <span>Your Name</span> 👋</h1>
+        <p>I make fun, useful things on the internet. Two lines about who you are and what you love building.</p>
+        <a class="btn" href="#work">See my work</a><a class="btn alt" href="#">Resume</a>
+      </div>
+      <div class="avatar">🧑‍💻</div>
+    </div>
+
+    <section id="work">
+      <h2>Things I've built</h2>
+      <div class="grid">
+        <a class="card" href="#"><h3>Project One</h3><p>What it does, in a sentence.</p><p><b>React · Node</b></p></a>
+        <a class="card" href="#"><h3>Project Two</h3><p>What it does, in a sentence.</p><p><b>Python · FastAPI</b></p></a>
+        <a class="card" href="#"><h3>Project Three</h3><p>What it does, in a sentence.</p><p><b>Next.js · Postgres</b></p></a>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>Skills</h2>
+      <div class="pills"><span>JavaScript</span><span>TypeScript</span><span>Python</span><span>React</span><span>Node.js</span><span>SQL</span><span>Docker</span><span>Figma</span></div>
+      <h2 style="margin-top:48px">Journey</h2>
+      <div class="exp">
+        <div><b>Role @ Company</b> <small>· 2025 – now</small><p>What you did and the impact.</p></div>
+        <div><b>B.Tech CS @ University</b> <small>· 2021 – 2025</small></div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Let's build something together!</h2>
+      <p><a href="mailto:you@example.com">you@example.com</a> · <a href="#">GitHub</a> · <a href="#">LinkedIn</a></p>
+    </section>
+  </div>
+</body>
+</html>
