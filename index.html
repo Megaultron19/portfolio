@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Harshit Singh — AI Engineer</title>
-<meta name="description" content="Harshit Singh — Generative AI engineer and final-year CSE student at Amity University Noida. LLMs, RAG, agents and computer vision.">
+<meta name="description" content="Harshit Singh — Generative AI engineer and Computer Science graduate from Amity University Noida. LLMs, RAG, agents and computer vision.">
 <meta property="og:title" content="Harshit Singh — AI Engineer">
 <meta property="og:description" content="Generative AI engineer building LLM, RAG and computer-vision systems that ship.">
 <meta property="og:type" content="website">
@@ -53,9 +53,9 @@
   .w:hover { border-color:rgba(184,50,60,.22); }
   .w h3 { font-size:11px; font-weight:400; color:var(--muted); letter-spacing:.15em; text-transform:uppercase; margin-bottom:12px; display:flex; justify-content:space-between; gap:10px; }
   .s3 { grid-column:span 3; } .s4 { grid-column:span 4; } .s5 { grid-column:span 5; } .s6 { grid-column:span 6; } .s7 { grid-column:span 7; } .s8 { grid-column:span 8; } .s12 { grid-column:span 12; }
-  .kpi b { font-family:"Cormorant Garamond", serif; font-size:2.8rem; font-weight:500; line-height:1; display:block; }
+  .kpi b { font-family:"Cormorant Garamond", serif; font-size:2.4rem; font-weight:500; line-height:1; display:block; }
   .kpi small { color:var(--muted); }
-  .quote { font-family:"Cormorant Garamond", serif; font-style:italic; font-size:clamp(1.5rem, 3vw, 2.1rem); line-height:1.25; }
+  .quote { font-family:"Cormorant Garamond", serif; font-style:italic; font-size:clamp(1.35rem, 2.4vw, 1.75rem); line-height:1.25; }
   .muted { color:var(--muted); }
   .gh { display:block; width:100%; height:auto; filter:invert(.9) hue-rotate(180deg) saturate(.8); opacity:.9; }
   /* experience */
@@ -81,6 +81,44 @@
   .skills div { display:grid; grid-template-columns:110px 1fr; gap:12px; padding:10px 0; border-bottom:1px solid var(--line); font-size:14px; }
   .skills div:last-child { border:0; }
   .skills span { color:var(--muted); font-size:12px; letter-spacing:.1em; text-transform:uppercase; padding-top:2px; }
+  /* overview: compact boxes */
+  .stack { display:flex; flex-direction:column; gap:14px; }
+  .stack .w { flex:1; }
+  .co { list-style:none; padding:0; }
+  .co li { padding:8px 0; border-bottom:1px solid var(--line); }
+  .co li:last-child { border:0; padding-bottom:0; }
+  .co b { font-weight:400; display:block; }
+  .co span { color:var(--muted); font-size:12px; }
+  .now div { display:flex; flex-direction:column; padding:8px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  .now div:last-child { border:0; }
+  .now span { color:var(--muted); font-size:11px; letter-spacing:.12em; text-transform:uppercase; }
+  /* project spiral */
+  .spiral-wrap { position:relative; display:flex; flex-direction:column; align-items:center; --S:min(680px, 92vw); }
+  .spiral { position:relative; width:var(--S); height:var(--S); touch-action:pan-y; cursor:grab; user-select:none; -webkit-user-select:none; outline:none; }
+  .spiral.drag { cursor:grabbing; }
+  .orbit { position:absolute; inset:0; transform:rotate(var(--rot, 0deg)); }
+  .orbit svg { position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
+  .arm { fill:none; stroke:rgba(214,90,99,.28); stroke-width:1; }
+  .node { position:absolute; width:34px; height:34px; margin:-17px 0 0 -17px; border:0; padding:0; background:none; cursor:pointer; color:var(--muted); }
+  .node i { position:absolute; inset:11px; border-radius:50%; background:var(--bg); border:1px solid rgba(235,227,222,.55); transition:transform .5s, background .5s, box-shadow .5s, border-color .5s; }
+  .node:hover i, .node:focus-visible i { border-color:var(--red2); transform:scale(1.35); }
+  .node.on i { background:var(--red2); border-color:var(--red2); transform:scale(1.6); box-shadow:0 0 0 6px rgba(214,90,99,.08), 0 0 18px 2px rgba(214,90,99,.45); }
+  .node .lab { position:absolute; left:50%; top:50%; width:0; height:0; transform:rotate(calc(var(--rot, 0deg) * -1)); }
+  .node .lab b { position:absolute; transform:translate(-50%, 14px); white-space:nowrap; font:400 11px/1 "JetBrains Mono", monospace; color:var(--muted); transition:color .5s; }
+  .node.on .lab b, .node:hover .lab b { color:var(--fg); }
+  .node .lab em { font-style:normal; color:var(--red2); margin-right:6px; }
+  .pcard { position:absolute; left:50%; top:calc(var(--S) / 2); transform:translate(-50%, -50%); width:calc(var(--S) * .44); text-align:center; background:rgba(10,6,6,.92); transition:opacity .35s; }
+  .pcard.fade { opacity:0; }
+  .pcard .pk { color:var(--red2); font-size:11px; letter-spacing:.12em; text-transform:uppercase; }
+  .pcard h4 { font-family:"Cormorant Garamond", serif; font-size:1.7rem; font-weight:500; line-height:1.1; margin:6px 0 8px; }
+  .pcard p { color:var(--muted); font-size:13.5px; line-height:1.6; }
+  .pcard .meta { justify-content:center; }
+  .pcard .btn { margin-top:14px; }
+  .pcard .priv { display:inline-block; margin-top:14px; color:var(--muted); font-size:12px; }
+  .ctl { display:flex; align-items:center; gap:16px; margin-top:6px; color:var(--muted); font-size:12px; }
+  .ctl button { width:36px; height:36px; border-radius:50%; border:1px solid var(--line); background:none; color:var(--fg); cursor:pointer; transition:border-color .4s; }
+  .ctl button:hover { border-color:var(--red); }
+  .shint { margin-top:8px; font-size:11px; color:var(--muted); opacity:.5; }
   .tl div { display:flex; justify-content:space-between; gap:10px; padding:12px 0; border-bottom:1px solid var(--line); flex-wrap:wrap; }
   .tl div:last-child { border:0; }
   .tl span { color:var(--muted); font-size:13px; }
@@ -95,6 +133,7 @@
   .reveal { opacity:0; transform:translateY(18px); transition:1.3s cubic-bezier(.2,.7,.2,1); }
   .reveal.in { opacity:1; transform:none; }
   @media (max-width:900px) { .s3, .s4, .s5 { grid-column:span 6; } .s6, .s7, .s8 { grid-column:span 12; } }
+  @media (max-width:700px) { .pcard { position:static; transform:none; width:100%; text-align:left; margin-top:4px; } .pcard .meta { justify-content:flex-start; } }
   @media (max-width:600px) { .grid > * { grid-column:span 12 !important; } nav div a { display:none; } .skills div { grid-template-columns:1fr; gap:2px; } }
   @media (prefers-reduced-motion:reduce) { *, .reveal { animation:none !important; transition:none !important; opacity:1; transform:none; } }
 </style>
@@ -118,9 +157,18 @@
   <div class="sh reveal" id="about"><h2 class="serif">The <i>overview</i></h2><span class="mono">● open to opportunities</span></div>
   <div class="grid">
     <div class="w s6 reveal"><h3>About</h3><p class="quote">"I like AI that does real work — not just demos."</p>
-      <p class="muted" style="margin-top:14px">I'm a final-year Computer Science student at Amity University Noida and a Generative AI Engineer Intern at Claw LegalTech. I work across the stack of applied AI: fine-tuning and prompting LLMs, retrieval pipelines, agentic workflows and real-time computer vision, and I care most about getting them into production.</p></div>
-    <div class="w s3 kpi reveal"><h3>AI internships</h3><b>2</b><small>Claw LegalTech · Bitsflow</small></div>
-    <div class="w s3 kpi reveal"><h3>B.Tech CSE</h3><b>8.23</b><small>CGPA · Amity University</small></div>
+      <p class="muted" style="margin-top:12px">I'm a Computer Science graduate from Amity University Noida, now a Generative AI Engineer Intern at Claw LegalTech. I build applied AI end to end — fine-tuning and prompting LLMs, retrieval pipelines, agentic workflows and real-time computer vision — and I care most about getting it into production.</p></div>
+    <div class="s3 stack">
+      <div class="w reveal"><h3>Internships</h3><ul class="co">
+        <li><b>Claw LegalTech</b><span>Generative AI Engineer · 2026 — now</span></li>
+        <li><b>Bitsflow Technologies</b><span>AI / ML Intern · 2025</span></li></ul></div>
+      <div class="w kpi reveal"><h3>B.Tech CSE · Amity</h3><b>8.23</b><small>CGPA · 2022 — 2026</small></div>
+    </div>
+    <div class="w s3 now reveal"><h3>Right now</h3>
+      <div><span>Building</span>GenAI features in production</div>
+      <div><span>Exploring</span>Agentic AI · RAG · LoRA</div>
+      <div><span>Based in</span>Noida, India</div>
+      <div><span>Open to</span>AI / ML engineering roles</div></div>
     <div class="w s12 reveal" id="ghbox"><h3><span>GitHub activity</span><a class="mono" href="https://github.com/Megaultron19" target="_blank" rel="noopener" style="text-decoration:none">@Megaultron19 ↗</a></h3>
       <img class="gh" src="https://ghchart.rshah.org/b8323c/Megaultron19" alt="Harshit's GitHub contribution chart" loading="lazy" onerror="document.getElementById('ghbox').remove()"></div>
   </div>
@@ -137,16 +185,17 @@
         <li><b>Full-stack AI</b> — contributed to a full-stack system delivering real-time, data-driven financial insights.</li></ul></div>
   </div>
 
-  <div class="sh reveal" id="work"><h2 class="serif">Selected <i>work</i></h2><span>on GitHub</span></div>
-  <div class="grid">
-    <a class="w proj s4 reveal" href="https://github.com/Megaultron19/AI-receptionist-for-business" target="_blank" rel="noopener"><span class="n">I</span><div><h4>AI Receptionist for Restaurants</h4><p>Answers phone calls and WhatsApp in English and Hindi, books tables without double bookings, takes food pre-orders, collects Razorpay payments and sends QR confirmations — all run from a staff dashboard.</p><div class="meta"><span>Python · FastAPI</span><span>LLM API</span><span>Next.js</span><span class="go">↗</span></div></div></a>
-    <a class="w proj s4 reveal" href="https://github.com/Megaultron19/Traffic-Management-System" target="_blank" rel="noopener"><span class="n">II</span><div><h4>Smart Traffic Management</h4><p>Real-time vehicle detection with YOLOv8, a custom centroid tracker for persistent IDs, line-crossing counts with no duplicates, and a Streamlit dashboard for analytics.</p><div class="meta"><span>YOLOv8</span><span>OpenCV</span><span>Streamlit</span><span class="go">↗</span></div></div></a>
-    <a class="w proj s4 reveal" href="https://github.com/Megaultron19/AI-Based-Facial-and-Emotion-Detection-System" target="_blank" rel="noopener"><span class="n">III</span><div><h4>Facial Emotion Detection</h4><p>Live webcam system that detects faces with OpenCV and classifies seven emotions in real time with a CNN, tuned for smooth inference.</p><div class="meta"><span>CNN</span><span>Keras · TensorFlow</span><span>OpenCV</span><span class="go">↗</span></div></div></a>
-    <div class="w s5 also reveal"><h3>Also built</h3>
-      <div><b>AI Notes Summarizer</b><small>Summarises long documents and PDFs with RAG — LangChain, Chainlit, Ollama.</small></div>
-      <div><b>Healthcare Management System</b><small>Patient records, appointments and prescriptions over Flask REST APIs and MySQL.</small></div>
-      <div><b>Research — swipe-up culture & remote work</b><small>Mixed-methods study of social media's effect on remote workers' productivity and well-being.</small></div></div>
-    <div class="w s7 skills reveal"><h3>Toolkit</h3>
+  <div class="sh reveal" id="work"><h2 class="serif">Selected <i>work</i></h2><span>six projects · drag to explore</span></div>
+  <div class="spiral-wrap reveal" id="swrap">
+    <div class="spiral" id="spiral" aria-label="Projects — use the arrow keys or click a star">
+      <div class="orbit"><svg aria-hidden="true"><path class="arm" id="arm"/></svg><div id="nodes"></div></div>
+    </div>
+    <div class="pcard w" id="pcard" aria-live="polite"></div>
+    <div class="ctl"><button id="prev" aria-label="Previous project">←</button><span class="mono" id="pidx">01 / 06</span><button id="next" aria-label="Next project">→</button></div>
+    <div class="shint mono">drag to spin · click a star</div>
+  </div>
+  <div class="grid" style="margin-top:34px">
+    <div class="w s12 skills reveal"><h3>Toolkit</h3>
       <div><span>Languages</span>Python · C++ · SQL</div>
       <div><span>AI / ML</span>TensorFlow · Keras · OpenCV · LangChain · Chainlit · Ollama · OpenAI · NLTK</div>
       <div><span>Concepts</span>LLMs · Agentic AI · RAG · Transformers · LoRA / QLoRA · CNNs · RNNs · Transfer learning</div>
@@ -207,6 +256,51 @@
   // touch screens: the lantern drifts slowly on its own (no counting, just ambience)
   if (!matchMedia('(pointer: fine)').matches) { counter.remove(); document.querySelector('.hint').remove();
     (function wander(t) { root.style.setProperty('--mx', innerWidth * (.5 + .4 * Math.sin(t / 3500)) + 'px'); root.style.setProperty('--my', innerHeight * (.45 + .35 * Math.sin(t / 2600)) + 'px'); requestAnimationFrame(wander); })(0); }
+
+  // project spiral: stars on a slowly-turning arm; click, drag, arrow keys or wait for it to drift to the next one
+  const P = [
+    {t: 'AI Receptionist for Restaurants', s: 'AI Receptionist', k: 'LLM agent · voice + WhatsApp', d: 'Answers calls and WhatsApp in English and Hindi, books tables with no double bookings, takes pre-orders and Razorpay payments, and sends QR confirmations — all run from one dashboard.', tags: ['Python', 'FastAPI', 'LLM API', 'Next.js'], url: 'https://github.com/Megaultron19/AI-receptionist-for-business'},
+    {t: 'Smart Traffic Management', s: 'Traffic AI', k: 'Computer vision', d: 'YOLOv8 detects vehicles in real time, a custom centroid tracker keeps their IDs, crossings are counted without duplicates, and a Streamlit dashboard charts it all.', tags: ['YOLOv8', 'OpenCV', 'Streamlit', 'SQLite'], url: 'https://github.com/Megaultron19/Traffic-Management-System'},
+    {t: 'Facial Emotion Detection', s: 'Emotion AI', k: 'Deep learning · CV', d: 'Live webcam system: OpenCV finds faces and a CNN classifies seven emotions, optimised for smooth real-time inference.', tags: ['Python', 'CNN', 'OpenCV', 'TensorFlow'], url: 'https://github.com/Megaultron19/AI-Based-Facial-and-Emotion-Detection-System'},
+    {t: 'AI Notes Summarizer', s: 'Notes Summarizer', k: 'RAG · local LLMs', d: 'Summarises long documents and PDFs using retrieval-augmented generation and locally hosted language models.', tags: ['Python', 'LangChain', 'Chainlit', 'Ollama'], note: 'code available on request'},
+    {t: 'Healthcare Management System', s: 'Healthcare', k: 'Full-stack web', d: 'Patient records, appointment scheduling and prescription tracking, served over Flask REST APIs with a MySQL database.', tags: ['Python', 'Flask', 'FastAPI', 'MySQL'], note: 'private repository'},
+    {t: 'Swipe-Up Culture & Remote Work', s: 'Research', k: 'Research project', d: "How social media's swipe-up culture affects remote workers' productivity, engagement and well-being — a mixed-methods study with interviews and quantitative analysis.", tags: ['Mixed methods', 'Interviews', 'Data analysis'], note: 'research study'},
+  ];
+  const sp = document.getElementById('spiral'), nodesEl = document.getElementById('nodes'), arm = document.getElementById('arm'), card = document.getElementById('pcard'), idx = document.getElementById('pidx');
+  const N = P.length, STEP = 330 / (N - 1), still2 = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const pad = n => String(n).padStart(2, '0');
+  nodesEl.innerHTML = P.map((p, i) => `<button class="node" data-i="${i}" aria-label="${p.t}"><i></i><span class="lab"><b><em>${pad(i + 1)}</em>${p.s}</b></span></button>`).join('');
+  const nodes = [...nodesEl.children];
+  const rad = t => .72 + .28 * t / (N - 1);  // radius as a fraction of R along the arm (t = node index)
+  const layout = () => { const S = sp.clientWidth, R = S / 2 - 46, c = S / 2;
+    nodes.forEach((n, i) => { const a = i * STEP * Math.PI / 180, r = R * rad(i); n.style.left = c + r * Math.cos(a) + 'px'; n.style.top = c + r * Math.sin(a) + 'px'; });
+    let d = ''; for (let t = -2.4; t <= N - .6; t += .04) { const a = t * STEP * Math.PI / 180, r = R * (t < 0 ? rad(0) * (1 + t / 2.7) : rad(t)); d += (d ? 'L' : 'M') + (c + r * Math.cos(a)).toFixed(1) + ' ' + (c + r * Math.sin(a)).toFixed(1); }
+    arm.setAttribute('d', d); };
+  layout(); addEventListener('resize', layout);
+  let cur = 0, rot = -90, target = -90, dragging = false, hovering = false, dragged = false;
+  const show = i => { const p = P[i]; card.classList.add('fade');
+    setTimeout(() => { card.innerHTML = `<div class="pk">${pad(i + 1)} · ${p.k}</div><h4>${p.t}</h4><p>${p.d}</p><div class="meta">${p.tags.map(t => `<span>${t}</span>`).join('')}</div>` + (p.url ? `<a class="btn f" href="${p.url}" target="_blank" rel="noopener">View on GitHub ↗</a>` : `<span class="priv">${p.note}</span>`); card.classList.remove('fade'); }, still2 ? 0 : 200); };
+  const select = i => { cur = ((i % N) + N) % N; let want = -90 - cur * STEP; want += Math.round((target - want) / 360) * 360; target = want;
+    nodes.forEach((n, j) => n.classList.toggle('on', j === cur)); idx.textContent = `${pad(cur + 1)} / ${pad(N)}`; show(cur); };
+  nodes.forEach(n => n.addEventListener('click', () => { if (!dragged) select(+n.dataset.i); }));
+  document.getElementById('prev').onclick = () => select(cur - 1);
+  document.getElementById('next').onclick = () => select(cur + 1);
+  document.getElementById('swrap').addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); select(cur + 1); } if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); select(cur - 1); } });
+  // drag to spin, release snaps to the nearest star
+  const ang = e => { const r = sp.getBoundingClientRect(); return Math.atan2(e.clientY - r.top - r.height / 2, e.clientX - r.left - r.width / 2) * 180 / Math.PI; };
+  let a0, r0, x0, y0;
+  sp.addEventListener('pointerdown', e => { dragging = true; dragged = false; a0 = ang(e); r0 = rot; x0 = e.clientX; y0 = e.clientY; });
+  addEventListener('pointermove', e => { if (!dragging) return;
+    if (!dragged && Math.hypot(e.clientX - x0, e.clientY - y0) > 6) { dragged = true; sp.classList.add('drag'); }
+    if (dragged) { let d = ang(e) - a0; d -= Math.round(d / 360) * 360; rot = target = r0 + d; } });
+  addEventListener('pointerup', () => { if (!dragging) return; dragging = false; sp.classList.remove('drag');
+    if (dragged) { const off = i => Math.abs(((rot + i * STEP + 90) % 360 + 540) % 360 - 180); select(P.reduce((m, _, i) => off(i) < off(m) ? i : m, 0)); setTimeout(() => dragged = false, 0); } });
+  const sw = document.getElementById('swrap');
+  sw.addEventListener('pointerenter', () => hovering = true); sw.addEventListener('pointerleave', () => hovering = false);
+  let seen = false; new IntersectionObserver(([e]) => seen = e.isIntersecting).observe(sw);
+  if (!still2) setInterval(() => { if (seen && !hovering && !dragging && document.activeElement.closest?.('#swrap') == null) select(cur + 1); }, 6000);
+  (function spin() { if (!dragging) rot += (target - rot) * (still2 ? 1 : .07); sp.style.setProperty('--rot', rot.toFixed(2) + 'deg'); requestAnimationFrame(spin); })();
+  select(0);
 
   const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('in')), {threshold: .1});
   document.querySelectorAll('.reveal').forEach(n => io.observe(n));
