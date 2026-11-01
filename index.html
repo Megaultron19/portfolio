@@ -36,6 +36,23 @@
   .rr a { writing-mode:vertical-rl; font-size:11.5px; letter-spacing:.14em; text-decoration:none; }
   body.cvmode .rail { display:none !important; }
   @media (min-width:1380px) { .rail { display:flex; } }
+  /* opening: liquid fills the name */
+  .intro { position:fixed; inset:0; z-index:100; background:#060404; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px; transition:opacity .9s ease, visibility .9s; cursor:pointer; }
+  .intro.done { opacity:0; visibility:hidden; pointer-events:none; }
+  .intro svg { width:min(92vw, 980px); height:auto; overflow:visible; }
+  .iname { font:500 150px "Cormorant Garamond", Georgia, serif; letter-spacing:2px; }
+  .outline { fill:none; stroke:rgba(235,227,222,.35); stroke-width:1.2; }
+  .rise { animation:rise 3.2s linear .2s forwards; transform:translateY(205px); }
+  @keyframes rise { to { transform:translateY(12px); } }
+  .wave { animation:slide 1.6s linear infinite; }
+  .w2 { animation-duration:2.4s; animation-direction:reverse; }
+  @keyframes slide { to { transform:translateX(-250px); } }
+  .ibar { width:min(240px, 50vw); height:1px; background:rgba(235,227,222,.1); overflow:hidden; }
+  .ibar i { display:block; height:100%; width:100%; background:#d65a63; transform:scaleX(0); transform-origin:left; animation:bar 3.2s linear .2s forwards; }
+  @keyframes bar { to { transform:scaleX(1); } }
+  .itag { color:var(--muted); font-size:11px; letter-spacing:.4em; text-transform:uppercase; opacity:0; animation:fadein 1s .6s forwards; }
+  @keyframes fadein { to { opacity:1; } }
+  body.loading { overflow:hidden; }
   .burger { display:none; width:40px; height:40px; border:1px solid var(--line); border-radius:10px; background:rgba(6,4,4,.6); cursor:pointer; position:relative; }
   .burger i { position:absolute; left:11px; right:11px; height:1px; background:var(--fg); transition:transform .35s, opacity .35s; }
   .burger i:nth-child(1) { top:14px; } .burger i:nth-child(2) { top:19px; } .burger i:nth-child(3) { top:24px; }
@@ -239,6 +256,23 @@
 </style>
 </head>
 <body>
+<div class="intro" id="intro" role="presentation">
+  <svg viewBox="0 0 1000 240" aria-hidden="true">
+    <defs>
+      <clipPath id="nameClip"><text x="500" y="168" text-anchor="middle" class="iname">Harshit Singh</text></clipPath>
+      <linearGradient id="liq" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff7a83"/><stop offset=".35" stop-color="#d65a63"/><stop offset="1" stop-color="#7a1820"/></linearGradient>
+    </defs>
+    <text x="500" y="168" text-anchor="middle" class="iname outline">Harshit Singh</text>
+    <g clip-path="url(#nameClip)">
+      <g class="rise">
+        <path class="wave w2" d="M0 20 Q 62.5 0 125 20 T 250 20 T 375 20 T 500 20 T 625 20 T 750 20 T 875 20 T 1000 20 T 1125 20 T 1250 20 T 1375 20 T 1500 20 T 1625 20 T 1750 20 T 1875 20 T 2000 20 V 400 H 0 Z" fill="#8a2a33" opacity=".7"/>
+        <path class="wave w1" d="M0 20 Q 62.5 4 125 20 T 250 20 T 375 20 T 500 20 T 625 20 T 750 20 T 875 20 T 1000 20 T 1125 20 T 1250 20 T 1375 20 T 1500 20 T 1625 20 T 1750 20 T 1875 20 T 2000 20 V 400 H 0 Z" fill="url(#liq)"/>
+      </g>
+    </g>
+  </svg>
+  <div class="ibar"><i></i></div>
+  <small class="itag">AI Engineer · Noida, India</small>
+</div>
 <canvas id="sky" aria-hidden="true"></canvas>
 <nav id="nav"><a class="home serif" href="#">Harshit Singh</a><button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button><div class="menu" id="menu"><a href="#about">About</a><a href="#experience">Experience</a><a href="#work">Work</a><a href="#contact">Contact</a><button class="cvbtn" id="cvbtn" aria-pressed="false">Resume mode</button><span class="found" id="found" title="Hidden constellations found">✦ 0/5</span></div></nav>
 
@@ -469,6 +503,12 @@
   const setCV = on => { cv.hidden = !on; document.body.classList.toggle('cvmode', on); cvbtn.setAttribute('aria-pressed', on); scrollTo(0, 0);
     if (on && location.hash !== '#resume') history.replaceState(null, '', '#resume'); if (!on && location.hash === '#resume') history.replaceState(null, '', location.pathname); };
   cvbtn.onclick = () => setCV(true);
+  // opening screen: once per visit, click to skip, skipped for reduced motion and resume links
+  const intro = document.getElementById('intro');
+  const endIntro = () => { intro.classList.add('done'); document.body.classList.remove('loading'); setTimeout(() => intro.remove(), 1000); try { sessionStorage.introSeen = 1; } catch (e) {} };
+  let seenIntro = false; try { seenIntro = !!sessionStorage.introSeen; } catch (e) {}
+  if (seenIntro || location.hash || matchMedia('(prefers-reduced-motion: reduce)').matches) intro.remove();
+  else { document.body.classList.add('loading'); intro.onclick = endIntro; document.fonts.ready.then(() => setTimeout(endIntro, 4200)); }
   const nav = document.getElementById('nav'), burger = document.getElementById('burger');
   const setMenu = on => { nav.classList.toggle('open', on); burger.setAttribute('aria-expanded', on); burger.setAttribute('aria-label', on ? 'Close menu' : 'Open menu'); };
   burger.onclick = () => setMenu(!nav.classList.contains('open'));
