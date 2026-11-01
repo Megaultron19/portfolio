@@ -21,7 +21,7 @@
   .serif { font-family:"Cormorant Garamond", Georgia, serif; }
   .mono { font-family:"JetBrains Mono", monospace; }
   /* hidden sky: only visible inside a soft lantern around the cursor */
-  #sky { position:fixed; inset:0; z-index:-1; -webkit-mask:radial-gradient(200px circle at var(--mx) var(--my), #000, rgba(0,0,0,.45) 50%, transparent 100%); mask:radial-gradient(200px circle at var(--mx) var(--my), #000, rgba(0,0,0,.45) 50%, transparent 100%); }
+  #sky { position:fixed; inset:0; z-index:-1; -webkit-mask:radial-gradient(240px circle at var(--mx) var(--my), #000 0, #000 35%, rgba(0,0,0,.6) 65%, transparent 100%); mask:radial-gradient(240px circle at var(--mx) var(--my), #000 0, #000 35%, rgba(0,0,0,.6) 65%, transparent 100%); }
   nav { position:fixed; top:0; left:0; right:0; z-index:10; display:flex; justify-content:space-between; align-items:center; padding:22px 5vw; font-size:12px; letter-spacing:.25em; text-transform:uppercase; background:linear-gradient(var(--bg), transparent); }
   nav a { color:var(--muted); text-decoration:none; margin-left:26px; transition:color .4s; }
   nav a:hover { color:var(--fg); }
@@ -119,6 +119,54 @@
   .ctl button { width:36px; height:36px; border-radius:50%; border:1px solid var(--line); background:none; color:var(--fg); cursor:pointer; transition:border-color .4s; }
   .ctl button:hover { border-color:var(--red); }
   .shint { margin-top:8px; font-size:11px; color:var(--muted); opacity:.5; }
+  .about { display:flex; flex-direction:column; }
+  .focus { margin-top:auto; padding-top:18px; display:flex; flex-wrap:wrap; gap:8px; }
+  .focus span { font-size:12.5px; padding:5px 12px; border:1px solid var(--line); border-radius:999px; color:var(--fg); background:rgba(0,0,0,.3); }
+  .cvbtn { font:inherit; letter-spacing:inherit; text-transform:inherit; color:var(--fg); background:none; border:1px solid rgba(184,50,60,.5); border-radius:999px; padding:6px 14px; margin-left:26px; cursor:pointer; transition:background .4s; }
+  .cvbtn:hover { background:rgba(184,50,60,.18); }
+  /* build log */
+  .stats { display:grid; grid-template-columns:repeat(4, 1fr); gap:14px; padding-bottom:18px; margin-bottom:22px; border-bottom:1px solid var(--line); }
+  .stats b { display:block; font-family:"Cormorant Garamond", serif; font-size:2.2rem; font-weight:500; line-height:1; }
+  .stats span { color:var(--muted); font-size:12px; }
+  .log { list-style:none; padding:0; display:grid; grid-template-columns:repeat(6, 1fr); gap:12px; position:relative; }
+  .log::before { content:""; position:absolute; left:0; right:0; top:5px; height:1px; background:linear-gradient(90deg, var(--line), rgba(184,50,60,.5)); }
+  .log li { position:relative; padding-top:22px; }
+  .log li::before { content:""; position:absolute; top:0; left:0; width:11px; height:11px; border-radius:50%; background:var(--bg); border:1px solid rgba(235,227,222,.5); }
+  .log li.cur::before { background:var(--red2); border-color:var(--red2); box-shadow:0 0 12px 2px rgba(214,90,99,.45); }
+  .log time { display:block; font-family:"JetBrains Mono", monospace; font-size:11px; color:var(--red2); }
+  .log b { display:block; font-weight:400; font-size:14px; margin:4px 0 2px; }
+  .log span { color:var(--muted); font-size:12.5px; line-height:1.45; display:block; }
+  /* education + contact */
+  .edu .ed { padding:14px 0; border-bottom:1px solid var(--line); }
+  .edu .ed:last-child { border:0; padding-bottom:0; }
+  .edu .top { display:flex; justify-content:space-between; align-items:baseline; gap:12px; }
+  .edu .top b { font-weight:400; font-size:15px; }
+  .edu .top em { font-style:normal; color:var(--red2); font-size:13px; white-space:nowrap; }
+  .edu span { color:var(--muted); font-size:13px; }
+  .edu p { color:var(--muted); font-size:13px; margin-top:6px; }
+  .reach { display:grid; grid-template-columns:1fr 1.2fr; gap:30px; align-items:center; }
+  .reach .quote { margin:6px 0 10px; }
+  .links { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .links a, .links button { display:block; text-align:left; font:inherit; font-size:14px; color:var(--fg); text-decoration:none; background:rgba(0,0,0,.35); border:1px solid var(--line); border-radius:10px; padding:14px 16px; cursor:pointer; overflow-wrap:anywhere; transition:border-color .4s, background .4s; }
+  .links a:hover, .links button:hover { border-color:rgba(184,50,60,.5); background:rgba(184,50,60,.08); }
+  .links span { display:block; color:var(--muted); font-size:11px; letter-spacing:.15em; text-transform:uppercase; margin-bottom:4px; }
+  /* resume mode */
+  #cv { background:#f4f1ec; color:#1d1a19; min-height:100vh; padding:24px 16px 60px; }
+  .cvbar { max-width:820px; margin:0 auto 16px; display:flex; justify-content:space-between; gap:10px; }
+  .cvbar button { font:500 13px Inter, sans-serif; padding:9px 16px; border-radius:999px; border:1px solid #cfc7c0; background:#fff; color:#1d1a19; cursor:pointer; }
+  .paper { max-width:820px; margin:auto; background:#fff; padding:48px 56px; box-shadow:0 10px 40px rgba(0,0,0,.08); font:14px/1.55 Inter, system-ui, sans-serif; }
+  .paper header { text-align:center; margin-bottom:6px; }
+  .paper h1 { font:600 2.4rem/1 "Cormorant Garamond", serif; letter-spacing:.04em; }
+  .paper header p { color:#5c5552; margin-top:6px; }
+  .paper .cl a { color:#8a1f28; text-decoration:none; }
+  .paper h2 { font:600 12px Inter, sans-serif; letter-spacing:.18em; text-transform:uppercase; color:#8a1f28; border-bottom:1px solid #e3ddd8; padding-bottom:4px; margin:22px 0 10px; }
+  .paper .row { display:flex; justify-content:space-between; gap:16px; margin-top:8px; }
+  .paper .row span { color:#6b6461; font-size:13px; text-align:right; }
+  .paper i { color:#5c5552; font-size:13px; }
+  .paper ul { margin:4px 0 0 18px; padding:0; }
+  .paper li { margin:2px 0; }
+  body.cvmode > :not(#cv):not(script) { display:none !important; }
+  @media print { body > :not(#cv) { display:none !important; } #cv { display:block !important; padding:0; background:#fff; } .cvbar { display:none; } .paper { box-shadow:none; padding:0; font-size:12px; } body { background:#fff; } }
   .tl div { display:flex; justify-content:space-between; gap:10px; padding:12px 0; border-bottom:1px solid var(--line); flex-wrap:wrap; }
   .tl div:last-child { border:0; }
   .tl span { color:var(--muted); font-size:13px; }
@@ -132,15 +180,15 @@
   .toast.on { opacity:1; transform:translate(-50%, 0); }
   .reveal { opacity:0; transform:translateY(18px); transition:1.3s cubic-bezier(.2,.7,.2,1); }
   .reveal.in { opacity:1; transform:none; }
-  @media (max-width:900px) { .s3, .s4, .s5 { grid-column:span 6; } .s6, .s7, .s8 { grid-column:span 12; } }
+  @media (max-width:900px) { .log { grid-template-columns:repeat(3, 1fr); row-gap:22px; } .log::before { display:none; } .reach { grid-template-columns:1fr; } .paper { padding:32px 22px; } .paper .row { flex-direction:column; gap:0; } .paper .row span { text-align:left; } .s3, .s4, .s5 { grid-column:span 6; } .s6, .s7, .s8 { grid-column:span 12; } }
   @media (max-width:700px) { .pcard { position:static; transform:none; width:100%; text-align:left; margin-top:4px; } .pcard .meta { justify-content:flex-start; } }
-  @media (max-width:600px) { .grid > * { grid-column:span 12 !important; } nav div a { display:none; } .skills div { grid-template-columns:1fr; gap:2px; } }
+  @media (max-width:600px) { .stats { grid-template-columns:1fr 1fr; } .log { grid-template-columns:1fr 1fr; } .links { grid-template-columns:1fr; } .cvbtn { display:none; } .grid > * { grid-column:span 12 !important; } nav div a { display:none; } .skills div { grid-template-columns:1fr; gap:2px; } }
   @media (prefers-reduced-motion:reduce) { *, .reveal { animation:none !important; transition:none !important; opacity:1; transform:none; } }
 </style>
 </head>
 <body>
 <canvas id="sky" aria-hidden="true"></canvas>
-<nav><a class="home serif" href="#">Harshit Singh</a><div><a href="#about">About</a><a href="#experience">Experience</a><a href="#work">Work</a><a href="#contact">Contact</a><span class="found" id="found" title="Hidden constellations found">✦ 0/5</span></div></nav>
+<nav><a class="home serif" href="#">Harshit Singh</a><div><a href="#about">About</a><a href="#experience">Experience</a><a href="#work">Work</a><a href="#contact">Contact</a><button class="cvbtn" id="cvbtn" aria-pressed="false">Resume mode</button><span class="found" id="found" title="Hidden constellations found">✦ 0/5</span></div></nav>
 
 <header class="hero">
   <div class="moon"></div>
@@ -148,7 +196,6 @@
     <small>AI Engineer · Noida, India</small>
     <h1 class="serif">Harshit <i>Singh</i></h1>
     <p>Generative AI engineer building LLM, RAG and vision systems that leave the notebook and ship.</p>
-    <a class="btn f" href="#work">Enter</a><a class="btn" href="https://github.com/Megaultron19" target="_blank" rel="noopener">GitHub</a>
   </div>
   <div class="hint">the sky remembers a night in January</div>
 </header>
@@ -156,8 +203,9 @@
 <main>
   <div class="sh reveal" id="about"><h2 class="serif">First <i>light</i></h2><span class="mono">● open to opportunities</span></div>
   <div class="grid">
-    <div class="w s6 reveal"><h3>About</h3><p class="quote">"Models are easy. Shipping them is the craft."</p>
-      <p class="muted" style="margin-top:12px">I'm a Computer Science graduate from Amity University Noida, now a Generative AI Engineer Intern at Claw LegalTech. I build applied AI end to end: fine-tuning and prompting LLMs, retrieval pipelines, agentic workflows and real-time computer vision, and I care most about getting it into production.</p></div>
+    <div class="w s6 about reveal"><h3>About</h3><p class="quote">"Models are easy. Shipping them is the craft."</p>
+      <p class="muted" style="margin-top:12px">I'm a Computer Science graduate from Amity University Noida, now a Generative AI Engineer Intern at Claw LegalTech. I build applied AI end to end: fine-tuning and prompting LLMs, retrieval pipelines, agentic workflows and real-time computer vision, and I care most about getting it into production.</p>
+      <div class="focus"><span>LLMs & fine-tuning</span><span>RAG pipelines</span><span>Agentic workflows</span><span>Computer vision</span><span>Production ML</span></div></div>
     <div class="s3 stack">
       <div class="w reveal"><h3>Internships</h3><ul class="co">
         <li><b>Claw LegalTech</b><span>Generative AI Engineer · 2026 to now</span></li>
@@ -169,8 +217,16 @@
       <div><span>Exploring</span>Agentic AI · RAG · LoRA</div>
       <div><span>Based in</span>Noida, India</div>
       <div><span>Open to</span>AI / ML engineering roles</div></div>
-    <div class="w s12 reveal" id="ghbox"><h3><span>GitHub activity</span><a class="mono" href="https://github.com/Megaultron19" target="_blank" rel="noopener" style="text-decoration:none">@Megaultron19 ↗</a></h3>
-      <img class="gh" src="https://ghchart.rshah.org/b8323c/Megaultron19" alt="Harshit's GitHub contribution chart" loading="lazy" onerror="document.getElementById('ghbox').remove()"></div>
+    <div class="w s12 reveal"><h3><span>Build log</span><a class="mono" href="https://github.com/Megaultron19" target="_blank" rel="noopener" style="text-decoration:none">github.com/Megaultron19 ↗</a></h3>
+      <div class="stats"><div><b>6</b><span>projects built</span></div><div><b>2</b><span>AI internships</span></div><div><b>4</b><span>public repos</span></div><div><b>1</b><span>research study</span></div></div>
+      <ol class="log">
+        <li><time>2022</time><b>Started B.Tech CSE</b><span>Amity University, Noida</span></li>
+        <li><time>2024</time><b>NPTEL certified</b><span>Python for Data Science</span></li>
+        <li><time>May 2025</time><b>Bitsflow Technologies</b><span>AI / ML Intern, LLMs for finance</span></li>
+        <li><time>Nov 2025</time><b>Vision projects shipped</b><span>Traffic AI · Emotion AI</span></li>
+        <li><time>Apr 2026</time><b>Claw LegalTech</b><span>Generative AI Engineer Intern</span></li>
+        <li class="cur"><time>Oct 2026</time><b>AI Receptionist</b><span>Voice + WhatsApp LLM agent</span></li>
+      </ol></div>
   </div>
 
   <div class="sh reveal" id="experience"><h2 class="serif">Field <i>notes</i></h2><span>2025 to now</span></div>
@@ -202,19 +258,66 @@
       <div><span>Concepts</span>DSA · LLMs · Agentic AI · RAG · CNNs · RNNs · Transformers · Word Embeddings · Image Classification · Text Classification · Sentiment Analysis · Transfer Learning · Attention Mechanisms · Real-Time ML Inference · Tokenization · LoRA · QLoRA</div></div>
   </div>
 
-  <div class="sh reveal" id="contact"><h2 class="serif">Open <i>channel</i></h2></div>
+  <div class="sh reveal" id="contact"><h2 class="serif">Open <i>channel</i></h2><span>education · contact</span></div>
   <div class="grid">
-    <div class="w s6 reveal"><h3>Education & more</h3><div class="tl">
-      <div><b style="font-weight:400">B.Tech CSE · Amity University, Noida<small>CGPA 8.23</small></b><span>2022 to 2026</span></div>
-      <div><b style="font-weight:400">Escorts World School, Kanpur<small>Class XII 93% · Class X 95%</small></b><span>2019 to 2021</span></div>
-      <div><b style="font-weight:400">NPTEL certifications<small>Python for Data Science · Body Language</small></b><span>2024</span></div>
-      <div><b style="font-weight:400">Cyber-Cup 2024 · Kind Beings NGO<small>Competition · Volunteer</small></b><span>2024</span></div></div></div>
-    <div class="w s6 reveal"><h3>Contact</h3><div class="term mono"><b>$</b> contact --harshit<br>email&nbsp;&nbsp;&nbsp; <a href="mailto:harshitkatiyar2003@gmail.com">harshitkatiyar2003@gmail.com</a><br>github&nbsp;&nbsp; <a href="https://github.com/Megaultron19" target="_blank" rel="noopener">github.com/Megaultron19</a><br>linkedin <a href="https://www.linkedin.com/in/thesinghharshit/" target="_blank" rel="noopener">in/thesinghharshit</a></div>
-      <p class="muted" style="margin-top:14px;font-size:14px">Open to AI / ML engineering roles. I usually reply within a day.</p></div>
+    <div class="w s6 edu reveal"><h3>Education</h3>
+      <div class="ed"><div class="top"><b>B.Tech, Computer Science Engineering</b><em>8.23 CGPA</em></div><span>Amity University, Noida · 2022 to 2026</span><p>Focus on AI and machine learning: deep learning, NLP and computer vision projects alongside coursework.</p></div>
+      <div class="ed"><div class="top"><b>CBSE Senior Secondary (XII)</b><em>93%</em></div><span>Escorts World School, Kanpur · 2021</span></div>
+      <div class="ed"><div class="top"><b>CBSE Secondary (X)</b><em>95%</em></div><span>Escorts World School, Kanpur · 2019</span></div></div>
+    <div class="w s6 edu reveal"><h3>Certifications & activities</h3>
+      <div class="ed"><div class="top"><b>NPTEL: Python for Data Science</b><em>Jan to Feb 2024</em></div><span>Data handling and analysis with Python</span></div>
+      <div class="ed"><div class="top"><b>NPTEL: Body Language, Key to Professional</b><em>Aug to Sep 2024</em></div><span>Professional communication</span></div>
+      <div class="ed"><div class="top"><b>Cyber-Cup 2024</b><em>Participant</em></div><span>Amity University, Noida</span></div>
+      <div class="ed"><div class="top"><b>Kind Beings NGO</b><em>Volunteer</em></div><span>Community volunteering</span></div></div>
+    <div class="w s12 reach reveal">
+      <div class="say"><h3>Contact</h3><p class="quote">Have a role or an idea? Let's talk.</p><p class="muted">Open to AI / ML engineering roles, full time or remote. I usually reply within a day.</p></div>
+      <div class="links">
+        <a href="mailto:harshitkatiyar2003@gmail.com"><span>Email</span>harshitkatiyar2003@gmail.com</a>
+        <a href="https://www.linkedin.com/in/thesinghharshit/" target="_blank" rel="noopener"><span>LinkedIn</span>in/thesinghharshit ↗</a>
+        <a href="https://github.com/Megaultron19" target="_blank" rel="noopener"><span>GitHub</span>Megaultron19 ↗</a>
+        <button class="cvopen" type="button"><span>Resume</span>Open resume mode</button>
+      </div></div>
   </div>
 </main>
 <footer><span>© 2026 Harshit Singh</span><span><a href="https://github.com/Megaultron19" target="_blank" rel="noopener">GitHub</a><a href="https://www.linkedin.com/in/thesinghharshit/" target="_blank" rel="noopener">LinkedIn</a><a href="mailto:harshitkatiyar2003@gmail.com">Email</a></span></footer>
 <div class="toast" id="toast" role="status"></div>
+
+<section id="cv" aria-label="Resume" hidden>
+  <div class="cvbar"><button type="button" id="cvback">← Back to site</button><button type="button" onclick="print()">Print / Save as PDF</button></div>
+  <article class="paper">
+    <header><h1>Harshit Singh</h1><p>Generative AI Engineer · Noida, India</p>
+      <p class="cl"><a href="mailto:harshitkatiyar2003@gmail.com">harshitkatiyar2003@gmail.com</a> · <a href="https://www.linkedin.com/in/thesinghharshit/">linkedin.com/in/thesinghharshit</a> · <a href="https://github.com/Megaultron19">github.com/Megaultron19</a></p></header>
+    <h2>Summary</h2>
+    <p>Computer Science graduate from Amity University Noida with a strong focus on applied AI. Skilled in Python, data analysis and machine learning, with hands-on experience building LLM, RAG and computer vision systems through internships and projects.</p>
+    <h2>Experience</h2>
+    <div class="row"><b>Claw LegalTech, Ahmedabad</b><span>Apr 2026 to Present</span></div><i>Generative AI Engineer Intern</i>
+    <ul><li>Built and integrated new GenAI-driven features into existing production systems.</li><li>Worked on prompt engineering, vector databases and retrieval strategies to refine outputs.</li><li>Improved existing AI architecture by optimising pipelines and debugging workflows.</li></ul>
+    <div class="row"><b>Bitsflow Technologies, Noida</b><span>May to Jul 2025</span></div><i>AI / ML Intern</i>
+    <ul><li>Built and fine-tuned LLMs for financial applications with prompt engineering and response optimisation.</li><li>Developed AI chatbots with Chainlit and LangChain; automated workflows with n8n.</li><li>Contributed to a full-stack AI system delivering real-time, data-driven financial insights.</li></ul>
+    <h2>Projects</h2>
+    <div class="row"><b>AI Receptionist for Restaurants</b><span>Python · FastAPI · LLM API · Next.js</span></div>
+    <ul><li>Answers calls and WhatsApp in English and Hindi, books tables without double bookings, takes pre-orders and Razorpay payments, sends QR confirmations.</li></ul>
+    <div class="row"><b>Smart Traffic Management</b><span>YOLOv8 · OpenCV · Streamlit</span></div>
+    <ul><li>Real-time vehicle detection, centroid tracking and duplicate-free counting with an analytics dashboard.</li></ul>
+    <div class="row"><b>AI-Based Facial and Emotion Detection</b><span>Python · CNN · OpenCV · TensorFlow</span></div>
+    <ul><li>Real-time facial emotion recognition with a CNN integrated with OpenCV, optimised for smooth inference.</li></ul>
+    <div class="row"><b>Healthcare Management System</b><span>Python · Flask · FastAPI · SQL</span></div>
+    <ul><li>Full-stack app for patient records, appointment scheduling and prescription tracking over Flask REST APIs and MySQL.</li></ul>
+    <div class="row"><b>AI Notes Summarizer</b><span>Python · LangChain · Chainlit · Ollama</span></div>
+    <ul><li>Summarises long documents and PDFs using RAG and LLM techniques.</li></ul>
+    <h2>Research</h2>
+    <div class="row"><b>The Impact of Social Media's Swipe-Up Culture on Remote Work Employees</b></div>
+    <ul><li>Mixed-methods study of effects on remote workers' productivity, engagement and well-being, with a focus on gender-specific trends.</li></ul>
+    <h2>Technical skills</h2>
+    <p><b>Languages:</b> Python, C++, SQL<br><b>Libraries / frameworks:</b> TensorFlow, Keras, OpenCV, Pandas, NumPy, Matplotlib, NLTK, Chainlit, LangChain, Ollama, OpenAI, Flask, FastAPI<br><b>Tools:</b> N8N, VS Code, MySQL Workbench, PowerPoint, Docker<br><b>Concepts:</b> DSA, LLMs, Agentic AI, RAG, CNNs, RNNs, Transformers, Word Embeddings, Image and Text Classification, Sentiment Analysis, Transfer Learning, Attention Mechanisms, Real-Time ML Inference, Tokenization, LoRA, QLoRA</p>
+    <h2>Education</h2>
+    <div class="row"><b>B.Tech, Computer Science Engineering · Amity University, Noida</b><span>2022 to 2026 · 8.23 CGPA</span></div>
+    <div class="row"><b>CBSE Senior Secondary · Escorts World School, Kanpur</b><span>2021 · 93%</span></div>
+    <div class="row"><b>CBSE Secondary · Escorts World School, Kanpur</b><span>2019 · 95%</span></div>
+    <h2>Certifications & activities</h2>
+    <p>NPTEL: Python for Data Science (Jan to Feb 2024) · NPTEL: Body Language, Key to Professional (Aug to Sep 2024) · Cyber-Cup 2024, Amity University · Volunteer, Kind Beings NGO</p>
+  </article>
+</section>
 
 <script>
   // the sky of 19 January: Capricornus (the Sun's sign that day) + the winter constellations up that night
@@ -237,14 +340,14 @@
   const c = document.getElementById('sky'), x = c.getContext('2d'), root = document.documentElement, found = new Set();
   const dust = Array.from({length: 220}, () => [Math.random(), Math.random(), Math.random()]);
   const draw = () => { const W = innerWidth, H = innerHeight; c.width = W * devicePixelRatio; c.height = H * devicePixelRatio; x.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
-    for (const [a, b, s] of dust) { x.fillStyle = `rgba(235,227,222,${.25 + s * .45})`; x.fillRect(a * W, b * H, .8 + s, .8 + s); }
+    for (const [a, b, s] of dust) { x.fillStyle = `rgba(245,238,232,${.45 + s * .55})`; x.fillRect(a * W, b * H, 1 + s * 1.2, 1 + s * 1.2); }
     for (const k of C) { const pts = k.pts = place(k, W, H), col = k.sign ? '214,90,99' : '217,185,138';
-      x.strokeStyle = `rgba(${col},${k.sign ? .6 : .38})`; x.lineWidth = 1; x.beginPath();
+      x.strokeStyle = `rgba(${col},${k.sign ? .95 : .75})`; x.lineWidth = 1.3; x.shadowColor = `rgba(${col},.8)`; x.shadowBlur = 8; x.beginPath();
       for (const [i, j] of k.l) { x.moveTo(...pts[i]); x.lineTo(...pts[j]); } x.stroke();
-      k.s.forEach(([, , nm], i) => { x.fillStyle = 'rgba(255,245,235,.92)'; x.beginPath(); x.arc(...pts[i], nm ? 2.4 : 1.5, 0, 7); x.fill();
-        if (nm) { x.font = '10px "JetBrains Mono", monospace'; x.fillStyle = 'rgba(235,227,222,.45)'; x.fillText(nm, pts[i][0] + 6, pts[i][1] + 12); } });
+      k.s.forEach(([, , nm], i) => { x.fillStyle = '#fff'; x.shadowColor = '#fff'; x.shadowBlur = 10; x.beginPath(); x.arc(...pts[i], nm ? 3 : 2, 0, 7); x.fill(); x.shadowBlur = 0;
+        if (nm) { x.font = '10px "JetBrains Mono", monospace'; x.fillStyle = 'rgba(245,238,232,.8)'; x.fillText(nm, pts[i][0] + 6, pts[i][1] + 12); } });
       const lx = Math.max(8, Math.min(...pts.map(p => p[0]))), ly = Math.min(...pts.map(p => p[1]));
-      x.font = (k.sign ? 'italic 15px' : '13px') + ' "Cormorant Garamond", serif'; x.fillStyle = `rgba(${col},.9)`;
+      x.font = (k.sign ? 'italic 15px' : '13px') + ' "Cormorant Garamond", serif'; x.fillStyle = `rgba(${col},1)`;
       x.fillText(k.sign ? (W < 600 ? `${k.n} · ${BIRTH}` : `${k.n}, born under, ${BIRTH}`) : k.n, lx, ly - 12); } };
   document.fonts.ready.then(draw); addEventListener('resize', draw);
   const counter = document.getElementById('found'), toast = document.getElementById('toast');
@@ -301,6 +404,16 @@
   if (!still2) setInterval(() => { if (seen && !hovering && !dragging && document.activeElement.closest?.('#swrap') == null) select(cur + 1); }, 6000);
   (function spin() { if (!dragging) rot += (target - rot) * (still2 ? 1 : .07); sp.style.setProperty('--rot', rot.toFixed(2) + 'deg'); requestAnimationFrame(spin); })();
   select(0);
+
+  // resume mode: a clean printable resume; #resume links straight to it
+  const cv = document.getElementById('cv'), cvbtn = document.getElementById('cvbtn');
+  const setCV = on => { cv.hidden = !on; document.body.classList.toggle('cvmode', on); cvbtn.setAttribute('aria-pressed', on); scrollTo(0, 0);
+    if (on && location.hash !== '#resume') history.replaceState(null, '', '#resume'); if (!on && location.hash === '#resume') history.replaceState(null, '', location.pathname); };
+  cvbtn.onclick = () => setCV(true);
+  document.querySelector('.cvopen').onclick = () => setCV(true);
+  document.getElementById('cvback').onclick = () => setCV(false);
+  addEventListener('keydown', e => { if (e.key === 'Escape' && !cv.hidden) setCV(false); });
+  if (location.hash === '#resume') setCV(true);
 
   const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('in')), {threshold: .1});
   document.querySelectorAll('.reveal').forEach(n => io.observe(n));
