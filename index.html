@@ -26,11 +26,17 @@
   nav a { color:var(--muted); text-decoration:none; margin-left:26px; transition:color .4s; }
   nav a:hover { color:var(--fg); }
   nav .home { color:var(--fg); margin:0; letter-spacing:.3em; }
+  .burger { display:none; width:40px; height:40px; border:1px solid var(--line); border-radius:10px; background:rgba(6,4,4,.6); cursor:pointer; position:relative; }
+  .burger i { position:absolute; left:11px; right:11px; height:1px; background:var(--fg); transition:transform .35s, opacity .35s; }
+  .burger i:nth-child(1) { top:14px; } .burger i:nth-child(2) { top:19px; } .burger i:nth-child(3) { top:24px; }
+  nav.open .burger i:nth-child(1) { transform:translateY(5px) rotate(45deg); }
+  nav.open .burger i:nth-child(2) { opacity:0; }
+  nav.open .burger i:nth-child(3) { transform:translateY(-5px) rotate(-45deg); }
   .found { font-family:"JetBrains Mono", monospace; letter-spacing:0; text-transform:none; color:var(--muted); opacity:.55; margin-left:26px; transition:color .6s, opacity .6s; }
   .found.done { color:var(--gold); opacity:1; }
   /* quiet blood moon */
   .hero { height:100vh; min-height:620px; display:grid; place-items:center; text-align:center; position:relative; overflow:hidden; }
-  .moon { position:absolute; width:min(84vmin, 680px); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle at 60% 40%, #120707, #000 70%);
+  .moon { position:absolute; width:min(76vmin, 550px); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle at 60% 40%, #120707, #000 70%);
     box-shadow:0 0 0 1px rgba(255,140,140,.4), 0 0 22px 2px rgba(184,50,60,.35), 0 0 90px 24px rgba(184,50,60,.12); animation:breathe 9s ease-in-out infinite; }
   @keyframes breathe { 50% { box-shadow:0 0 0 1px rgba(255,140,140,.5), 0 0 28px 4px rgba(184,50,60,.42), 0 0 110px 30px rgba(184,50,60,.15); } }
   .hero .txt { position:relative; padding:0 16px; }
@@ -158,7 +164,7 @@
   .hstats { display:flex; justify-content:center; gap:28px; margin-top:22px; }
   .hstats b { display:block; font-family:"Cormorant Garamond", serif; font-size:1.8rem; font-weight:500; line-height:1; }
   .hstats span { color:var(--muted); font-size:10.5px; letter-spacing:.15em; text-transform:uppercase; }
-  .scroll { display:inline-block; margin-top:20px; font-family:"JetBrains Mono", monospace; font-size:11px; color:var(--muted); text-decoration:none; animation:bob 2.6s ease-in-out infinite; }
+  .scroll { display:none; margin-top:20px; font-family:"JetBrains Mono", monospace; font-size:11px; color:var(--muted); text-decoration:none; animation:bob 2.6s ease-in-out infinite; }
   @keyframes bob { 50% { transform:translateY(5px); } }
   .now .ongo { padding:10px 12px; margin-bottom:6px; border:1px solid rgba(63,185,80,.25) !important; border-radius:10px; background:rgba(63,185,80,.05); }
   .ongo b { font-weight:400; display:flex; align-items:center; gap:8px; }
@@ -202,13 +208,29 @@
   .reveal.in { opacity:1; transform:none; }
   @media (max-width:900px) { .log { grid-template-columns:repeat(2, 1fr); row-gap:22px; } .log::before { display:none; } .reach { grid-template-columns:1fr; } .paper { padding:32px 22px; } .paper .row { flex-direction:column; gap:0; } .paper .row span { text-align:left; } .s3, .s4, .s5 { grid-column:span 6; } .s6, .s7, .s8 { grid-column:span 12; } }
   @media (max-width:700px) { .pcard { position:static; transform:none; width:100%; text-align:left; margin-top:4px; } .pcard .meta { justify-content:flex-start; } }
-  @media (max-width:600px) { .moon { width:150vw; } .live .role { display:none; } .hstats { gap:18px; } .live { font-size:11px; padding:5px 10px; } .stats { grid-template-columns:1fr 1fr; } .log { grid-template-columns:1fr 1fr; } .links { grid-template-columns:1fr; } .cvbtn { display:none; } .grid > * { grid-column:span 12 !important; } nav div a { display:none; } .skills div { grid-template-columns:1fr; gap:2px; } }
+  @media (max-width:600px) {
+    .moon { width:94vw; }
+    .hero .txt { padding:0; }
+    .hero small { font-size:9px; letter-spacing:.3em; }
+    h1 { font-size:2.3rem; margin:8px 0; }
+    .hero p { font-size:12.5px; line-height:1.5; max-width:220px; margin-bottom:14px; }
+    .live { font-size:10.5px; padding:4px 10px; }
+    .hstats { gap:16px; margin-top:12px; } .hstats b { font-size:1.35rem; } .hstats span { font-size:8.5px; letter-spacing:.1em; }
+    .scroll { display:none; }
+    .burger { display:block; }
+    nav { padding:16px 20px; }
+    nav .menu { position:absolute; top:100%; left:12px; right:12px; display:none; flex-direction:column; align-items:stretch; padding:8px; background:rgba(10,6,6,.97); border:1px solid var(--line); border-radius:14px; box-shadow:0 20px 40px rgba(0,0,0,.6); }
+    nav.open .menu { display:flex; }
+    nav .menu a { display:block !important; margin:0; padding:14px 12px; border-bottom:1px solid var(--line); font-size:12px; }
+    nav .menu .cvbtn { display:block !important; margin:10px 0 4px; padding:12px; text-align:center; }
+    nav .menu .found { margin:6px 12px; }
+ .live .role { display:none; } .hstats { gap:18px; } .live { font-size:11px; padding:5px 10px; } .stats { grid-template-columns:1fr 1fr; } .log { grid-template-columns:1fr 1fr; } .links { grid-template-columns:1fr; } .grid > * { grid-column:span 12 !important; } .skills div { grid-template-columns:1fr; gap:2px; } }
   @media (prefers-reduced-motion:reduce) { *, .reveal { animation:none !important; transition:none !important; opacity:1; transform:none; } }
 </style>
 </head>
 <body>
 <canvas id="sky" aria-hidden="true"></canvas>
-<nav><a class="home serif" href="#">Harshit Singh</a><div><a href="#about">About</a><a href="#experience">Experience</a><a href="#work">Work</a><a href="#contact">Contact</a><button class="cvbtn" id="cvbtn" aria-pressed="false">Resume mode</button><span class="found" id="found" title="Hidden constellations found">✦ 0/5</span></div></nav>
+<nav id="nav"><a class="home serif" href="#">Harshit Singh</a><button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button><div class="menu" id="menu"><a href="#about">About</a><a href="#experience">Experience</a><a href="#work">Work</a><a href="#contact">Contact</a><button class="cvbtn" id="cvbtn" aria-pressed="false">Resume mode</button><span class="found" id="found" title="Hidden constellations found">✦ 0/5</span></div></nav>
 
 <header class="hero">
   <div class="moon"></div>
@@ -227,7 +249,7 @@
   <div class="sh reveal" id="about"><h2 class="serif">First <i>light</i></h2><span class="mono">● open to opportunities</span></div>
   <div class="grid">
     <div class="w s6 about reveal"><h3>About</h3><p class="quote">"Models are easy. Shipping them is the craft."</p>
-      <p class="muted" style="margin-top:12px">I am a motivated and detail-oriented BTech Computer Science graduate from Amity University Noida, with a strong passion for Artificial Intelligence and its real-world applications. Skilled in Python, data analysis, and foundational machine learning algorithms, with hands-on experience through academic projects and online courses. Eager to apply problem-solving abilities and continuously expand AI knowledge through internships and collaborative opportunities.</p>
+      <p class="muted" style="margin-top:12px">I'm a Computer Science graduate from Amity University Noida who loves turning AI into things people actually use. I work mostly in Python, across data analysis, machine learning, LLMs and computer vision, and I learn best by building: through internships, academic projects and a steady habit of shipping side projects. I'm looking for a team where I can solve real problems and keep growing as an AI engineer.</p>
       <div class="focus"><span>LLMs & fine-tuning</span><span>RAG pipelines</span><span>Agentic workflows</span><span>Computer vision</span><span>Production ML</span></div></div>
     <div class="s3 stack">
       <div class="w reveal"><h3>Internships</h3><ul class="co">
@@ -432,6 +454,12 @@
   const setCV = on => { cv.hidden = !on; document.body.classList.toggle('cvmode', on); cvbtn.setAttribute('aria-pressed', on); scrollTo(0, 0);
     if (on && location.hash !== '#resume') history.replaceState(null, '', '#resume'); if (!on && location.hash === '#resume') history.replaceState(null, '', location.pathname); };
   cvbtn.onclick = () => setCV(true);
+  const nav = document.getElementById('nav'), burger = document.getElementById('burger');
+  const setMenu = on => { nav.classList.toggle('open', on); burger.setAttribute('aria-expanded', on); burger.setAttribute('aria-label', on ? 'Close menu' : 'Open menu'); };
+  burger.onclick = () => setMenu(!nav.classList.contains('open'));
+  document.getElementById('menu').addEventListener('click', e => { if (e.target.closest('a, button')) setMenu(false); });
+  addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+  document.addEventListener('click', e => { if (!nav.contains(e.target)) setMenu(false); });
   const cvt = document.getElementById('cvtheme');
   const setDark = on => { cv.classList.toggle('dark', on); cvt.textContent = on ? 'Light mode' : 'Dark mode'; cvt.setAttribute('aria-pressed', on); try { localStorage.cvdark = on ? 1 : ''; } catch (e) {} };
   cvt.onclick = () => setDark(!cv.classList.contains('dark'));
