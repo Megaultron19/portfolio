@@ -12,16 +12,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Inter:wght@300;400;500&family=JetBrains+Mono&display=swap" rel="stylesheet">
 <style>
-  :root { --bg:#060404; --panel:rgba(14,9,9,.86); --fg:#ebe3de; --muted:#857874; --red:#b8323c; --red2:#d65a63; --gold:#d9b98a; --line:rgba(235,227,222,.07); --mx:-999px; --my:-999px; }
+  :root { --bg:#060404; --panel:rgba(14,9,9,.86); --fg:#ebe3de; --muted:#857874; --red:#b8323c; --red2:#d65a63; --gold:#d9b98a; --line:rgba(235,227,222,.07); }
   * { box-sizing:border-box; margin:0; }
   html { scroll-behavior:smooth; overflow-x:clip; }
   body { font:15px/1.7 Inter, system-ui, sans-serif; font-weight:300; color:var(--fg); background:var(--bg); }
-  body::after { content:""; position:fixed; inset:0; pointer-events:none; opacity:.04; z-index:50; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
   a { color:inherit; }
   .serif { font-family:"Cormorant Garamond", Georgia, serif; }
   .mono { font-family:"JetBrains Mono", monospace; }
   /* hidden sky: only visible inside a soft lantern around the cursor */
-  #sky { position:fixed; inset:0; z-index:-1; -webkit-mask:radial-gradient(240px circle at var(--mx) var(--my), #000 0, #000 35%, rgba(0,0,0,.6) 65%, transparent 100%); mask:radial-gradient(240px circle at var(--mx) var(--my), #000 0, #000 35%, rgba(0,0,0,.6) 65%, transparent 100%); }
+  #sky { position:fixed; inset:0; z-index:-1; width:100%; height:100%; pointer-events:none; }
   nav { position:fixed; top:0; left:0; right:0; z-index:10; display:flex; justify-content:space-between; align-items:center; padding:22px 5vw; font-size:12px; letter-spacing:.25em; text-transform:uppercase; background:linear-gradient(var(--bg), transparent); }
   nav a { color:var(--muted); text-decoration:none; margin-left:26px; transition:color .4s; }
   nav a:hover { color:var(--fg); }
@@ -53,6 +52,14 @@
   .itag { color:var(--muted); font-size:11px; letter-spacing:.4em; text-transform:uppercase; opacity:0; animation:fadein 1s .6s forwards; }
   @keyframes fadein { to { opacity:1; } }
   body.loading { overflow:hidden; }
+  @media (min-width:601px) and (max-height:820px) {
+    .hero small { font-size:10px; }
+    h1 { font-size:clamp(2.4rem, 9vh, 4.2rem); margin:8px 0; }
+    .hero p { font-size:14px; line-height:1.55; max-width:310px; margin-bottom:14px; }
+    .live { font-size:11.5px; padding:5px 12px; }
+    .hstats { margin-top:14px; } .hstats b { font-size:1.5rem; }
+    .hint { bottom:14px; }
+  }
   .burger { display:none; width:40px; height:40px; border:1px solid var(--line); border-radius:10px; background:rgba(6,4,4,.6); cursor:pointer; position:relative; }
   .burger i { position:absolute; left:11px; right:11px; height:1px; background:var(--fg); transition:transform .35s, opacity .35s; }
   .burger i:nth-child(1) { top:14px; } .burger i:nth-child(2) { top:19px; } .burger i:nth-child(3) { top:24px; }
@@ -63,10 +70,11 @@
   .found.done { color:var(--gold); opacity:1; }
   /* quiet blood moon */
   .hero { height:100vh; min-height:620px; display:grid; place-items:center; text-align:center; position:relative; overflow:hidden; }
-  .moon { position:absolute; width:min(76vmin, 550px); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle at 60% 40%, #120707, #000 70%);
-    box-shadow:0 0 0 1px rgba(255,140,140,.4), 0 0 22px 2px rgba(184,50,60,.35), 0 0 90px 24px rgba(184,50,60,.12); animation:breathe 9s ease-in-out infinite; }
-  @keyframes breathe { 50% { box-shadow:0 0 0 1px rgba(255,140,140,.5), 0 0 28px 4px rgba(184,50,60,.42), 0 0 110px 30px rgba(184,50,60,.15); } }
-  .hero .txt { position:relative; padding:0 16px; }
+  .moon { position:absolute; left:50%; top:calc(50% + 36px); transform:translate(-50%, -50%); width:min(76vmin, 550px, calc(100vh - 150px)); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle at 60% 40%, #120707, #000 70%);
+    box-shadow:0 0 0 1px rgba(255,140,140,.4), 0 0 22px 2px rgba(184,50,60,.35), 0 0 90px 24px rgba(184,50,60,.12); }
+  .moon::after { content:""; position:absolute; inset:0; border-radius:50%; box-shadow:0 0 34px 8px rgba(184,50,60,.3), 0 0 120px 40px rgba(184,50,60,.1); opacity:0; animation:breathe 9s ease-in-out infinite; will-change:opacity; }
+  @keyframes breathe { 50% { opacity:1; } }
+  .hero .txt { position:relative; padding:0 16px; margin-top:72px; }
   .hero small { color:var(--muted); letter-spacing:.4em; font-size:11px; text-transform:uppercase; }
   h1 { font-size:clamp(2.6rem, 8vmin, 5rem); font-weight:500; line-height:1; margin:12px 0; }
   h1 i { color:var(--red2); }
@@ -236,8 +244,8 @@
   @media (max-width:900px) { .log { grid-template-columns:repeat(2, 1fr); row-gap:22px; } .log::before { display:none; } .reach { grid-template-columns:1fr; } .paper { padding:32px 22px; } .paper .row { flex-direction:column; gap:0; } .paper .row span { text-align:left; } .s3, .s4, .s5 { grid-column:span 6; } .s6, .s7, .s8 { grid-column:span 12; } }
   @media (max-width:700px) { .pcard { position:static; transform:none; width:100%; text-align:left; margin-top:4px; } .pcard .meta { justify-content:flex-start; } }
   @media (max-width:600px) {
-    .moon { width:94vw; }
-    .hero .txt { padding:0; }
+    .moon { width:94vw; top:calc(50% + 20px); }
+    .hero .txt { padding:0; margin-top:40px; }
     .hero small { font-size:9px; letter-spacing:.3em; }
     h1 { font-size:2.3rem; margin:8px 0; }
     .hero p { font-size:12.5px; line-height:1.5; max-width:220px; margin-bottom:14px; }
@@ -430,9 +438,10 @@
     const span = Math.max(Math.max(...xs) - minX, Math.max(...ys) - minY), sc = box[2] * Math.min(W, H) / span;
     const w = (Math.max(...xs) - minX) * sc, h = (Math.max(...ys) - minY) * sc;
     return raw.map(([x0, y0]) => [box[0] * W - w / 2 + (x0 - minX) * sc, box[1] * H - h / 2 + (y0 - minY) * sc]); };
-  const c = document.getElementById('sky'), x = c.getContext('2d'), root = document.documentElement, found = new Set();
+  const c = document.getElementById('sky'), vis = c.getContext('2d'), map = document.createElement('canvas'), x = map.getContext('2d'), found = new Set();
+  let lx = -999, ly = -999, queued = false;
   const dust = Array.from({length: 220}, () => [Math.random(), Math.random(), Math.random()]);
-  const draw = () => { const W = innerWidth, H = innerHeight; c.width = W * devicePixelRatio; c.height = H * devicePixelRatio; x.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+  const draw = () => { const W = innerWidth, H = innerHeight, d = devicePixelRatio; c.width = map.width = W * d; c.height = map.height = H * d; x.setTransform(d, 0, 0, d, 0, 0);
     for (const [a, b, s] of dust) { x.fillStyle = `rgba(245,238,232,${.45 + s * .55})`; x.fillRect(a * W, b * H, 1 + s * 1.2, 1 + s * 1.2); }
     for (const k of C) { const pts = k.pts = place(k, W, H), col = k.sign ? '214,90,99' : '217,185,138';
       x.strokeStyle = `rgba(${col},${k.sign ? .95 : .75})`; x.lineWidth = 1.3; x.shadowColor = `rgba(${col},.8)`; x.shadowBlur = 8; x.beginPath();
@@ -442,16 +451,23 @@
       const lx = Math.max(8, Math.min(...pts.map(p => p[0]))), ly = Math.min(...pts.map(p => p[1]));
       x.font = (k.sign ? 'italic 15px' : '13px') + ' "Cormorant Garamond", serif'; x.fillStyle = `rgba(${col},1)`;
       x.fillText(k.sign ? (W < 600 ? `${k.n} · ${BIRTH}` : `${k.n}, born under, ${BIRTH}`) : k.n, lx, ly - 12); } };
-  document.fonts.ready.then(draw); addEventListener('resize', draw);
+  // show the star map only inside a soft circle around the cursor (one cheap composite per frame, no page restyle)
+  const paint = () => { queued = false; const d = devicePixelRatio, R = 240 * d, px = lx * d, py = ly * d;
+    vis.globalCompositeOperation = 'source-over'; vis.clearRect(0, 0, c.width, c.height); if (lx < -500) return;
+    vis.drawImage(map, 0, 0); vis.globalCompositeOperation = 'destination-in';
+    const g = vis.createRadialGradient(px, py, 0, px, py, R); g.addColorStop(0, '#000'); g.addColorStop(.35, '#000'); g.addColorStop(.65, 'rgba(0,0,0,.6)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+    vis.fillStyle = g; vis.fillRect(px - R, py - R, R * 2, R * 2); vis.clearRect(0, 0, c.width, Math.max(0, py - R)); };
+  const ask = () => { if (!queued) { queued = true; requestAnimationFrame(paint); } };
+  document.fonts.ready.then(() => { draw(); ask(); }); addEventListener('resize', () => { draw(); ask(); });
   const counter = document.getElementById('found'), toast = document.getElementById('toast');
-  const move = (px, py) => { root.style.setProperty('--mx', px + 'px'); root.style.setProperty('--my', py + 'px');
+  const move = (px, py) => { lx = px; ly = py; ask();
     for (const k of C) if (k.pts && !found.has(k.n) && k.pts.some(([a, b]) => Math.hypot(a - px, b - py) < 60)) {
       found.add(k.n); counter.textContent = `✦ ${found.size}/${C.length}`;
       if (found.size === C.length) { counter.classList.add('done'); toast.textContent = `✦ the winter sky of ${BIRTH}, born under Capricorn. You have a good eye. Say hi ↓`; toast.classList.add('on'); setTimeout(() => toast.classList.remove('on'), 6000); } } };
   addEventListener('pointermove', e => move(e.clientX, e.clientY));
   // touch screens: the lantern drifts slowly on its own (no counting, just ambience)
   if (!matchMedia('(pointer: fine)').matches) { counter.remove(); document.querySelector('.hint').remove();
-    (function wander(t) { root.style.setProperty('--mx', innerWidth * (.5 + .4 * Math.sin(t / 3500)) + 'px'); root.style.setProperty('--my', innerHeight * (.45 + .35 * Math.sin(t / 2600)) + 'px'); requestAnimationFrame(wander); })(0); }
+    let lastW = 0; (function wander(t) { if (t - lastW > 50) { lastW = t; lx = innerWidth * (.5 + .4 * Math.sin(t / 3500)); ly = innerHeight * (.45 + .35 * Math.sin(t / 2600)); ask(); } requestAnimationFrame(wander); })(0); }
 
   // project spiral: stars on a slowly-turning arm; click, drag, arrow keys or wait for it to drift to the next one
   const P = [
@@ -495,7 +511,7 @@
   sw.addEventListener('pointerenter', () => hovering = true); sw.addEventListener('pointerleave', () => hovering = false);
   let seen = false; new IntersectionObserver(([e]) => seen = e.isIntersecting).observe(sw);
   if (!still2) setInterval(() => { if (seen && !hovering && !dragging && document.activeElement.closest?.('#swrap') == null) select(cur + 1); }, 6000);
-  (function spin() { if (!dragging) rot += (target - rot) * (still2 ? 1 : .07); sp.style.setProperty('--rot', rot.toFixed(2) + 'deg'); requestAnimationFrame(spin); })();
+  let shown = ''; (function spin() { if (!dragging) rot += (target - rot) * (still2 ? 1 : .07); const v = rot.toFixed(2) + 'deg'; if (v !== shown) { shown = v; sp.style.setProperty('--rot', v); } requestAnimationFrame(spin); })();
   select(0);
 
   // resume mode: a clean printable resume; #resume links straight to it
