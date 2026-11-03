@@ -519,11 +519,10 @@
   const setCV = on => { cv.hidden = !on; document.body.classList.toggle('cvmode', on); cvbtn.setAttribute('aria-pressed', on); scrollTo(0, 0);
     if (on && location.hash !== '#resume') history.replaceState(null, '', '#resume'); if (!on && location.hash === '#resume') history.replaceState(null, '', location.pathname); };
   cvbtn.onclick = () => setCV(true);
-  // opening screen: once per visit, click to skip, skipped for reduced motion and resume links
+  // opening screen: plays on every load; click to skip; skipped for reduced motion and #resume links
   const intro = document.getElementById('intro');
-  const endIntro = () => { intro.classList.add('done'); document.body.classList.remove('loading'); setTimeout(() => intro.remove(), 1000); try { sessionStorage.introSeen = 1; } catch (e) {} };
-  let seenIntro = false; try { seenIntro = !!sessionStorage.introSeen; } catch (e) {}
-  if (seenIntro || location.hash || matchMedia('(prefers-reduced-motion: reduce)').matches) intro.remove();
+  const endIntro = () => { intro.classList.add('done'); document.body.classList.remove('loading'); setTimeout(() => intro.remove(), 1000); };
+  if (location.hash === '#resume' || matchMedia('(prefers-reduced-motion: reduce)').matches) intro.remove();
   else { document.body.classList.add('loading'); intro.onclick = endIntro; document.fonts.ready.then(() => setTimeout(endIntro, 4200)); }
   const nav = document.getElementById('nav'), burger = document.getElementById('burger');
   const setMenu = on => { nav.classList.toggle('open', on); burger.setAttribute('aria-expanded', on); burger.setAttribute('aria-label', on ? 'Close menu' : 'Open menu'); };
