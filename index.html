@@ -464,10 +464,18 @@
     for (const k of C) if (k.pts && !found.has(k.n) && k.pts.some(([a, b]) => Math.hypot(a - px, b - py) < 60)) {
       found.add(k.n); counter.textContent = `✦ ${found.size}/${C.length}`;
       if (found.size === C.length) { counter.classList.add('done'); toast.textContent = `✦ the winter sky of ${BIRTH}, born under Capricorn. You have a good eye. Say hi ↓`; toast.classList.add('on'); setTimeout(() => toast.classList.remove('on'), 6000); } } };
-  addEventListener('pointermove', e => move(e.clientX, e.clientY));
-  // touch screens: the lantern drifts slowly on its own (no counting, just ambience)
-  if (!matchMedia('(pointer: fine)').matches) { counter.remove(); document.querySelector('.hint').remove();
-    let lastW = 0; (function wander(t) { if (t - lastW > 50) { lastW = t; lx = innerWidth * (.5 + .4 * Math.sin(t / 3500)); ly = innerHeight * (.45 + .35 * Math.sin(t / 2600)); ask(); } requestAnimationFrame(wander); })(0); }
+  // mouse: the lantern follows the cursor. Touch screens: it tours the constellations on its own, circling each one
+  if (matchMedia('(pointer: fine)').matches) addEventListener('pointermove', e => move(e.clientX, e.clientY));
+  else { counter.remove(); document.querySelector('.hint').remove();
+    const centre = k => [k.pts.reduce((t, p) => t + p[0], 0) / k.pts.length, k.pts.reduce((t, p) => t + p[1], 0) / k.pts.length];
+    let ti = 0, since = 0, last = 0;
+    (function tour(t) { if (C[0].pts && t - last > 33) { const dt = t - last; last = t; since += dt;
+        if (since > 5200) { since = 0; ti = (ti + 1) % C.length; }
+        const [cx, cy] = centre(C[ti]), a = t / 1400, r = Math.min(innerWidth, innerHeight) * .07;
+        const tx = cx + r * Math.cos(a), ty = cy + r * Math.sin(a);
+        if (lx < -500) { lx = tx; ly = ty; } else { lx += (tx - lx) * .06; ly += (ty - ly) * .06; }
+        ask(); }
+      requestAnimationFrame(tour); })(0); }
 
   // project spiral: stars on a slowly-turning arm; click, drag, arrow keys or wait for it to drift to the next one
   const P = [
