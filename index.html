@@ -15,12 +15,12 @@
   :root { --bg:#060404; --panel:rgba(14,9,9,.86); --fg:#ebe3de; --muted:#857874; --red:#b8323c; --red2:#d65a63; --gold:#d9b98a; --line:rgba(235,227,222,.07); }
   * { box-sizing:border-box; margin:0; }
   html { scroll-behavior:smooth; overflow-x:clip; }
-  body { font:15px/1.7 Inter, system-ui, sans-serif; font-weight:300; color:var(--fg); background:var(--bg); }
+  body { overflow-x:hidden; overscroll-behavior-x:none; font:15px/1.7 Inter, system-ui, sans-serif; font-weight:300; color:var(--fg); background:var(--bg); }
   a { color:inherit; }
   .serif { font-family:"Cormorant Garamond", Georgia, serif; }
   .mono { font-family:"JetBrains Mono", monospace; }
   /* hidden sky: only visible inside a soft lantern around the cursor */
-  #sky { position:fixed; inset:0; z-index:-1; width:100%; height:100%; pointer-events:none; }
+  #sky { position:fixed; top:0; left:0; z-index:-1; pointer-events:none; }
   nav { position:fixed; top:0; left:0; right:0; z-index:10; display:flex; justify-content:space-between; align-items:center; padding:22px 5vw; font-size:12px; letter-spacing:.25em; text-transform:uppercase; background:linear-gradient(var(--bg), transparent); }
   nav a { color:var(--muted); text-decoration:none; margin-left:26px; transition:color .4s; }
   nav a:hover { color:var(--fg); }
@@ -69,11 +69,11 @@
   .found { font-family:"JetBrains Mono", monospace; letter-spacing:0; text-transform:none; color:var(--muted); opacity:.55; margin-left:26px; transition:color .6s, opacity .6s; }
   .found.done { color:var(--gold); opacity:1; }
   /* quiet blood moon */
-  .hero { height:100vh; min-height:620px; display:grid; place-items:center; text-align:center; position:relative; overflow:hidden; }
+  .hero { height:100vh; height:100svh; min-height:620px; display:grid; place-items:center; text-align:center; position:relative; overflow:hidden; }
   .moon { position:absolute; left:50%; top:calc(50% + 36px); transform:translate(-50%, -50%); width:min(76vmin, 550px, calc(100vh - 150px)); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle at 60% 40%, #120707, #000 70%);
     box-shadow:0 0 0 1px rgba(255,140,140,.4), 0 0 22px 2px rgba(184,50,60,.35), 0 0 90px 24px rgba(184,50,60,.12); }
-  .moon::after { content:""; position:absolute; inset:0; border-radius:50%; box-shadow:0 0 34px 8px rgba(184,50,60,.3), 0 0 120px 40px rgba(184,50,60,.1); opacity:0; animation:breathe 9s ease-in-out infinite; will-change:opacity; }
-  @keyframes breathe { 50% { opacity:1; } }
+  .moon::after { content:""; position:absolute; inset:-1px; border-radius:50%; box-shadow:0 0 0 1.5px rgba(255,150,150,.75), 0 0 40px 10px rgba(214,70,82,.55), 0 0 140px 50px rgba(184,50,60,.22); opacity:0; animation:breathe 7s ease-in-out infinite; will-change:opacity; }
+  @keyframes breathe { 0%, 100% { opacity:0; } 45%, 55% { opacity:1; } }
   .hero .txt { position:relative; padding:0 16px; margin-top:72px; }
   .hero small { color:var(--muted); letter-spacing:.4em; font-size:11px; text-transform:uppercase; }
   h1 { font-size:clamp(2.6rem, 8vmin, 5rem); font-weight:500; line-height:1; margin:12px 0; }
@@ -441,7 +441,7 @@
   const c = document.getElementById('sky'), vis = c.getContext('2d'), map = document.createElement('canvas'), x = map.getContext('2d'), found = new Set();
   let lx = -999, ly = -999, queued = false;
   const dust = Array.from({length: 220}, () => [Math.random(), Math.random(), Math.random()]);
-  const draw = () => { const W = innerWidth, H = innerHeight, d = devicePixelRatio; c.width = map.width = W * d; c.height = map.height = H * d; x.setTransform(d, 0, 0, d, 0, 0);
+  let H0 = 0; const draw = () => { const W = innerWidth, H = H0 = Math.max(innerHeight, document.documentElement.clientHeight), d = devicePixelRatio; c.width = map.width = W * d; c.height = map.height = H * d; c.style.width = W + 'px'; c.style.height = H + 'px'; x.setTransform(d, 0, 0, d, 0, 0);
     for (const [a, b, s] of dust) { x.fillStyle = `rgba(245,238,232,${.45 + s * .55})`; x.fillRect(a * W, b * H, 1 + s * 1.2, 1 + s * 1.2); }
     for (const k of C) { const pts = k.pts = place(k, W, H), col = k.sign ? '214,90,99' : '217,185,138';
       x.strokeStyle = `rgba(${col},${k.sign ? .95 : .75})`; x.lineWidth = 1.3; x.shadowColor = `rgba(${col},.8)`; x.shadowBlur = 8; x.beginPath();
@@ -458,7 +458,7 @@
     const g = vis.createRadialGradient(px, py, 0, px, py, R); g.addColorStop(0, '#000'); g.addColorStop(.35, '#000'); g.addColorStop(.65, 'rgba(0,0,0,.6)'); g.addColorStop(1, 'rgba(0,0,0,0)');
     vis.fillStyle = g; vis.fillRect(px - R, py - R, R * 2, R * 2); vis.clearRect(0, 0, c.width, Math.max(0, py - R)); };
   const ask = () => { if (!queued) { queued = true; requestAnimationFrame(paint); } };
-  document.fonts.ready.then(() => { draw(); ask(); }); addEventListener('resize', () => { draw(); ask(); });
+  document.fonts.ready.then(() => { draw(); ask(); }); let W0 = innerWidth; addEventListener('resize', () => { if (innerWidth === W0 && !matchMedia('(pointer: fine)').matches) return; W0 = innerWidth; draw(); ask(); });
   const counter = document.getElementById('found'), toast = document.getElementById('toast');
   const move = (px, py) => { lx = px; ly = py; ask();
     for (const k of C) if (k.pts && !found.has(k.n) && k.pts.some(([a, b]) => Math.hypot(a - px, b - py) < 60)) {
@@ -471,7 +471,7 @@
     let ti = 0, since = 0, last = 0;
     (function tour(t) { if (C[0].pts && t - last > 33) { const dt = t - last; last = t; since += dt;
         if (since > 5200) { since = 0; ti = (ti + 1) % C.length; }
-        const [cx, cy] = centre(C[ti]), a = t / 1400, r = Math.min(innerWidth, innerHeight) * .07;
+        const [cx, cy] = centre(C[ti]), a = t / 1400, r = Math.min(innerWidth, H0) * .07;
         const tx = cx + r * Math.cos(a), ty = cy + r * Math.sin(a);
         if (lx < -500) { lx = tx; ly = ty; } else { lx += (tx - lx) * .06; ly += (ty - ly) * .06; }
         ask(); }
@@ -492,7 +492,7 @@
   nodesEl.innerHTML = P.map((p, i) => `<button class="node" data-i="${i}" aria-label="${p.t}"><i></i><span class="lab"><b><em>${pad(i + 1)}</em>${p.s}</b></span></button>`).join('');
   const nodes = [...nodesEl.children];
   const rad = t => .72 + .28 * t / (N - 1);  // radius as a fraction of R along the arm (t = node index)
-  const layout = () => { const S = sp.clientWidth, R = S / 2 - 46, c = S / 2;
+  const layout = () => { const S = sp.clientWidth, R = S / 2 - (S < 520 ? 64 : 46), c = S / 2;
     nodes.forEach((n, i) => { const a = i * STEP * Math.PI / 180, r = R * rad(i); n.style.left = c + r * Math.cos(a) + 'px'; n.style.top = c + r * Math.sin(a) + 'px'; });
     let d = ''; for (let t = -2.4; t <= N - .6; t += .04) { const a = t * STEP * Math.PI / 180, r = R * (t < 0 ? rad(0) * (1 + t / 2.7) : rad(t)); d += (d ? 'L' : 'M') + (c + r * Math.cos(a)).toFixed(1) + ' ' + (c + r * Math.sin(a)).toFixed(1); }
     arm.setAttribute('d', d); };
